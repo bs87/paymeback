@@ -1,0 +1,29 @@
+<h1>Listing debits</h1>
+
+<table>
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Charge</th>
+    <th>Info</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @debits.each do |debit| %>
+  <tr>
+    <td><%= debit.firstname %></td>
+    <td><%= debit.lastname %></td>
+    <td><%= debit.charge %></td>
+    <td><%= debit.info %></td>
+    <td><%= link_to 'Show', debit %></td>
+    <td><%= link_to 'Edit', edit_debit_path(debit) %></td>
+    <td><%= link_to 'Destroy', debit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Debit', new_debit_path %>

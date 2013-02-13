@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  firstname: MyString
+  lastname: MyString
+  charge: 1.5
+  info: MyText
+
+two:
+  firstname: MyString
+  lastname: MyString
+  charge: 1.5
+  info: MyText

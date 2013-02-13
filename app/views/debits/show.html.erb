@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Firstname:</b>
+  <%= @debit.firstname %>
+</p>
+
+<p>
+  <b>Lastname:</b>
+  <%= @debit.lastname %>
+</p>
+
+<p>
+  <b>Charge:</b>
+  <%= @debit.charge %>
+</p>
+
+<p>
+  <b>Info:</b>
+  <%= @debit.info %>
+</p>
+
+
+<%= link_to 'Edit', edit_debit_path(@debit) %> |
+<%= link_to 'Back', debits_path %>
