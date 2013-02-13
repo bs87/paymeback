@@ -1,0 +1,2 @@
+class StartsiteController < ApplicationController
+end
