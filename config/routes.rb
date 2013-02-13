@@ -2,7 +2,7 @@ Paymeback::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   devise_for :users
-
+  root to: 'startsite#startsite'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
