@@ -1,3 +1,3 @@
 class Debit < ActiveRecord::Base
-  attr_accessible :charge, :firstname, :info, :lastname
+  attr_accessible :Betrag, :Datum, :Info, :Nachname, :Vorname
 end

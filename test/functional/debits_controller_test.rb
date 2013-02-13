@@ -18,7 +18,7 @@ class DebitsControllerTest < ActionController::TestCase
 
   test "should create debit" do
     assert_difference('Debit.count') do
-      post :create, debit: { charge: @debit.charge, firstname: @debit.firstname, info: @debit.info, lastname: @debit.lastname }
+      post :create, debit: { Betrag: @debit.Betrag, Datum: @debit.Datum, Info: @debit.Info, Nachname: @debit.Nachname, Vorname: @debit.Vorname }
     end
 
     assert_redirected_to debit_path(assigns(:debit))
@@ -35,7 +35,7 @@ class DebitsControllerTest < ActionController::TestCase
   end
 
   test "should update debit" do
-    put :update, id: @debit, debit: { charge: @debit.charge, firstname: @debit.firstname, info: @debit.info, lastname: @debit.lastname }
+    put :update, id: @debit, debit: { Betrag: @debit.Betrag, Datum: @debit.Datum, Info: @debit.Info, Nachname: @debit.Nachname, Vorname: @debit.Vorname }
     assert_redirected_to debit_path(assigns(:debit))
   end
 

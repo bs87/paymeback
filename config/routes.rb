@@ -2,6 +2,10 @@ Paymeback::Application.routes.draw do
   resources :debits
 
 
+  resources :debits
+  root to: 'debits#index'
+
+
   ActiveAdmin.routes(self)
 
   devise_for :users
