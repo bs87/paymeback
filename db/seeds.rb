@@ -4,4 +4,7 @@
 # Examples:
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+#   Mayor.create(name: 'Emanuel', city: cities.first
+
+	admin = User.create email:'admin@admin.de', password:'Test1234', password_confirmation: 'Test1234'
+	admin.add_role :admin
