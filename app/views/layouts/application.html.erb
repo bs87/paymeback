@@ -68,6 +68,7 @@
               <li class="nav-header">Sidebar</li>
               <% if current_user %>
               <li> Welcome, <%= current_user.email %>!</li>
+              <li><%= link_to 'Listing Debts', debts_path  %></li>
               <!--<li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>-->
               <!<%else%>
               <li><%= link_to 'Tutorial', new_user_session_path  %></li>
