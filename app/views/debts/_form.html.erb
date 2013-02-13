@@ -1,10 +1,10 @@
-<%= form_for(@debit) do |f| %>
-  <% if @debit.errors.any? %>
+<%= form_for(@debt) do |f| %>
+  <% if @debt.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@debit.errors.count, "error") %> prohibited this debit from being saved:</h2>
+      <h2><%= pluralize(@debt.errors.count, "error") %> prohibited this debt from being saved:</h2>
 
       <ul>
-      <% @debit.errors.full_messages.each do |msg| %>
+      <% @debt.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -24,12 +24,8 @@
     <%= f.text_field :Betrag %>
   </div>
   <div class="field">
-    <%= f.label :Datum %><br />
-    <%= f.datetime_select :Datum %>
-  </div>
-  <div class="field">
-    <%= f.label :Info %><br />
-    <%= f.text_area :Info %>
+    <%= f.label :info %><br />
+    <%= f.text_area :info %>
   </div>
   <div class="actions">
     <%= f.submit %>
