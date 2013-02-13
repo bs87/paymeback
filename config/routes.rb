@@ -1,6 +1,5 @@
 Paymeback::Application.routes.draw do
   resources :debts
-  root to: 'debts#index'
 
 
   ActiveAdmin.routes(self)
