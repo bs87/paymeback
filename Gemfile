@@ -15,10 +15,10 @@ gem 'rspec-rails'
 gem 'faker'
 gem 'guard-rspec'
 gem 'factory_girl_rails'
-gem 'sqlite3'
+#gem 'sqlite3'
 end
 
-group :production do
+group :production, :developement do
 gem 'pg'
 end
 
