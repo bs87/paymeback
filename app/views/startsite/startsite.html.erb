@@ -4,6 +4,10 @@
 <title>Startseite</title>
 </head>
 <body>
-<h1>Dies ist die Startseite ist für nicht registrierte Nutzer</h1>
+	<% if current_user %>
+        <h1> Welcome, <%= current_user.firstname%>!</h1>
+    <%else%>
+		<h1>Dies ist die Startseite für nicht registrierte Nutzer</h1>
+	<%end%>
 </body>
 </html>
