@@ -16,9 +16,9 @@ gem 'faker'
 gem 'guard-rspec'
 gem 'factory_girl_rails'
 #gem 'sqlite3'
-gem 'pg'
-end
 
+end
+gem 'pg'
 
 
 
