@@ -48,7 +48,10 @@
           <div class="container-fluid nav-collapse">
             <ul class="nav">
               <% if current_user %>
-              <!--<li> Welcome, <%= current_user.email %>!</li>-->
+
+              
+              <li> Welcome, <% current_user.firstname %>!</li>
+
               <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
               <%else%>
               <li><%= link_to 'Sign in', new_user_session_path  %></li>
@@ -67,7 +70,8 @@
             <ul class="nav nav-list">
               <li class="nav-header">Sidebar</li>
               <% if current_user %>
-              <li> Welcome, <%= current_user.email %>!</li>
+
+              <li> Welcome, <%= current_user.firstname %>!</li>
               <li><%= link_to 'Listing Debts', debts_path  %></li>
               <!--<li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>-->
               <!<%else%>
@@ -75,6 +79,8 @@
               <li><%= link_to 'Impressum', new_user_session_path  %></li>
               <li><%= link_to 'Kontakt', new_user_registration_path  %></li>
               <li><%= link_to 'Über uns', new_user_registration_path  %></li>
+
+
               <%end%>
             </ul>
           </div><!--/.well -->
