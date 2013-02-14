@@ -69,9 +69,11 @@
               <% if current_user %>
               <li> Welcome, <% current_user.email %>!</li>
               <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
-              <%else%>
-              <li><%= link_to 'Sign in', new_user_session_path  %></li>
-              <li><%= link_to 'Sign up', new_user_registration_path  %></li>
+              <!<%else%>
+              <li><%= link_to 'Tutorial', new_user_session_path  %></li>
+              <li><%= link_to 'Impressum', new_user_session_path  %></li>
+              <li><%= link_to 'Kontakt', new_user_registration_path  %></li>
+              <li><%= link_to 'Über uns', new_user_registration_path  %></li>
               <%end%>
             </ul>
           </div><!--/.well -->
