@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Emailcurrentuser:</b>
+  <%= @debit.emailcurrentuser %>
+</p>
+
+<p>
+  <b>Emailuser2:</b>
+  <%= @debit.emailuser2 %>
+</p>
+
+<p>
+  <b>Betrag:</b>
+  <%= @debit.betrag %>
+</p>
+
+<p>
+  <b>Datum:</b>
+  <%= @debit.datum %>
+</p>
+
+<p>
+  <b>Info:</b>
+  <%= @debit.info %>
+</p>
+
+<p>
+  <b>Gezahlt:</b>
+  <%= @debit.gezahlt %>
+</p>
+
+
+<%= link_to 'Edit', edit_debit_path(@debit) %> |
+<%= link_to 'Back', debits_path %>
