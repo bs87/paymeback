@@ -1,4 +1,6 @@
 class DebitsController < ApplicationController
+   load_and_authorize_resource
+
   # GET /debits
   # GET /debits.json
   def index

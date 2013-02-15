@@ -3,11 +3,11 @@ class Ability
 
   def initialize(user)
 
-    #if user.present?
-     #   if user.has_role?(:admin)
+    if user.present?
+        if user.has_role?(:admin)
             #Admins
-      #      can :manage, :all
-      #  else
+            can  :create, :read, :update, :delete , AmountType
+        else
             # Registered users
             can :read, :all
         end
