@@ -1,7 +1,4 @@
 Paymeback::Application.routes.draw do
-  resources :debts
-
-
   ActiveAdmin.routes(self)
 
   devise_for :users
