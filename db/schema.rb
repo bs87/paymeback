@@ -28,15 +28,6 @@ ActiveRecord::Schema.define(:version => 20130214135201) do
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
-  create_table "debts", :force => true do |t|
-    t.string   "Vorname"
-    t.string   "Nachname"
-    t.float    "Betrag"
-    t.text     "info"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.integer  "resource_id"
