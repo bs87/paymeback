@@ -6,10 +6,11 @@ class Ability
     if user.present?
         if user.has_role?(:admin)
             #Admins
-            can  :create, :read, :update, :delete , AmountType
-        else
+            can  :create, :read, :update, :delete 
+        end
+        if user.has_role?(:reguser)
             # Registered users
-            can :read, :all
+            can :create, :read, :update, :delete 
         end
 
     # Define abilities for the passed in user here. For example:

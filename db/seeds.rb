@@ -8,4 +8,7 @@
 
 	flo = User.create email:'flo@admin.de', firstname:'Flo', lastname:'Kopp', password:'Test1234', password_confirmation: 'Test1234'
 	admin = User.create email:'admin@admin.de', password:'Test1234', password_confirmation: 'Test1234'
+	Role.create name: 'reguser'
 	admin.add_role :admin
+	flo.add_role :reguser
+	
