@@ -1,8 +1,11 @@
 class DebitsController < ApplicationController
+   load_and_authorize_resource 
+
   # GET /debits
   # GET /debits.json
   def index
-    @debits = Debit.all
+    @debits = Debit.where('emailcurrentuser like  ?', "#{current_user.email}")
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,11 +16,16 @@ class DebitsController < ApplicationController
   # GET /debits/1
   # GET /debits/1.json
   def show
-    @debit = Debit.find(params[:id])
-
+    @debit = Debit.find(:first, :conditions => ["emailcurrentuser = ? AND id = ?", "#{current_user.email}",params[:id] ], :limit => 1)
+   
+    if @debit == nil
+    flash[:error] = "Zugriff Verweigert!  "
+    redirect_to debits_path
+    else
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @debit }
+    end
     end
   end
 
