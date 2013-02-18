@@ -48,14 +48,11 @@
           <div class="container-fluid nav-collapse">
             <ul class="nav">
               <% if current_user %>
-
-              
-              <li> Welcome, <% current_user.firstname %>!</li>
-
-              <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to 'Abmelden', destroy_user_session_path, method: :delete %></li>
+              <li> Welcome, <%= current_user.firstname %></li>
               <%else%>
-              <li><%= link_to 'Sign in', new_user_session_path  %></li>
-              <li><%= link_to 'Sign up', new_user_registration_path  %></li>
+              <li><%= link_to 'Anmelden', new_user_session_path  %></li>
+              <li><%= link_to 'Registrieren', new_user_registration_path  %></li>
               <%end%>
             </ul>
           </div><!--/.nav-collapse -->
@@ -68,11 +65,12 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
+              <!--<li class="nav-header">Sidebar</li>-->
               <% if current_user %>
 
-              <li> Welcome, <%= current_user.firstname %>!</li>
+              <!--<li> Welcome, <%= current_user.firstname %>!</li>-->
               <li><%= link_to 'Listing Debts', debits_path  %></li>
+              <li><%= link_to 'Home', root_path  %></li>
               <!--<li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>-->
               <!<%else%>
               <li><%= link_to 'Tutorial', new_user_session_path  %></li>

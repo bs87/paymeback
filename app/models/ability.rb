@@ -6,13 +6,13 @@ class Ability
     if user.present?
         if user.has_role?(:admin)
             #Admins
-            can  :create, :read, :update, :delete 
+            can  :manage, :all 
         end
         if user.has_role?(:reguser)
             # Registered users
-            can :create, :read, :update, :delete 
+            can :manage, :all
         end
-
+    end
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
