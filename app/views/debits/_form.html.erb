@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :emailuser2 %><br />
-    <%= f.collection_select :emailuser2, User.find(:all),:id, :email %>
+    <%= f.collection_select :emailuser2, User.find(:all),:email, :firstname %>
   </div>
   <div class="field">
     <%= f.label :betrag %><br />

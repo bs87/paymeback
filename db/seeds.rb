@@ -7,7 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first
 
 	flo = User.create email:'flo@admin.de', firstname:'Flo', lastname:'Kopp', password:'Test1234', password_confirmation: 'Test1234'
-
 	admin = User.create email:'admin@admin.de', firstname:'Admin', lastname:'Administrator', password:'Test1234', password_confirmation: 'Test1234'
 	admin.add_role :admin
 	bjoern = User.create email:'bjoern@admin.de', firstname:'Bjoern', lastname:'Simon', password:'Test1234', password_confirmation: 'Test1234'
