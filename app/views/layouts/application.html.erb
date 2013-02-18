@@ -50,12 +50,12 @@
               <% if current_user %>
 
               
-              <li> Welcome, <% current_user.firstname %>!</li>
+              <li> Wilkommen, <%= current_user.firstname %>!</li>
 
-              <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to 'Abmelden', destroy_user_session_path, method: :delete %></li>
               <%else%>
-              <li><%= link_to 'Sign in', new_user_session_path  %></li>
-              <li><%= link_to 'Sign up', new_user_registration_path  %></li>
+              <li><%= link_to 'Anmelden', new_user_session_path  %></li>
+              <li><%= link_to 'Registrieren', new_user_registration_path  %></li>
               <%end%>
             </ul>
           </div><!--/.nav-collapse -->
@@ -71,10 +71,10 @@
               <li class="nav-header">Sidebar</li>
               <% if current_user %>
 
-              <li> Welcome, <%= current_user.firstname %>!</li>
+              <li> Wilkommen, <%= current_user.firstname %>!</li>
               <li><%= link_to 'Einstellungen', edit_user_registration_path %></li>
               <li><%= link_to 'Freunde', friends_path%></li>
-              <!--<li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>-->
+              <li><%= link_to 'Abmelden', destroy_user_session_path, method: :delete %></li>
               <%else%>
               <li><%= link_to 'Tutorial', new_user_session_path  %></li>
               <li><%= link_to 'Impressum', new_user_session_path  %></li>
