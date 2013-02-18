@@ -1,0 +1,59 @@
+<h2>Deine Freunde</h2>
+<ul>
+  <% for friend in current_user.friends%>
+  <%if friend.accepted == true%>  
+  <% freund = User.where('id like ?', "%#{friend.friend_id}%").first%>
+    <li>
+      <%=h freund.firstname %>
+      (<%= link_to "remove", friend, :method => :delete %>)
+    </li>
+  <%end%>
+  <% end %>
+
+  <% for friend in current_user.inverse_friends%>
+  <%if friend.accepted == true%>  
+  <% freund = User.where('id like ?', "%#{friend.user_id}%").first%>
+    <li>
+      <%=h freund.firstname %>
+      (<%= link_to "remove", friend, :method => :delete %>)
+    </li>
+  <%end%>
+  <% end %>
+</ul>
+
+<p><%= link_to "Freunde finden", new_friend_path %></p>
+
+<h2>Freundschaftsanfragen</h2>
+<ul>
+  <% typ = Friend.where('friend_id like ?', "%#{current_user.id}%")%>
+   
+
+  <%typ.all.each do |type|%>
+  <%if type.accepted == false%> 
+    <li>
+      <% user = User.where('id like ? ', "%#{type.user_id}%").first%>
+      <%= user.firstname%>
+      (<%= link_to "annehmen", type, :method => :put %>)
+      
+      
+      (<%= link_to "ablehnen", type, :method => :delete %>)
+      <%end%>
+    </li>
+  
+  <%end%>
+</ul>
+
+<h2>Ausstehende Freundschaftsanfragen</h2>
+<ul>
+  <% for friend in current_user.friends%>
+  <%if friend.accepted == false%>  
+  <% freund = User.where('id like ?', "%#{friend.friend_id}%").first%>
+    <li>
+      <%=h freund.firstname %>
+      (<%= link_to "Anfrage stornieren", friend, :method => :delete %>)
+    </li>
+  <%end%>
+  <% end %>
+</ul>
+
+<p><%= link_to "Freunde finden", new_friend_path %></p>

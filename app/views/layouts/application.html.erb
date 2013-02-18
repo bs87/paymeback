@@ -72,9 +72,10 @@
               <% if current_user %>
 
               <li> Welcome, <%= current_user.firstname %>!</li>
-              <li><%= link_to 'Listing Debts', debts_path  %></li>
+              <li><%= link_to 'Einstellungen', edit_user_registration_path %></li>
+              <li><%= link_to 'Freunde', friends_path%></li>
               <!--<li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>-->
-              <!<%else%>
+              <%else%>
               <li><%= link_to 'Tutorial', new_user_session_path  %></li>
               <li><%= link_to 'Impressum', new_user_session_path  %></li>
               <li><%= link_to 'Kontakt', new_user_registration_path  %></li>

@@ -1,0 +1,15 @@
+<h1>Freunde hinzufuegen</h1>
+
+<table>   
+  <% if current_user %>
+
+    <% user = User.where('id Not like ?', "%#{current_user.id}%")%>
+    <% user.all.each do |benutzer| %>
+      <tr>
+      <td><%= benutzer.firstname %></td>
+      <td><%= benutzer.lastname %></td>
+      <td><%= link_to "Als Freund hinzufügen", friends_path(:friend_id => benutzer), :method => :post %></td>
+      </tr>
+    <%end%>
+  <%end%>
+</table>
