@@ -11,13 +11,13 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="hidden">
     <%= f.label :emailcurrentuser %><br />
-    <%= f.text_field :emailcurrentuser %>
+    <%= f.text_field :emailcurrentuser, :value => current_user.email %>
   </div>
   <div class="field">
     <%= f.label :emailuser2 %><br />
-    <%= f.text_field :emailuser2 %>
+    <%= f.collection_select :emailuser2, User.find(:all),:id, :email %>
   </div>
   <div class="field">
     <%= f.label :betrag %><br />
