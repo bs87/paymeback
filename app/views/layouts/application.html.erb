@@ -63,8 +63,10 @@
                 <%end%> 
             </ul>
               <%else%>
+              <ul class="nav">
               <li><%= link_to 'Anmelden', new_user_session_path  %></li>
               <li><%= link_to 'Registrieren', new_user_registration_path  %></li>
+            </ul>
               <%end%>
             </ul>
             
