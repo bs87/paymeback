@@ -11,10 +11,11 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :emailcurrentuser %><br />
-    <%= f.text_field :emailcurrentuser %>
-  </div>
+  <!--<div class="field">
+    <%= f.label :emailcurrentuser %><br />-->
+    <%= f.hidden_field :emailcurrentuser, :value => current_user.email%>
+   
+  <!--</div>-->
   <div class="field">
     <%= f.label :emailuser2 %><br />
     <%= f.text_field :emailuser2 %>
