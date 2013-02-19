@@ -42,8 +42,9 @@ gem 'jquery-rails'
 gem 'activeadmin'
 gem 'rolify'
 gem 'cancan'
+gem "paperclip", "~> 3.0"
 
-# To use ActiveModel has_secure_password
+# To use ActiveModel has_s :lib => 'RMagick'ecure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
