@@ -12,14 +12,14 @@ class FriendsController < ApplicationController
 
   # GET /friends/1
   # GET /friends/1.json
-  #def show
-  #  @friend = current_user.friends.find(params[:id])
+  def show
+    @friend = Friend.find(params[:id])
 
-  # respond_to do |format|
-  #    format.html # show.html.erb
-  #    format.json { render json: @friend }
-  #  end
-  #end
+   respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @friend }
+    end
+  end
 
   # GET /friends/new
   # GET /friends/new.json
@@ -58,7 +58,7 @@ class FriendsController < ApplicationController
     #
 
     #user = User.where('id like ?', "%#{:friend_id}%")
-    @friend = current_user.friends.build(:friend_id => params[:user_id], :user_id => params[:friend_id])
+    @friend = current_user.friends.build(:friend_id => params[:friend_id], :user_id => params[:friend_id])
     #@friend = user.friends.build(:friend_id => params[:current_user.id])
     
       if @friend.save

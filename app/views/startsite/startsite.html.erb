@@ -5,7 +5,83 @@
 </head>
 <body>
 	<% if current_user %>
-        <h1> Wilkommen, <%= current_user.firstname%>!</h1>  
+        <h1> Willkommen, <%= current_user.firstname%>!</h1> 
+        <br/> 
+        <%= image_tag current_user.photo.url(:small) %>
+<br /> 
+<br />
+<br />
+<h1>Schulden</h1>
+
+<table>
+  <tr>
+    <th>Emailuser2</th>
+    <th>Betrag</th>
+    <th>Datum</th>
+    <th>Info</th>
+    <th>Gezahlt</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @debits.each do |debit| %>
+  <tr>
+    <td><%= debit.emailuser2 %></td>
+    <td><%= debit.betrag %></td>
+    <td><%= debit.datum %></td>
+    <td><%= debit.info %></td>
+    <td><%= debit.gezahlt %></td>
+    <td><%= link_to 'Show', debit %></td>
+    <td><%= link_to 'Edit', edit_debit_path(debit) %></td>
+    <td><%= link_to 'Destroy', debit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+
+<%= link_to 'New Debit', new_debit_path %>
+
+
+<br />
+<br />
+<br />
+<br />
+
+<h1>Geliehen</h1>
+
+<table>
+  <tr>
+    <th>Emailuser2</th>
+    <th>Betrag</th>
+    <th>Datum</th>
+    <th>Info</th>
+    <th>Gezahlt</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @debits.each do |debit| %>
+  <tr>
+    <td><%= debit.emailuser2 %></td>
+    <td><%= debit.betrag %></td>
+    <td><%= debit.datum %></td>
+    <td><%= debit.info %></td>
+    <td><%= debit.gezahlt %></td>
+    <td><%= link_to 'Show', debit %></td>
+    <td><%= link_to 'Edit', edit_debit_path(debit) %></td>
+    <td><%= link_to 'Destroy', debit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Debit', new_debit_path %>
+
+<br />
+
 	<%else%>
     	<h1>Dies ist die Startseite für nicht registrierte Nutzer</h1>
   <%end%>

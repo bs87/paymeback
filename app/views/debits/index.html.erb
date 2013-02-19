@@ -2,7 +2,6 @@
 
 <table border=1>
   <tr>
-    <th>Emailcurrentuser</th>
     <th>Emailuser2</th>
     <th>Betrag</th>
     <th>Datum</th>
@@ -16,7 +15,6 @@
 <% @debits.each do |debit| %>
  <%if debit.gezahlt == false%>
   <tr>
-    <td><%= debit.emailcurrentuser %></td>
     <td><%= debit.emailuser2 %></td>
     <td><%= debit.betrag %></td>
     <td><%= debit.datum %></td>

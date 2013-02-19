@@ -1,24 +1,50 @@
 <h2>Registrieren</h2>
-
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+ 
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :multipart => true }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
+  <div><%= f.label :email %>
   <%= f.email_field :email, :autofocus => true %></div>
+  <br />
 
-  <div><%= f.label :nachname %><br />
+  <div><%= f.label :nachname %>
   <%= f.text_field :lastname %></div>
-
-  <div><%= f.label :vorname %><br />
+  <br />
+  
+  <div><%= f.label :vorname %>
   <%= f.text_field :firstname %></div>
-
-  <div><%= f.label :passwort %><br />
+  <br />
+ 
+  <div><%= f.label :Geburtsdatum %>
+  <%= f.date_select :dateofbirth, :order => [:day, :month, :year], :start_year => 1900, :end_year => 2013  %></div>
+  <br />
+ 
+  <div><%= f.label :Strasse_und_Hausnummer %>
+  <%= f.text_field :adress %></div>
+  <br />
+ 
+  <div><%= f.label :Postleitzahl %>
+  <%= f.text_field :zip %></div>
+  <br />
+ 
+  <div><%= f.label :Wohnort %>
+  <%= f.text_field :city %></div>
+  <br />
+ 
+  <div><%= f.label :passwort %>
   <%= f.password_field :password %></div>
-
-  <div><%= f.label :passwort_wiederholen %><br />
+  <br />
+  
+  <div><%= f.label :passwort_wiederholen %>
   <%= f.password_field :password_confirmation %></div>
+  <br />
+  
+  <div><%= f.label :Profilfoto_hochladen %>
+  <%= f.file_field :photo %>
+  </div>
 
+<br/>
+<br/>
   <div><%= f.submit "Registrieren" %></div>
 <% end %>
-
 <%= render "devise/shared/links" %>
