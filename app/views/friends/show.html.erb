@@ -1,15 +1,37 @@
 <p id="notice"><%= notice %></p>
 
+
+
+<% if @friend.friend_id == current_user.id%>
+	<% user = User.where('id like ?', "%#{ @friend.user_id}%").first%>
+<%else%>
+	<% user = User.where('id like ?', "%#{@friend.friend_id}%").first%>
+<%end%>
+
 <p>
-  <b>User:</b>
-  <%= @friend.user_id %>
+	<b>Vorname:</b>
+	<%= user.firstname%>
+</p>
+<p>
+	<b>Name:</b>
+	<%= user.lastname%>
 </p>
 
 <p>
-  <b>Friend:</b>
-  <%= @friend.friend_id %>
+	<b>Geburtstag:</b><br>
+	Tag:
+	<%= user.dateofbirth.day%><br>
+	Monat:
+	<%= user.dateofbirth.month%><br>
+	Jahr:
+	<%= user.dateofbirth.year%>
 </p>
 
+<p>
+	<b>Adresse:</b><br>
+	<%= user.adress%><br>
+	<%= user.zip%><br>
+	<%= user.city%><br>
+</p>
 
-<%= link_to 'Edit', edit_friend_path(@friend) %> |
-<%= link_to 'Back', friends_path %>
+<%= link_to 'zürück', friends_path %>

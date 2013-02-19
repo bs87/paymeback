@@ -7,7 +7,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :firstname, :lastname, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :firstname, :lastname, :email, :password, :password_confirmation, :remember_me, :city, :zip, :dateofbirth, :adress
+
+
+#Postleitzahl hat 5 Ziffern
+validates :zip, :length=>{:minimum=>5, :maximum=>5}
 
 #User wird automatisch als reguser angelegt
   after_create :assign_default_role

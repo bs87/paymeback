@@ -5,7 +5,8 @@
   <% freund = User.where('id like ?', "%#{friend.friend_id}%").first%>
     <li>
       <%=h freund.firstname %>
-      (<%= link_to "remove", friend, :method => :delete %>)
+      (<%= link_to "Profil anzeigen", friend, :method => :get %>)
+      (<%= link_to "Freundschaft beenden", friend, :method => :delete %>)
     </li>
   <%end%>
   <% end %>
@@ -15,7 +16,8 @@
   <% freund = User.where('id like ?', "%#{friend.user_id}%").first%>
     <li>
       <%=h freund.firstname %>
-      (<%= link_to "remove", friend, :method => :delete %>)
+      (<%= link_to "Profil anzeigen", friend, :method => :get %>)
+      (<%= link_to "Freundschaft beenden", friend, :method => :delete %>)
     </li>
   <%end%>
   <% end %>
@@ -33,9 +35,7 @@
     <li>
       <% user = User.where('id like ? ', "%#{type.user_id}%").first%>
       <%= user.firstname%>
-      (<%= link_to "annehmen", type, :method => :put %>)
-      
-      
+      (<%= link_to "annehmen", type, :method => :put %>)      
       (<%= link_to "ablehnen", type, :method => :delete %>)
       <%end%>
     </li>
@@ -49,7 +49,7 @@
   <%if friend.accepted == false%>  
   <% freund = User.where('id like ?', "%#{friend.friend_id}%").first%>
     <li>
-      <%=h freund.firstname %>
+      <%= freund.firstname %>
       (<%= link_to "Anfrage stornieren", friend, :method => :delete %>)
     </li>
   <%end%>
