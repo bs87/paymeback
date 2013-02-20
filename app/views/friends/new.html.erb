@@ -6,6 +6,7 @@
     <% user = User.where('id Not like ?', "#{current_user.id}")%>
     <% user.all.each do |benutzer| %>
       <tr>
+        
       <td><%= benutzer.firstname %></td>
       <td><%= benutzer.lastname %></td>
       <td><%= link_to "Profil anzeigen", friends_path(:friend_id => benutzer), :method => :get %></td>
