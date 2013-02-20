@@ -1,45 +1,6 @@
-<p id="notice"><%= notice %></p>
+<h1>Show friend</h1>
 
+<%= render 'form' %>
 
-
-<% if @friend.friend_id == current_user.id%>
-	<% user = User.where('id like ?', "%#{ @friend.user_id}%").first%>
-<%else%>
-	<% user = User.where('id like ?', "%#{@friend.friend_id}%").first%>
-<%end%>
-
-<%= image_tag user.photo.url(:small) %>
-
-<p>
-	<b>Vorname:</b>
-	<%= user.firstname%>
-</p>
-<p>
-	<b>Name:</b>
-	<%= user.lastname%>
-</p>
-
-<p>
-	<b>Geburtstag:</b><br>
-	Tag:
-	<%= user.dateofbirth.day%><br>
-	Monat:
-	<%= user.dateofbirth.month%><br>
-	Jahr:
-	<%= user.dateofbirth.year%>
-</p>
-
-<p>
-	<b>Adresse:</b><br>
-	<%= user.adress%><br>
-	<%= user.zip%><br>
-	<%= user.city%><br>
-</p>
-<br>
-<%if @friend.accepted == true%>
-	<%= link_to 'Freundschaft beenden', @friend, :method => :delete %>
-<%else%>
-	<%= link_to 'Anfrage ablehnen', @friend, :method => :delete %>
-<%end%>
-<br>
-<%= link_to 'zurück', friends_path %>
+<%= link_to 'Show', @friend %> |
+<%= link_to 'Back', friends_path %>
