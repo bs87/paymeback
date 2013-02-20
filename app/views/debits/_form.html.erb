@@ -33,6 +33,10 @@
     <%= f.text_field :info %>
   </div>
   <div class="field">
+    <%= f.label :art %><br />
+    <%= f.select :art, [['Verliehen','Verliehen'],['Geliehen','Geliehen']] %>
+  </div>
+  <div class="field">
     <%= f.label :gezahlt %><br />
     <%= f.check_box :gezahlt %>
   </div>
