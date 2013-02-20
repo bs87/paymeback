@@ -79,14 +79,15 @@
                         <%if type.accepted == false%> 
                           <% user = User.where('id like ? ', "%#{type.user_id}%").first%>
                           <li>
-                            <%= link_to "user.firstname+' '+user.lastname", friend, :method => :get %>
-                            <ul class="dropdown-menu">
+                            <a href="/users/<%=user.id%>">Freundschaftsanfrage: <%=user.firstname%> <%=user.lastname%><i class="icon-arrow-right"></i>
+                            <ul class="dropdown-menu sub-menu">
                               <li><%= link_to "annehmen", type, :method => :put %></li>     
                               <li><%= link_to "ablehnen", type, :method => :delete %></li>
                             </ul>
                           </li>
                            <%end%>
                         <%end%>
+                      </ul>
                       <%end%>
                 
               </ul>
@@ -94,10 +95,12 @@
                 <li><%= link_to current_user.firstname+' '+current_user.lastname, destroy_user_session_path, method: :delete %></li> 
             </ul>
               <%else%>
+               <ul class="nav">
               <li><%= link_to 'Anmelden', new_user_session_path  %></li>
               <li><%= link_to 'Registrieren', new_user_registration_path  %></li>
+              </ul>
               <%end%>
-            </ul>
+            
             
           </div><!--/.nav-collapse -->
         </div>
