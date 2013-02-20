@@ -9,7 +9,7 @@
         
       <td><%= benutzer.firstname %></td>
       <td><%= benutzer.lastname %></td>
-      <td><%= link_to "Profil anzeigen", friends_path(:friend_id => benutzer), :method => :get %></td>
+      <td><%= link_to "Profil anzeigen", user_path(:id => benutzer), :method => :get %></td>
       <td><%= link_to "Als Freund hinzufügen", friends_path(:friend_id => benutzer), :method => :post %></td>
       </tr>
     <%end%>
