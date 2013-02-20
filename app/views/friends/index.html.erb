@@ -23,8 +23,6 @@
   <% end %>
 </ul>
 
-<p><%= link_to "Freunde finden", new_friend_path %></p>
-
 <h2>Freundschaftsanfragen</h2>
 <ul>
   <% typ = Friend.where('friend_id like ?', "%#{current_user.id}%")%>
@@ -35,6 +33,7 @@
     <li>
       <% user = User.where('id like ? ', "%#{type.user_id}%").first%>
       <%= user.firstname%>
+      (<%= link_to "Profil anzeigen", friend, :method => :get %>)
       (<%= link_to "annehmen", type, :method => :put %>)      
       (<%= link_to "ablehnen", type, :method => :delete %>)
       <%end%>
@@ -50,6 +49,7 @@
   <% freund = User.where('id like ?', "%#{friend.friend_id}%").first%>
     <li>
       <%= freund.firstname %>
+      (<%= link_to "Profil anzeigen", friend, :method => :get %>)
       (<%= link_to "Anfrage stornieren", friend, :method => :delete %>)
     </li>
   <%end%>

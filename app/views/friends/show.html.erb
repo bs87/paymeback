@@ -8,6 +8,8 @@
 	<% user = User.where('id like ?', "%#{@friend.friend_id}%").first%>
 <%end%>
 
+<%= image_tag user.photo.url(:small) %>
+
 <p>
 	<b>Vorname:</b>
 	<%= user.firstname%>
@@ -33,5 +35,11 @@
 	<%= user.zip%><br>
 	<%= user.city%><br>
 </p>
-
-<%= link_to 'zürück', friends_path %>
+<br>
+<%if @friend.accepted == true%>
+	<%= link_to 'Freundschaft beenden', @friend, :method => :delete %>
+<%else%>
+	<%= link_to 'Anfrage ablehnen', @friend, :method => :delete %>
+<%end%>
+<br>
+<%= link_to 'zurück', friends_path %>
