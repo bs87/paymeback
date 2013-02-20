@@ -11,7 +11,7 @@
 <br /> 
 <br />
 <br />
-<h1>Schulden</h1>
+<h1>Verliehen</h1>
 
 <table>
   <tr>
@@ -24,8 +24,13 @@
     <th></th>
     <th></th>
   </tr>
+<% @guthaben=0 %>
+<% @verliehen=0 %>
+<% @geliehen=0 %>
 
 <% @debits.each do |debit| %>
+ <% if debit.art == "Verliehen" %>
+ <% @verliehen+=debit.betrag %>
   <tr>
     <td><%= debit.emailuser2 %></td>
     <td><%= debit.betrag %></td>
@@ -36,8 +41,10 @@
     <td><%= link_to 'Edit', edit_debit_path(debit) %></td>
     <td><%= link_to 'Destroy', debit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
+  <% end %>
 <% end %>
 </table>
+<h4>Sie haben <%= @verliehen %>€ verliehen. </h4>
 
 
 <%= link_to 'New Debit', new_debit_path %>
@@ -63,6 +70,8 @@
   </tr>
 
 <% @debits.each do |debit| %>
+<% if debit.art == "Geliehen" %>
+ <% @geliehen+=debit.betrag %>
   <tr>
     <td><%= debit.emailuser2 %></td>
     <td><%= debit.betrag %></td>
@@ -73,14 +82,18 @@
     <td><%= link_to 'Edit', edit_debit_path(debit) %></td>
     <td><%= link_to 'Destroy', debit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
+  <% end %>
 <% end %>
 </table>
+<h4>Sie haben <%= @geliehen %>€ geliehen. </h4>
 
 <br />
 
 <%= link_to 'New Debit', new_debit_path %>
 
 <br />
+<% @guthaben = @verliehen - @geliehen %>
+<h4>Ihr aktuelles Guthaben beträgt: <%= @guthaben.round(2) %>€ </h4>
 
 	<%else%>
     	<h1>Dies ist die Startseite für nicht registrierte Nutzer</h1>
