@@ -34,6 +34,16 @@ class DebitsController < ApplicationController
   def new
     @debit = Debit.new
 
+
+ friends = current_user.friends
+   friends2 = current_user.inverse_friends 
+   friendsall = friends + friends2
+   @friend3 = friendsall
+   @firstname = friendsall.map{|friend| "#{friend.user.email},<img src='#{current_user.photo.url(:tiny)}'/>"}
+   #@firstname = User.find(:all,:select=>'firstname, lastname, email').map{|user| "#{user.firstname}, #{user.lastname}"}
+  
+
+  #@test = @nameall.find(:all,:select=>'firstname, lastname, email').map{|user| "#{user.firstname}, #{user.lastname}"}
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @debit }

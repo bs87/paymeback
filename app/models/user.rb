@@ -9,8 +9,9 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
 
-  attr_accessible :firstname, :lastname, :email, :password, :password_confirmation, :remember_me, :city, :zip, :dateofbirth, :adress, :photo
+  attr_accessible :firstname, :lastname, :email, :password, :password_confirmation, :remember_me, :city, :zip, :dateofbirth, :adress, :photo, :friends
 
+ 
 
 #Postleitzahl hat 5 Ziffern
 validates :zip, :length=>{:minimum=>5, :maximum=>5}
@@ -27,7 +28,7 @@ validates :zip, :length=>{:minimum=>5, :maximum=>5}
   has_many :friendships, :through => :friends
   has_many :inverse_friends, :class_name => "Friend", :foreign_key =>"friend_id"
   has_many :inverse_friendships, :through => :inverse_friends, :source => :user
-  has_attached_file :photo, :styles => { :small => "150x150>" },
+  has_attached_file :photo, :styles => { :small => "150x150>", :tiny => "45x45>", :icon => "16x16>" },
                   :url  => "/assets/users/:id/:style/:basename.:extension",
                   :path => ":rails_root/public/assets/users/:id/:style/:basename.:extension"
 
