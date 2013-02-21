@@ -27,7 +27,7 @@ validates :zip, :length=>{:minimum=>5, :maximum=>5}
   has_many :friendships, :through => :friends
   has_many :inverse_friends, :class_name => "Friend", :foreign_key =>"friend_id"
   has_many :inverse_friendships, :through => :inverse_friends, :source => :user
-  has_attached_file :photo, :styles => { :small => "150x150>" },
+  has_attached_file :photo, :styles => { :small => "150x150" ,:tiny => "50x50" },
                   :url  => "/assets/users/:id/:style/:basename.:extension",
                   :path => ":rails_root/public/assets/users/:id/:style/:basename.:extension"
 
