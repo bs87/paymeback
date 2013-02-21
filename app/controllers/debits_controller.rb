@@ -6,7 +6,7 @@ class DebitsController < ApplicationController
   def index
     if params[:user].present?
       @debits = Debit.where('emailcurrentuser like ? and emailuser2 like ?', "#{current_user.email}", "#{params[:user]}%")
-      @debits = @debits.find(:all, :select => "*, betrag as usersum")
+      @debits = @debits.find(:all, :select => "*,helper as usersum")
    else
         if params[:art] == "history"
           @debits = Debit.where('emailcurrentuser like  ?', "#{current_user.email}")
