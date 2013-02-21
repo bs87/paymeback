@@ -17,11 +17,12 @@
       <td><%= benutzer.firstname %></td>
       <td><%= benutzer.lastname %></td>
       <td> <%= image_tag benutzer.photo.url(:tiny)  %></td>
-      <td><%= link_to "Profil anzeigen", user_path(:id => benutzer), :method => :get, :class => 'btn ' %>
+      <td><%= link_to " Profil anzeigen", user_path(:id => benutzer), :method => :get, :class => 'btn icon-user' %>
       <%= link_to "Als Freund hinzufügen", friends_path(:friend_id => benutzer), :method => :post, :class => 'btn btn-success' %></td>
   </tbody>
       </tr>
     <%end%>
   <%end%>
 </table>
+<p><%= link_to " Zurück", friends_path , :class => 'btn ' %></p>
 

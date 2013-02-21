@@ -15,8 +15,8 @@
       <tbody>
       <td><%=h freund.firstname%> <%=freund.lastname%></td>
       <td><%= image_tag freund.photo.url(:tiny)  %> </td>
-      <td><%= link_to "Profil anzeigen", user_path(:id => freund), :method => :get , :class => 'btn '%>
-      <%= link_to "Freundschaft beenden", friend, :method => :delete , :class => 'btn btn-danger'%>  </td>
+      <td><%= link_to " Profil anzeigen ", user_path(:id => freund), :method => :get , :class => 'btn icon-user'%>
+      <%= link_to " Freundschaft beenden ", friend, :method => :delete , :class => 'btn btn-danger icon-remove'%>  </td>
    <%end%>
    <%end%>
     
@@ -30,8 +30,8 @@
      
       <td><%=h freund.firstname%> <%= freund.lastname%></td>
       <td><%= image_tag freund.photo.url(:tiny)  %> </td>
-      <td><%= link_to "Profil anzeigen", user_path(:id => freund), :method => :get , :class => 'btn '%>
-      <%= link_to "Freundschaft beenden", friend, :method => :delete , :class => 'btn btn-danger'%> </td>
+      <td><%= link_to " Profil anzeigen ", user_path(:id => freund), :method => :get , :class => 'btn icon-user'%>
+      <%= link_to " Freundschaft beenden", friend, :method => :delete , :class => 'btn btn-danger icon-remove'%> </td>
 
    <%end%>
   </tr>
@@ -57,9 +57,9 @@
       <tbody>
     <td>  <%= user.firstname %> <%=user.lastname%></td>
     <td><%= image_tag user.photo.url(:tiny)  %> </td>
-    <td> <%= link_to "Profil anzeigen", user_path(:id => user), :method => :get , :class => 'btn '%>
-    <%= link_to "annehmen", type, :method => :put, :class => 'btn btn-success' %> 
-    <%= link_to "ablehnen", type, :method => :delete, :class => 'btn btn-danger'%></td>
+    <td> <%= link_to " Profil anzeigen ", user_path(:id => user), :method => :get , :class => 'btn icon-user '%>
+    <%= link_to " annehmen ", type, :method => :put, :class => 'btn btn-success icon-ok' %> 
+    <%= link_to " ablehnen", type, :method => :delete, :class => 'btn btn-danger'%></td>
       <%end%>
       </tbody>
     <%end%>
@@ -80,12 +80,12 @@
       <tbody>
       <td><%= freund.firstname%> <%= freund.lastname%> </td>
       <td><%= image_tag freund.photo.url(:tiny)  %> </td>
-       <td> <%= link_to "Profil anzeigen", user_path(:id => freund), :method => :get, :class => 'btn' %> 
-        <%= link_to "Anfrage stornieren", friend, :method => :delete , :class => 'btn btn-danger'%></td>
+       <td> <%= link_to " Profil anzeigen", user_path(:id => freund), :method => :get, :class => 'btn icon-user' %> 
+        <%= link_to " Anfrage stornieren", friend, :method => :delete , :class => 'btn btn-danger icon-remove'%></td>
   <%end%>
   <% end %>
 </tr>
  </tbody>
  </table>
 
-   <p><%= link_to "Freunde finden", new_friend_path , :class => 'btn btn-success' %></p>
+   <p><%= link_to " Freunde finden", new_friend_path , :class => 'btn btn-success icon-user' %></p>
