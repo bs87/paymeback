@@ -4,22 +4,16 @@ class DebitsController < ApplicationController
   # GET /debits
   # GET /debits.json
   def index
-    if params[:art] == "verliehen"
-      @debits = Debit.where('emailcurrentuser like ? AND art like ?', "#{current_user.email}", "Verliehen")
-    else
-      if params[:art] == "geliehen"
-       @debits = Debit.where('emailcurrentuser like ? AND art like ?', "#{current_user.email}", "Geliehen") 
-      else
-       @debits = Debit.where('emailcurrentuser like  ?', "#{current_user.email}")
-      end
-    end
+    @debits = Debit.where('emailcurrentuser like  ?', "#{current_user.email}")
+
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @debits }
     end
   end
 
-  # GET /debits/1erlieh
+  # GET /debits/1
   # GET /debits/1.json
   def show
     @debit = Debit.find(:first, :conditions => ["emailcurrentuser = ? AND id = ?", "#{current_user.email}",params[:id] ], :limit => 1)
@@ -40,6 +34,16 @@ class DebitsController < ApplicationController
   def new
     @debit = Debit.new
 
+
+ friends = current_user.friends
+   friends2 = current_user.inverse_friends 
+   friendsall = friends + friends2
+   @friend3 = friendsall
+   @firstname = friendsall.map{|friend| "#{friend.user.firstname},#{friend.user.lastname},<img src='#{current_user.photo.url(:tiny)}'/>"}
+   #@firstname = User.find(:all,:select=>'firstname, lastname, email').map{|user| "#{user.firstname}, #{user.lastname}"}
+  
+
+  #@test = @nameall.find(:all,:select=>'firstname, lastname, email').map{|user| "#{user.firstname}, #{user.lastname}"}
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @debit }

@@ -1,46 +1,49 @@
-<%= form_for(@debit) do |f| %>
-  <% if @debit.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@debit.errors.count, "error") %> prohibited this debit from being saved:</h2>
-
-      <ul>
-      <% @debit.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @debit, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+       <div class="controls">
+      <%= f.hidden_field :emailcurrentuser, :value => current_user.email, :class => 'text_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :Freund, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :firstname, :autocomplete => "off", :data => { :provide => 'typeahead', :items => "8",  :source => "#{@firstname.to_json}" },:class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :emailuser2, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :betrag, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :betrag, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :datum, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :datum, :class => 'date_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :info, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :info, :class => 'text_field' %>
+    </div>
+  </div>
 
-  <!--<div class="field">
-    <%= f.label :emailcurrentuser %><br />-->
-    <%= f.hidden_field :emailcurrentuser, :value => current_user.email%>
-   
-  <!--</div>-->
-  <div class="field">
-    <%= f.label :emailuser2 %><br />
-    <%= f.text_field :emailuser2 %>
+  <div class="control-group">
+    <%= f.label :art, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :art, [['Verliehen','Verliehen'],['Geliehen','Geliehen']], :class => 'select' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :betrag %><br />
-    <%= f.text_field :betrag %>
-  </div>
-  <div class="field">
-    <%= f.label :datum %><br />
-    <%= f.date_select :datum %>
-  </div>
-  <div class="field">
-    <%= f.label :info %><br />
-    <%= f.text_field :info %>
-  </div>
-  <div class="field">
-    <%= f.label :art %><br />
-    <%= f.select :art, [['Verliehen','Verliehen'],['Geliehen','Geliehen']] %>
-  </div>
-  <div class="field">
-    <%= f.label :gezahlt %><br />
-    <%= f.check_box :gezahlt %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-actions">
+    <%= f.submit  'Erstellen', :class => 'btn btn-success' %>
+ <%= link_to t('.zurück'), debits_path, :class => 'btn'  %>
   </div>
 <% end %>
