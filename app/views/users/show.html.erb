@@ -1,0 +1,47 @@
+<h1><%= @user.firstname%> <%=@user.lastname%></h1>
+<p id="notice"><%= notice %></p>
+
+<%= image_tag @user.photo.url(:small) %>
+
+
+
+<p>
+	<b>Geburtstag:</b><br>
+	Tag:
+	<%= @user.dateofbirth.day%><br>
+	Monat:
+	<%= @user.dateofbirth.month%><br>
+	Jahr:
+	<%= @user.dateofbirth.year%>
+</p>
+
+<p>
+	<b>Adresse:</b><br>
+	<%= @user.adress%><br>
+	<%= @user.zip%><br>
+	<%= @user.city%><br>
+</p>
+<br>
+<br>
+<%friend = Friend.where('user_id like ? AND friend_id like ?', "#{current_user.id}", "#{@user.id}").first%>
+<% if friend%>
+	
+	<% if friend.accepted == true%>
+		<%= link_to "Freundschaft beenden", friend, :method => :delete%></td><br>
+	<%else%>
+		<%= link_to "Anfrage stornieren", friend, :method => :delete%></td><br>
+	<%end%>
+<% else%>
+ 	<%friend1 = Friend.where('user_id like ? AND friend_id like ?', "#{@user.id}", "#{current_user.id}").first%>
+	<% if friend1%>
+		<% if friend1.accepted == true%>
+			<%= link_to "Freundschaft beenden", friend1, :method => :delete%></td><br>
+		<%else%>
+			<%= link_to "Anfrage ablehnen", friend1, :method => :delete%></td><br>
+		<%end%>
+	<%else%>
+ 		<%= link_to "Als Freund hinzufügen", friends_path(:friend_id => @user), :method => :post %></td><br>
+	<%end%>
+<%end%>
+<%= link_to 'zurück', friends_path %>
+

@@ -1,7 +1,12 @@
 <h1>Listing debits</h1>
 
+<%= link_to 'Verliehen', debits_path(:art => "verliehen") %>
+<%= link_to 'Geliehen', debits_path(:art => "geliehen") %>
+<%= link_to 'Alle', debits_path %>
+
 <table>
   <tr>
+    <th>User1</th>
     <th>Emailuser2</th>
     <th>Betrag</th>
     <th>Datum</th>
@@ -14,11 +19,13 @@
 
 <% @debits.each do |debit| %>
   <tr>
+    <td><%= debit.emailcurrentuser %></td>
     <td><%= debit.emailuser2 %></td>
     <td><%= debit.betrag %></td>
     <td><%= debit.datum %></td>
     <td><%= debit.info %></td>
     <td><%= debit.gezahlt %></td>
+    <td><%= debit.art %></td>
     <td><%= link_to 'Show', debit %></td>
     <td><%= link_to 'Edit', edit_debit_path(debit) %></td>
     <td><%= link_to 'Destroy', debit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
