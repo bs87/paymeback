@@ -13,7 +13,7 @@
 <% @debits.each do |debit| %>
 <% freund = User.where('email like ?',debit.emailuser2).first%>
   <tr>
-    <td><a href='/user/<%=freund.id%>'><%= freund.firstname+' '+freund.lastname %></td>
+    <td><a href='/users/<%=freund.id%>'><%= freund.firstname+' '+freund.lastname %></td>
     <% if debit.usersum>0%>
         <td id='verliehen'><a href='/debits/?user=<%=debit.emailuser2%>'><%= debit.usersum.to_s+'€'%></td>
         <td></td>
