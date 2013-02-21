@@ -6,17 +6,15 @@ class DebitsController < ApplicationController
   def index
     if params[:user].present?
       @debits = Debit.where('emailcurrentuser like ? and emailuser2 like ?', "#{current_user.email}", "#{params[:user]}%")
-      @test = Debit.where('emailcurrentuser like ? and gezahlt like ?', "#{current_user.email}", false )
-      
-      @test.sum(:betrag) for each emailuser2
-      end
+      @debits = @debits.find(:all, :select => "*, betrag as usersum")
    else
         if params[:art] == "history"
           @debits = Debit.where('emailcurrentuser like  ?', "#{current_user.email}")
         else
-          @debits = Debit.where('emailcurrentuser like ? and gezahlt like ?', "#{current_user.email}", false )
-        end
+              @debits = Debit.where('emailcurrentuser like ? and gezahlt like ?', "#{current_user.email}", false )
+              @debits = @debits.find(:all, :select => "*, SUM(betrag) as usersum", :group => 'emailuser2')
       end
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @debits }

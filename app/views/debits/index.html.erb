@@ -3,8 +3,6 @@
 <%= link_to 'History', debits_path(:art => "history") %>
 <%= link_to 'Alle', debits_path %>
 
-<%= @sumforUser %>
-
 
 <table id='hor-minimalist-b'>
 <tr>
@@ -15,13 +13,13 @@
 <% @debits.each do |debit| %>
 <% freund = User.where('email like ?',debit.emailuser2).first%>
   <tr>
-    <td><a href='/debits/?user=<%=debit.emailuser2%>'><%= freund.firstname+' '+freund.lastname %></td>
-    <% if debit.art=='Verliehen'%>
-        <td id='verliehen'><%= link_to debit.betrag.to_s+'€', debit%></td>
+    <td><a href='/user/<%=freund.id%>'><%= freund.firstname+' '+freund.lastname %></td>
+    <% if debit.usersum>0%>
+        <td id='verliehen'><a href='/debits/?user=<%=debit.emailuser2%>'><%= debit.usersum.to_s+'€'%></td>
         <td></td>
     <%else%>
-        <td>
-        <td id='geliehen'><%= link_to debit.betrag.to_s+'€', debit%></td>
+        <td></td>
+        <td id='geliehen'><a href='/debits/?user=<%=debit.emailuser2%>'><%= debit.usersum.to_s+'€'%></td>
     <%end%>
   </tr>
 <% end %>
