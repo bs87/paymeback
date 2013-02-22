@@ -3,6 +3,7 @@
   <div class="control-group">
        <div class="controls">
       <%= f.hidden_field :emailcurrentuser, :value => current_user.email, :class => 'text_field' %>
+      <%= f.hidden_field :owner, :value => current_user.email, :class => 'text_field' %>
     </div>
 
   <div class="control-group">

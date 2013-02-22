@@ -112,14 +112,22 @@ class DebitsController < ApplicationController
   # DELETE /debits/1.json
   def destroy
     @debit = Debit.find(params[:id])
-    @seconddebit = Debit.where('emailcurrentuser like  ? and emailuser2 like ? and betrag like?', "#{@debit.emailuser2}", "#{@debit.emailcurrentuser}", "#{@debit.betrag}")
-    @debit.destroy
-    @seconddebit.destroy
+    if @debit.emailcurrentuser == @debit.owner
+      @helper = @debit
+      @helper.betrag = @helper.betrag*-1
+      @seconddebit = Debit.where('emailcurrentuser like  ? and emailuser2 like ? and betrag like?', "#{@helper.emailuser2}", "#{@helper.emailcurrentuser}", "#{@helper.betrag}")
+      @seconddebit.each do |debit|
+        @helper = Debit.find(debit.id)
+      end
+      @debit.destroy
+      @helper.destroy
+    else
+      flash[:notice] = "Sie haben kein Berechtigung da sie nicht der Besitzer sind."
+    end
 
-
-    respond_to do |format|
-      format.html { redirect_to debits_url }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to debits_url}
+        format.json { head :no_content }
     end
   end
 end
