@@ -112,7 +112,10 @@ class DebitsController < ApplicationController
   # DELETE /debits/1.json
   def destroy
     @debit = Debit.find(params[:id])
+    @seconddebit = Debit.where('emailcurrentuser like  ? and emailuser2 like ? and betrag like?', "#{@debit.emailuser2}", "#{@debit.emailcurrentuser}", "#{@debit.betrag}")
     @debit.destroy
+    @seconddebit.destroy
+
 
     respond_to do |format|
       format.html { redirect_to debits_url }
