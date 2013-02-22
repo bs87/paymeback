@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(:version => 20130221144450) do
     t.boolean  "gezahlt"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.string   "firstname"
+    t.string   "lastname"
     t.string   "art"
     t.string   "helper"
   end
@@ -75,14 +77,16 @@ ActiveRecord::Schema.define(:version => 20130221144450) do
     t.datetime "updated_at",                             :null => false
     t.string   "firstname"
     t.string   "lastname"
-    t.string   "adress"
-    t.date     "dateofbirth"
-    t.string   "city"
-    t.integer  "zip"
+    t.string   "user_image_uid"
+    t.string   "user_image_name"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.string   "adress"
+    t.date     "dateofbirth"
+    t.string   "city"
+    t.integer  "zip"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
