@@ -28,11 +28,11 @@
             <%end%>     
         <% else %>
         <% if debit.art=='Verliehen'%>
-            <td style='a.color: green;'><%= link_to debit.betrag, debit%></td>
+            <td><%= link_to debit.betrag, debit, {:style=>'color:green;'}%></td>
             <td></td>
         <% else %>
             <td></td>
-            <td style='a.color: red;'><%= link_to debit.betrag, debit%></td>
+            <td><%= link_to debit.betrag, debit, {:style=>'color:red;'}%></td>
         <% end %>
     <%end%>
 

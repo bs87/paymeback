@@ -11,6 +11,12 @@ class User < ActiveRecord::Base
 
   attr_accessible :firstname, :lastname, :email, :password, :password_confirmation, :remember_me, :city, :zip, :dateofbirth, :adress, :photo
 
+has_many :nachrichtens
+  has_many :nachrichts, :through => :nachrichtens
+  has_many :inverse_nachrichtens, :class_name => "Nachrichten", :foreign_key =>"sentto"
+  has_many :inverse_nachrichts, :through => :inverse_nachrichtens, :source => :user
+
+
 
 #Postleitzahl hat 5 Ziffern
 validates :zip, :length=>{:minimum=>5, :maximum=>5}
