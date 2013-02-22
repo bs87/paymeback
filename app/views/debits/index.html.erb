@@ -20,19 +20,19 @@
     <td><a href='/users/<%=freund.id%>'><%= freund.firstname+' '+freund.lastname %></td>
     <% if  debit.usersum? %>
         <% if debit.usersum>0%>
-            <td id='verliehen'><a href='/debits/?user=<%=debit.emailuser2%>'><%= debit.usersum.to_s+'€'%></td>
+            <td><a href='/debits/?user=<%=debit.emailuser2%>' style='color: green;' ><%= debit.usersum.to_s+'€'%></td>
             <td></td>
           <%else%>
             <td></td>
-            <td id='geliehen'><a href='/debits/?user=<%=debit.emailuser2%>'><%= debit.usersum.to_s+'€'%></td>
+            <td><a href='/debits/?user=<%=debit.emailuser2%>' style='color: red;' ><%= debit.usersum.to_s+'€'%></td>
             <%end%>     
         <% else %>
         <% if debit.art=='Verliehen'%>
-            <td id='verliehen'><%= link_to debit.betrag, debit%></td>
+            <td style='a.color: green;'><%= link_to debit.betrag, debit%></td>
             <td></td>
         <% else %>
             <td></td>
-            <td id='geliehen'><%= link_to debit.betrag, debit%></td>
+            <td style='a.color: red;'><%= link_to debit.betrag, debit%></td>
         <% end %>
     <%end%>
 
