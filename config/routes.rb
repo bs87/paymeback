@@ -1,7 +1,7 @@
 Paymeback::Application.routes.draw do
 
   get "users/show"
-
+  resources :nachrichtens
   resources :debits
   resources :friends
   #resources :startsites

@@ -93,6 +93,7 @@
               </ul>
               <ul class="nav pull-right" >
                 <p><%= link_to current_user.firstname+' '+current_user.lastname, destroy_user_session_path,:class => "  icon-off  ", method: :delete  %> </p>
+                <p><%= link_to ' ', edit_user_registration_path,:class => "  icon-wrench  "  %> </p>
             </ul>
               <%else%>
                <ul class="nav">
@@ -117,7 +118,9 @@
               <li><%= link_to 'Zahlungsübersicht', debits_path  %></li>
               <li><%= link_to 'Einstellungen', edit_user_registration_path %></li>
               <li><%= link_to 'Freunde', friends_path%></li>
+              <li><%= link_to 'Nachrichten', nachrichtens_path%></li>
               <li><%= link_to 'Home', root_path, method: :delete %></li>
+
               <%else%>
 
               <li><%= link_to 'Tutorial', new_user_session_path  %></li>
