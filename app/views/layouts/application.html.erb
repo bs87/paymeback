@@ -58,7 +58,7 @@
                     <ul class="dropdown-menu">
                       <%typ.all.each do |type|%>
                         <%if type.accepted == false%> 
-                          <% user = User.where('id like ? ', "%#{type.user_id}%").first%>
+                          <% user = User.where(id: type.user_id).first%>
                           <li>
                             <a href="/users/<%=user.id%>">Freundschaftsanfrage: <%=user.firstname%> <%=user.lastname%><i class="icon-arrow-right"></i>
                             <ul class="dropdown-menu sub-menu">
