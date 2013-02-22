@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214135201) do
+ActiveRecord::Schema.define(:version => 20130222151523) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -28,11 +28,36 @@ ActiveRecord::Schema.define(:version => 20130214135201) do
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
-  create_table "debts", :force => true do |t|
-    t.string   "Vorname"
-    t.string   "Nachname"
-    t.float    "Betrag"
-    t.text     "info"
+  create_table "debits", :force => true do |t|
+    t.string   "emailcurrentuser"
+    t.string   "emailuser2"
+    t.float    "betrag"
+    t.date     "datum"
+    t.string   "info"
+    t.boolean  "gezahlt"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "art"
+    t.string   "helper"
+  end
+
+  create_table "friends", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "accepted",   :default => false
+  end
+
+  create_table "nachrichtens", :force => true do |t|
+
+    t.integer  "sentby", :null => false
+    t.integer  "sentto", :null => false
+    t.text     "topic"
+    t.text     "body"
+    t.boolean  "read", :null => false, :default => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -63,6 +88,16 @@ ActiveRecord::Schema.define(:version => 20130214135201) do
     t.datetime "updated_at",                             :null => false
     t.string   "firstname"
     t.string   "lastname"
+    t.string   "user_image_uid"
+    t.string   "user_image_name"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string   "adress"
+    t.date     "dateofbirth"
+    t.string   "city"
+    t.integer  "zip"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

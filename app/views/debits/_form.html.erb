@@ -1,0 +1,51 @@
+<%= form_for @debit, :html => { :class => 'form-horizontal' } do |f| %>
+  
+  <div class="control-group">
+       <div class="controls">
+      <%= f.hidden_field :emailcurrentuser, :value => current_user.email, :class => 'text_field' %>
+    </div>
+
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :emailuser2, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :betrag, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :betrag, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :datum, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :datum, :class => 'date_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :info, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :info, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :art, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :art, [['Verliehen','Verliehen'],['Geliehen','Geliehen']], :class => 'select' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :gezahlt, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :gezahlt, :class => 'text_box' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit  'Erstellen', :class => 'btn btn-success' %>
+ <%= link_to t('.zurück'), debits_path, :class => 'btn'  %>
+  </div>
+<% end %>

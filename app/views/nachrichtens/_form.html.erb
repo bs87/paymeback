@@ -1,0 +1,39 @@
+<%= form_for @nachrichten, :html => { :class => 'form-horizontal' } do |f| %>
+   
+   <div class="control-group">
+    <%= f.label :Absender, :class => 'control-label' %>
+      <%= f.label current_user.firstname+' '+ current_user.lastname, :class => 'control-label' %>
+    <div class="field">
+    <%= f.hidden_field :sentby, :value=> current_user.id %><br>
+  </div>
+</div>
+
+  <% user = User.where('id like ?', "#{@sentto}").first%>  
+  <div class="control-group">
+    <%= f.label :Empfänger, :class => 'control-label' %>    
+    <%= f.label user.firstname+' '+ user.lastname, :class => 'control-label' %>
+    <div class="field">
+    <%= f.hidden_field :sentto, :value=> @sentto %><br>
+  </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :Betreff, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :topic,:value=> @topic , :class => 'text_area' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :Nachricht, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :body,  :size => "50x10", :class => 'text_area' %>
+    </div>
+  </div>
+  
+
+  <div class="form-actions">
+    <%= f.submit 'Senden', :class => 'btn btn-success' %>
+    <%= link_to t('.Zurück'),
+                nachrichtens_path, :class => 'btn' %>
+  </div>
+<% end %>

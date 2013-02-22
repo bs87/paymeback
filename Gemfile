@@ -16,6 +16,7 @@ gem 'faker'
 gem 'guard-rspec'
 gem 'factory_girl_rails'
 gem 'sqlite3'
+gem 'cancan'
 end
 
 group :production, :developement do
@@ -40,8 +41,10 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'activeadmin'
 gem 'rolify'
-
-# To use ActiveModel has_secure_password
+gem 'cancan'
+gem "paperclip", "~> 3.0"
+gem "paperclip-dropbox"
+# To use ActiveModel has_s :lib => 'RMagick'ecure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON

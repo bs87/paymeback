@@ -1,4 +1,4 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>Einstellungen</h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -10,20 +10,42 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+  <div><%= f.label :Passwort %> <i>(frei lassen, wenn Sie es nicht ändern wollen)</i>
   <%= f.password_field :password, :autocomplete => "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
+  <br />
+  <div><%= f.label :passwort_wiederholen %>
   <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+  <br />  
+  <div><%= f.label :aktuelles_Passwort %> <i>(bitte geben Sie Ihr aktuelles Passwort ein um die Änderungen zu bestätigen)</i><br />
   <%= f.password_field :current_password %></div>
-
-  <div><%= f.submit "Update" %></div>
+  <br />
+  <div><%= f.label :Vorname %>
+  <%= f.text_field :firstname %></div>
+  <br />
+  <div><%= f.label :Nachname %>
+  <%= f.text_field :lastname %></div>
+  <br /> 
+  <div><%= f.label :Geburtsdatum %>
+  <%= f.date_select :dateofbirth, :order => [:day, :month, :year], :start_year => 1900, :end_year => 2013  %></div>
+  <br />
+  <div><%= f.label :Strasse_und_Hausnummer %>
+  <%= f.text_field :adress %></div>
+  <br />
+   <div><%= f.label :Postleitzahl %>
+  <%= f.text_field :zip %></div>
+  <br />
+ <div><%= f.label :Wohnort %>
+  <%= f.text_field :city %></div>
+  <br />
+ <div><%= f.label :Profilfoto_hochladen %>
+  <%= f.file_field :photo , :class => 'btn btn-primary icon-picture'%>
+</div>
+  <br />
+  <div><%= f.submit "Update", :class => 'btn btn-success' %></div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h3>Account löschen</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
+<p>Unzufrieden? <%= button_to " Account dauerhaft löschen", registration_path(resource_name), :data => { :confirm => "Sind Sie sicher?" }, :method => :delete, :class => 'btn btn-danger icon-remove'%></p>
 
-<%= link_to "Back", :back %>
+<%= link_to "zurück", :back, :class => 'btn '%>

@@ -46,18 +46,64 @@
           </a>
           <a class="brand" href="#">Paymeback</a>
           <div class="container-fluid nav-collapse">
-            <ul class="nav">
-              <% if current_user %>
+            <% if current_user %>
+              <ul class="nav">
+                <li><a href="/">Home</a></li>
+                <li class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">Profil<b class="caret"></b></a>
+                     <ul class="dropdown-menu">
+                      <li><a href="/user/<%= current_user.id%>">Mein Profil</a></li>
+                      <li><%= link_to 'Freunde', friends_path%></li>
+                      <li><%= link_to "Freunde finden", new_friend_path %></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">Zahlungsübersicht<b class="caret"></b></a>
+                     <ul class="dropdown-menu">
+                      <li><%= link_to 'Übersicht', debits_path%></li>
+                      <li><%= link_to "Neu Schulden eintragen", new_debit_path %></li>
+                    </ul>
+                  </li>
+                  <% typ = Friend.where('friend_id like ?', "%#{current_user.id}%")%>
+                <% @count=0 %>
+                <%typ.all.each do |type|%>
+                  <%if type.accepted == false%> 
+                    <% @count+=1 %>
+                  <%end%>
+                <%end%>
+                <% if @count>0 %>
+                  <li class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#"><%= @count %> Neue Nachrichten<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <%typ.all.each do |type|%>
+                        <%if type.accepted == false%> 
+                          <% user = User.where('id like ? ', "%#{type.user_id}%").first%>
+                          <li>
+                            <a href="/users/<%=user.id%>">Freundschaftsanfrage: <%=user.firstname%> <%=user.lastname%><i class="icon-arrow-right"></i>
+                            <ul class="dropdown-menu sub-menu">
+                              <li><%= link_to "annehmen", type, :method => :put %></li>     
+                              <li><%= link_to "ablehnen", type, :method => :delete %></li>
+                            </ul>
+                          </li>
+                           <%end%>
+                        <%end%>
+                      </ul>
+                      <%end%>
+                
+              </ul>
+              <ul class="nav pull-right" >
 
-              
-              <li> Welcome, <% current_user.firstname %>!</li>
-
-              <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
-              <%else%>
-              <li><%= link_to 'Sign in', new_user_session_path  %></li>
-              <li><%= link_to 'Sign up', new_user_registration_path  %></li>
-              <%end%>
+                <p><%= link_to current_user.firstname+' '+current_user.lastname, destroy_user_session_path,:class => "  icon-off  ", method: :delete  %> </p>
+                <p><%= link_to ' ', edit_user_registration_path,:class => "  icon-wrench  "  %> </p>
             </ul>
+              <%else%>
+               <ul class="nav">
+              <li><%= link_to 'Anmelden', new_user_session_path  %></li>
+              <li><%= link_to 'Registrieren', new_user_registration_path  %></li>
+              </ul>
+              <%end%>
+            
+            
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -68,13 +114,16 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
+              <!--<li class="nav-header">Sidebar</li>-->
               <% if current_user %>
+              <li><%= link_to 'Zahlungsübersicht', debits_path  %></li>
+              <li><%= link_to 'Einstellungen', edit_user_registration_path %></li>
+              <li><%= link_to 'Freunde', friends_path%></li>
+              <li><%= link_to 'Nachrichten', nachrichtens_path%></li>
+              <li><%= link_to 'Home', root_path, method: :delete %></li>
 
-              <li> Welcome, <%= current_user.firstname %>!</li>
-              <li><%= link_to 'Listing Debts', debts_path  %></li>
-              <!--<li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>-->
-              <!<%else%>
+              <%else%>
+
               <li><%= link_to 'Tutorial', new_user_session_path  %></li>
               <li><%= link_to 'Impressum', new_user_session_path  %></li>
               <li><%= link_to 'Kontakt', new_user_registration_path  %></li>

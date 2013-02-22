@@ -1,0 +1,91 @@
+<%- model_class = Friend -%>
+<div class="page-header">
+  <h1><%=t '.Deine Freunde' %></h1>
+</div>
+<table class="table table-striped">
+  
+  
+    <tr>  
+  <th><%= model_class.human_attribute_name(:Person) %></th>
+  
+  <% for friend in current_user.friends%>
+  <%if friend.accepted == true%>  
+  <% freund = User.where('id like ?', "%#{friend.friend_id}%").first%>
+
+      <tbody>
+      <td><%=h freund.firstname%> <%=freund.lastname%></td>
+      <td><%= image_tag freund.photo.url(:tiny)  %> </td>
+      <td><%= link_to " Profil anzeigen ", user_path(:id => freund), :method => :get , :class => 'btn icon-user'%>
+      <%= link_to " Freundschaft beenden ", friend, :method => :delete , :class => 'btn btn-danger icon-remove'%>  </td>
+   <%end%>
+   <%end%>
+    
+   
+  <!-- inverse suche-->
+   <% for friend in current_user.inverse_friends%>
+  <%if friend.accepted == true%>  
+  <% freund = User.where('id like ?', "%#{friend.user_id}%").first%>
+ 
+ 
+     
+      <td><%=h freund.firstname%> <%= freund.lastname%></td>
+      <td><%= image_tag freund.photo.url(:tiny)  %> </td>
+      <td><%= link_to " Profil anzeigen ", user_path(:id => freund), :method => :get , :class => 'btn icon-user'%>
+      <%= link_to " Freundschaft beenden", friend, :method => :delete , :class => 'btn btn-danger icon-remove'%> </td>
+
+   <%end%>
+  </tr>
+  <%end%>
+  </tbody>
+  
+</table>
+<!-- Freundschaftsanfragen-->
+<div class="page-header">
+  <h1><%=t '.Freundschaftsanfragen' %></h1>
+</div>
+<table class="table table-striped">
+     
+      
+      <tr>
+      <th><%= model_class.human_attribute_name(:Person) %></th>
+      
+  <% typ = Friend.where('friend_id like ?', "%#{current_user.id}%")%>
+  <%typ.all.each do |type|%>
+  <%if type.accepted == false%> 
+      <% user = User.where('id like ? ', "%#{type.user_id}%").first%>
+
+      <tbody>
+    <td>  <%= user.firstname %> <%=user.lastname%></td>
+    <td><%= image_tag user.photo.url(:tiny)  %> </td>
+    <td> <%= link_to " Profil anzeigen ", user_path(:id => user), :method => :get , :class => 'btn icon-user '%>
+    <%= link_to " annehmen ", type, :method => :put, :class => 'btn btn-success icon-ok' %> 
+    <%= link_to " ablehnen", type, :method => :delete, :class => 'btn btn-danger'%></td>
+      <%end%>
+      </tbody>
+    <%end%>
+
+</table>
+<!-- Ausstehende Freundschaftsanfragen-->
+
+<div class="page-header">
+  <h1><%=t '.Ausstehende Freundschaftsanfragen' %></h1>
+</div>
+<table class="table table-striped">
+  <tr>   
+  <th><%= model_class.human_attribute_name(:Person) %></th>
+      </thead>
+      <% for friend in current_user.friends%>
+      <%if friend.accepted == false%>  
+      <% freund = User.where('id like ?', "%#{friend.friend_id}%").first%>
+      <tbody>
+      <td><%= freund.firstname%> <%= freund.lastname%> </td>
+      <td><%= image_tag freund.photo.url(:tiny)  %> </td>
+       <td> <%= link_to " Profil anzeigen", user_path(:id => freund), :method => :get, :class => 'btn icon-user' %> 
+        <%= link_to " Anfrage stornieren", friend, :method => :delete , :class => 'btn btn-danger icon-remove'%></td>
+  <%end%>
+  <% end %>
+</tr>
+ </tbody>
+ </table>
+
+   <p><%= link_to " Freunde finden", new_friend_path , :class => 'btn btn-success icon-user' %></p>

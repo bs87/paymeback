@@ -1,10 +1,20 @@
 Paymeback::Application.routes.draw do
-  resources :debts
+
+  get "users/show"
+  resources :nachrichtens
+  resources :debits
+  resources :friends
+  #resources :startsites
+ # get "friends"
+  #root to: "friends#show"
+  
 
 
   ActiveAdmin.routes(self)
 
-  devise_for :users
+  devise_for :users, :path => 'accounts'
+
+  resources :users 
   root to: 'startsite#startsite'
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -63,3 +73,4 @@ Paymeback::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 end
+

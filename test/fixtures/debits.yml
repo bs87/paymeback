@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  emailcurrentuser: MyString
+  emailuser2: MyString
+  betrag: 1.5
+  datum: 2013-02-15
+  info: MyString
+  gezahlt: false
+
+two:
+  emailcurrentuser: MyString
+  emailuser2: MyString
+  betrag: 1.5
+  datum: 2013-02-15
+  info: MyString
+  gezahlt: false
