@@ -1,6 +1,5 @@
-<h1>Editing debit</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @debit %> |
-<%= link_to 'Back', debits_path %>
+<%- model_class = Debit -%>
+<div class="page-header">
+  <h1><%=t '.Editieren', :model => model_class.model_name.human %></h1>
+</div>
+<%= render :partial => 'form' %>
