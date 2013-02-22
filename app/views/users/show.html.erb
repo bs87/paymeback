@@ -25,11 +25,11 @@
 <% if @user.id == current_user.id%>
   <%= link_to "Profil bearbeiten", edit_user_registration_path%><br>
 <%else%>
-<%friend = Friend.where('user_id like ? AND friend_id like ?', "#{current_user.id}", "#{@user.id}").first%>
+<%friend = Friend.where(user_id: current_user.id and friend_id: @user.id).first%>
 
 	
 <div class="form-actions">
-<%friend = Friend.where('user_id like ? AND friend_id like ?', "#{current_user.id}", "#{@user.id}").first%>
+<%friend = Friend.where(user_id: current_user.id and friend_id: @user.id).first%>
 <% if friend%>
 		<% if friend.accepted == true%>
   <%= link_to t('.Freundschaft beenden'), friend, :method => :delete, :class => 'btn'  %>
@@ -37,7 +37,7 @@
   <%= link_to t('.Anfrage stornieren'),  friend, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, :class => 'btn btn-danger' %>
 	<%end%>
 <% else%>
- 	<%friend1 = Friend.where('user_id like ? AND friend_id like ?', "#{@user.id}", "#{current_user.id}").first%>
+<%friend = Friend.where(user_id: @user.id and friend_id: current_user.id).first%>
 	<% if friend1%>
 		<% if friend1.accepted == true%>
 <%= link_to t('.Freundschaft beenden'),  friend1, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, :class => 'btn btn-danger' %>

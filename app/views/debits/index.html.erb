@@ -15,7 +15,7 @@
   </thead>
   <tbody>
     <% @debits.each do |debit| %>
-    <% freund = User.where('email like ?',debit.emailuser2).first%>
+    <% freund = User.where(email: debit.emailuser2).first%>
  <tr>
     <td><a href='/users/<%=freund.id%>'><%= freund.firstname+' '+freund.lastname %></td>
     <% if  debit.usersum? %>

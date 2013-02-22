@@ -10,7 +10,7 @@
   
   <% for friend in current_user.friends%>
   <%if friend.accepted == true%>  
-  <% freund = User.where('id like ?', "%#{friend.friend_id}%").first%>
+  <% freund = User.where(id: friend.friend_id).first%>
 
       <tbody>
       <td><%=h freund.firstname%> <%=freund.lastname%></td>
@@ -24,7 +24,7 @@
   <!-- inverse suche-->
    <% for friend in current_user.inverse_friends%>
   <%if friend.accepted == true%>  
-  <% freund = User.where('id like ?', "%#{friend.user_id}%").first%>
+  <% freund = User.where(id: friend.user_id).first%>
  
  
      
@@ -49,10 +49,10 @@
       <tr>
       <th><%= model_class.human_attribute_name(:Person) %></th>
       
-  <% typ = Friend.where('friend_id like ?', "%#{current_user.id}%")%>
+  <% typ = Friend.where(friend_id: current_user.id)%>
   <%typ.all.each do |type|%>
   <%if type.accepted == false%> 
-      <% user = User.where('id like ? ', "%#{type.user_id}%").first%>
+      <% user = User.where(id:  type.user_id).first%>
 
       <tbody>
     <td>  <%= user.firstname %> <%=user.lastname%></td>
@@ -76,7 +76,7 @@
       </thead>
       <% for friend in current_user.friends%>
       <%if friend.accepted == false%>  
-      <% freund = User.where('id like ?', "%#{friend.friend_id}%").first%>
+      <% freund = User.where(id: friend.friend_id).first%>
       <tbody>
       <td><%= freund.firstname%> <%= freund.lastname%> </td>
       <td><%= image_tag freund.photo.url(:tiny)  %> </td>

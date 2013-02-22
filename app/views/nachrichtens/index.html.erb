@@ -14,10 +14,10 @@
     </tr>
   </thead>
   <tbody>
-  <% news = Nachrichten.where('sentto like ?', "#{current_user.id}")%>
+  <% news = Nachrichten.where(sentto: current_user.id)%>
   <% news.each do |nachrichten| %>
       <tr>
-      <td><%user1 = User.where('id like ?', "#{nachrichten.sentby}").first%><%=user1.firstname%></td>
+      <td><%user1 = User.where(id: nachrichten.sentby).first%><%=user1.firstname%></td>
       <td><%= nachrichten.topic %></td>
       <%if nachrichten.read==false%>
         <td>nein</td>
@@ -54,7 +54,7 @@
 <% @nachrichtens.each do |nachrichten| %>
   <%if nachrichten.sentby == current_user.id%>
       <tr>
-      <td><%user1 = User.where('id like ?', "#{nachrichten.sentto}").first%><%= user1.firstname %></td>
+      <td><%user1 = User.where(id: nachrichten.sentto).first%><%= user1.firstname %></td>
     <td><%= nachrichten.topic %></td>
     <%if nachrichten.read==false%>
         <td>nein</td>

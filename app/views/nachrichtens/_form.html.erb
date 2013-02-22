@@ -8,7 +8,7 @@
   </div>
 </div>
 
-  <% user = User.where('id like ?', "#{@sentto}").first%>  
+  <% user = User.where(id: @sentto).first%>  
   <div class="control-group">
     <%= f.label :Empfänger, :class => 'control-label' %>    
     <%= f.label user.firstname+' '+ user.lastname, :class => 'control-label' %>
