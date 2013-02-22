@@ -56,10 +56,19 @@ class DebitsController < ApplicationController
   # POST /debits
   # POST /debits.json
   def create
-      @debit = Debit.new(params[:debit])
-      if @debit.art == 'Geliehen'
-      @debit.betrag=@debit.betrag*-1
+    @debit = Debit.new(params[:debit])
+    @seconddebit = @debit
+    @seconddebit.emailuser2 = @debit.emailcurrentuser
+    @seconddebit.emailcurrentuser = @debit.emailuser2 
+    if @debit.art == 'Geliehen'
+        @seconddebit.art = 'Verliehen'
+        @debit.betrag=@debit.betrag*-1
+    else
+      @seconddebit.art = 'Geliehen'
     end
+      
+      @seconddebit = Debit.new(params[:seconddebit])
+      @seconddebit.save
 
     respond_to do |format|
       if @debit.save
@@ -70,15 +79,7 @@ class DebitsController < ApplicationController
         format.json { render json: @debit.errors, status: :unprocessable_entity }
       end
     end
-    @seconddebit = @debit
-    @seconddebit.emailuser2 = @debit.emailcurrentuser
-    @seconddebit.emailcurrentuser = @debit.emailuser2 
-    if @debit.art == 'Geliehen'
-        @seconddebit.art = 'Verliehen'
-    else
-      @seconddebit.art = 'Geliehen'
-    end
-    @seconddebit.save
+   
   end
 
   # PUT /debits/1
