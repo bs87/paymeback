@@ -4,13 +4,15 @@ class DebitsController < ApplicationController
   # GET /debits
   # GET /debits.json
   def index
-    if params[:art] == "verliehen"
-      @debits = Debit.where('emailcurrentuser like ? AND art like ?', "#{current_user.email}", "Verliehen")
-    else
-      if params[:art] == "geliehen"
-       @debits = Debit.where('emailcurrentuser like ? AND art like ?', "#{current_user.email}", "Geliehen") 
-      else
-       @debits = Debit.where('emailcurrentuser like  ?', "#{current_user.email}")
+    if params[:user].present?
+      @debits = Debit.where('emailcurrentuser like ? and emailuser2 like ?', "#{current_user.email}", "#{params[:user]}%")
+      @debits = @debits.find(:all, :select => "*,helper as usersum")
+   else
+        if params[:art] == "history"
+          @debits = Debit.where('emailcurrentuser like  ?', "#{current_user.email}")
+        else
+              @debits = Debit.where('emailcurrentuser like ? and gezahlt like ?', "#{current_user.email}", false )
+              @debits = @debits.find(:all, :select => "*, SUM(betrag) as usersum", :group => 'emailuser2')
       end
     end
     respond_to do |format|
@@ -54,7 +56,10 @@ class DebitsController < ApplicationController
   # POST /debits
   # POST /debits.json
   def create
-    @debit = Debit.new(params[:debit])
+      @debit = Debit.new(params[:debit])
+      if @debit.art == 'Geliehen'
+      @debit.betrag=@debit.betrag*-1
+    end
 
     respond_to do |format|
       if @debit.save
