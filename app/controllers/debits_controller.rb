@@ -1,11 +1,11 @@
 class DebitsController < ApplicationController
    load_and_authorize_resource 
-
+autocomplete :Debits, :emailcurrentuser
   # GET /debits
   # GET /debits.json
   def index
     @debits = Debit.where('emailcurrentuser like  ?', "#{current_user.email}")
-
+  
 
     respond_to do |format|
       format.html # index.html.erb
@@ -35,18 +35,21 @@ class DebitsController < ApplicationController
     @debit = Debit.new
 
 
- friends = current_user.friends
+
+ @friends = current_user.friends
    friends2 = current_user.inverse_friends 
-   friendsall = friends + friends2
+   friendsall = @friends + friends2
    @friend3 = friendsall
    @firstname = friendsall.map{|friend| "#{friend.user.email},<img src='#{current_user.photo.url(:tiny)}'/>"}
    #@firstname = User.find(:all,:select=>'firstname, lastname, email').map{|user| "#{user.firstname}, #{user.lastname}"}
   
 
+
+
   #@test = @nameall.find(:all,:select=>'firstname, lastname, email').map{|user| "#{user.firstname}, #{user.lastname}"}
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @debit }
+      format.json { render json: @bars }
     end
   end
 
