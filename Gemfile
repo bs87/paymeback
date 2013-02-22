@@ -43,7 +43,7 @@ gem 'activeadmin'
 gem 'rolify'
 gem 'cancan'
 gem "paperclip", "~> 3.0"
-
+gem "paperclip-dropbox"
 # To use ActiveModel has_s :lib => 'RMagick'ecure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
