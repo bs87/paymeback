@@ -4,13 +4,8 @@
        <div class="controls">
       <%= f.hidden_field :emailcurrentuser, :value => current_user.email, :class => 'text_field' %>
     </div>
+
   </div>
-  <!--<div class="control-group">
-    <%= f.label :Freund, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :firstname, :autocomplete => "off", :data => { :provide => 'typeahead', :items => "8",  :source => "#{@firstname.to_json}" },:class => 'text_field' %>
-    </div>
-  </div>-->
   <div class="control-group">
     <%= f.label :email, :class => 'control-label' %>
     <div class="controls">
