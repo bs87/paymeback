@@ -70,6 +70,15 @@ class DebitsController < ApplicationController
         format.json { render json: @debit.errors, status: :unprocessable_entity }
       end
     end
+    @seconddebit = @debit
+    @seconddebit.emailuser2 = @debit.emailcurrentuser
+    @seconddebit.emailcurrentuser = @debit.emailuser2 
+    if @debit.art == 'Geliehen'
+        @seconddebit.art = 'Verliehen'
+    else
+      @seconddebit.art = 'Geliehen'
+    end
+    @seconddebit.save
   end
 
   # PUT /debits/1
