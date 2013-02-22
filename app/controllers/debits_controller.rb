@@ -60,7 +60,6 @@ class DebitsController < ApplicationController
       if @debit.art == 'Geliehen'
       @debit.betrag=@debit.betrag*-1
     end
-
     respond_to do |format|
       if @debit.save
         format.html { redirect_to @debit, notice: 'Debit was successfully created.' }
