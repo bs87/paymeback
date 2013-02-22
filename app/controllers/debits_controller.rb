@@ -6,7 +6,7 @@ class DebitsController < ApplicationController
   def index
     if params[:user].present?
       @debits = Debit.where('emailcurrentuser like ? and emailuser2 like ?', "#{current_user.email}", "#{params[:user]}%")
-      @debits = @debits.find(:all, :select => "*,helper as usersum")
+      @debits = @debits.find(:all, :select => "*, betrag as usersum")
    else
         if params[:art] == "history"
           @debits = Debit.where('emailcurrentuser like  ?', "#{current_user.email}")
@@ -60,6 +60,7 @@ class DebitsController < ApplicationController
       if @debit.art == 'Geliehen'
       @debit.betrag=@debit.betrag*-1
     end
+
     respond_to do |format|
       if @debit.save
         format.html { redirect_to @debit, notice: 'Debit was successfully created.' }
