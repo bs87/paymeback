@@ -52,11 +52,12 @@ ActiveRecord::Schema.define(:version => 20130222151523) do
   end
 
   create_table "nachrichtens", :force => true do |t|
-    t.integer  "sentby"
-    t.integer  "sentto"
+
+    t.integer  "sentby", :null => false
+    t.integer  "sentto", :null => false
     t.text     "topic"
     t.text     "body"
-    t.boolean  "read"
+    t.boolean  "read", :null => false, :default => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
