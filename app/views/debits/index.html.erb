@@ -1,18 +1,22 @@
-<h1>Zahlungsübersicht</h1>
 
-<%= link_to 'History', debits_path(:art => "history") %>
-<%= link_to 'Alle', debits_path %>
+<%- model_class = Debit -%>
+<div class="page-header">
+  <h1><%=t '.Zahlungsübersicht' %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:Person) %></th>
+      <th><%= model_class.human_attribute_name(:Verliehen) %></th>
+      <th><%= model_class.human_attribute_name(:Geliehen) %></th>
+      <!--<th><%=t '.actions', :default => t("helpers.actions") %></th>-->
+    </tr>
 
-
-<table id='hor-minimalist-b'>
-<tr>
-    <th>Person</th>
-    <th>Verliehen</th>
-    <th>Geliehen</th>
-</tr>
-<% @debits.each do |debit| %>
-<% freund = User.where('email like ?',debit.emailuser2).first%>
-  <tr>
+  </thead>
+  <tbody>
+    <% @debits.each do |debit| %>
+    <% freund = User.where('email like ?',debit.emailuser2).first%>
+ <tr>
     <td><a href='/users/<%=freund.id%>'><%= freund.firstname+' '+freund.lastname %></td>
     <% if  debit.usersum? %>
         <% if debit.usersum>0%>
@@ -31,9 +35,19 @@
             <td id='geliehen'><%= link_to debit.betrag, debit%></td>
         <% end %>
     <%end%>
-  </tr>
-<% end %>
-</table>
-<br />
 
-<%= link_to 'New Debit', new_debit_path %>
+          <!--<%= link_to t('.Editieren'),
+                      edit_debit_path(debit), :class => 'btn btn-mini' %>
+          <%= link_to t('.Löschen'),
+                      debit_path(debit),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>-->
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.Neuer Eintrag', ), new_debit_path,:class => 'btn btn-success' %>
+

@@ -91,8 +91,8 @@
                       <%end%>
                 
               </ul>
-              <ul class="nav pull-right">
-                <li><%= link_to current_user.firstname+' '+current_user.lastname, destroy_user_session_path, method: :delete %></li> 
+              <ul class="nav pull-right" >
+                <p><%= link_to current_user.firstname+' '+current_user.lastname, destroy_user_session_path,:class => "  icon-off  ", method: :delete  %> </p>
             </ul>
               <%else%>
                <ul class="nav">
