@@ -36,20 +36,18 @@
         <% end %>
     <%end%>
 
-          <%= link_to t('.Editieren'),
+          <!--<%= link_to t('.Editieren'),
                       edit_debit_path(debit), :class => 'btn btn-mini' %>
           <%= link_to t('.Löschen'),
                       debit_path(debit),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
+                      :class => 'btn btn-mini btn-danger' %>-->
+        
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to t('.Neuer Eintrag', ),
-            new_debit_path,
-            :class => 'btn btn-success' %>
+<%= link_to t('.Neuer Eintrag', ), new_debit_path,:class => 'btn btn-success' %>
 

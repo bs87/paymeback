@@ -5,12 +5,12 @@
       <%= f.hidden_field :emailcurrentuser, :value => current_user.email, :class => 'text_field' %>
     </div>
   </div>
-  <div class="control-group">
+  <!--<div class="control-group">
     <%= f.label :Freund, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :firstname, :autocomplete => "off", :data => { :provide => 'typeahead', :items => "8",  :source => "#{@firstname.to_json}" },:class => 'text_field' %>
     </div>
-  </div>
+  </div>-->
   <div class="control-group">
     <%= f.label :email, :class => 'control-label' %>
     <div class="controls">
@@ -40,6 +40,13 @@
     <%= f.label :art, :class => 'control-label' %>
     <div class="controls">
       <%= f.select :art, [['Verliehen','Verliehen'],['Geliehen','Geliehen']], :class => 'select' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :gezahlt, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :gezahlt, :class => 'text_box' %>
     </div>
   </div>
 
