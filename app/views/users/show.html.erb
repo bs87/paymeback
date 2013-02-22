@@ -1,24 +1,21 @@
 <%- model_class = User -%>
 <div class="page-header">
-  <h1><%= image_tag current_user.photo.url(:small) %>  <%=t @user.firstname%> <%=@user.lastname%></h1> 
+  <h1><%= image_tag @user.photo.url(:small) %>  <%=t @user.firstname%> <%=@user.lastname%></h1> 
 </div>
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
   <dd><%= @user.email %></dd>
 
-  <dt><strong><%= model_class.human_attribute_name(:firstname) %>:</strong></dt>
-  <dd><%= @user.firstname %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:lastname) %>:</strong></dt>
-  <dd><%= @user.lastname %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:adress) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name(:Geburtstag) %>:</strong></dt>
+  <dd><%= @user.dateofbirth.day %>.<%=@user.dateofbirth.month%>.<%=@user.dateofbirth.year%></dd>
+  <dt><strong><%= model_class.human_attribute_name(:Adresse) %>:</strong></dt>
   <dd><%= @user.adress %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:dateofbirth) %>:</strong></dt>
-  <dd><%= @user.dateofbirth %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:city) %>:</strong></dt>
-  <dd><%= @user.city %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:zip) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name(:Postleitzahl) %>:</strong></dt>
   <dd><%= @user.zip %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:Stadt) %>:</strong></dt>
+  <dd><%= @user.city %></dd>
+  
 </dl>
 
 <%friend = Friend.where('user_id like ? AND friend_id like ?', "#{current_user.id}", "#{@user.id}").first%>
@@ -26,28 +23,33 @@
 	
 	
 <div class="form-actions">
-<%friend = Friend.where('user_id like ? AND friend_id like ?', "#{current_user.id}", "#{@user.id}").first%>
-<% if friend%>
+  <% if @user.id== current_user.id%>
+    <%link_to edit_user_registration_path %>
+  <%else%>
+    <%friend = Friend.where('user_id like ? AND friend_id like ?', "#{current_user.id}", "#{@user.id}").first%>
+    <% if friend%>
 	
-	<% if friend.accepted == true%>
+	   <% if friend.accepted == true%>
 
-  <%= link_to t('.Freundschaft beenden'), friend, :method => :delete, :class => 'btn'  %>
-  	<%else%>
-  <%= link_to t('.Anfrage stornieren'),  friend, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, :class => 'btn btn-danger' %>
-	<%end%>
-<% else%>
- 	<%friend1 = Friend.where('user_id like ? AND friend_id like ?', "#{@user.id}", "#{current_user.id}").first%>
-	<% if friend1%>
-		<% if friend1.accepted == true%>
-<%= link_to t('.Freundschaft beenden'),  friend1, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, :class => 'btn btn-danger' %>
-		<%else%>
-<%= link_to t('.Anfrage ablehnen'),  friend1, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},:class => 'btn btn-danger' %>
-		<%end%>
-	<%else%>
-<%= link_to t('.Als Freund hinzufügen'),  friends_path(:friend_id => @user), :method => :post , :class => 'btn btn-success' %>
+      <%= link_to t('.Freundschaft beenden'), friend, :method => :delete, :class => 'btn btn-danger'  %>
+  	 <%else%>
+      <%= link_to t('.Anfrage stornieren'),  friend, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, :class => 'btn btn-danger' %>
+	   <%end%>
+    <% else%>
+ 	   <%friend1 = Friend.where('user_id like ? AND friend_id like ?', "#{@user.id}", "#{current_user.id}").first%>
+	   <% if friend1%>
+		  <% if friend1.accepted == true%>
+        <%= link_to t('.Freundschaft beenden'),  friend1, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, :class => 'btn btn-danger' %>
+		  <%else%>
+        <%= link_to t('.Anfrage annehmen'), friend1, :method => :put, :class => 'btn btn-success' %>
+        <%= link_to t('.Anfrage ablehnen'),  friend1, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},:class => 'btn btn-danger' %>
+		  <%end%>
+	   <%else%>
+      <%= link_to t('.Als Freund hinzufügen'),  friends_path(:friend_id => @user), :method => :post , :class => 'btn btn-success' %>
 
-<%end%>
-<%end%>
-<%= link_to t('.zurück'), friends_path, :class => 'btn'  %>
+      <%end%>
+    <%end%>
+    <%= link_to t('.zurück'), friends_path, :class => 'btn'  %>
+  <%end%>
 </div>
 

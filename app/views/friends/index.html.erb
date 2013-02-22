@@ -13,10 +13,11 @@
   <% freund = User.where('id like ?', "%#{friend.friend_id}%").first%>
 
       <tbody>
+        <tr>
       <td><%=h freund.firstname%> <%=freund.lastname%></td>
       <td><%= image_tag freund.photo.url(:tiny)  %> </td>
       <td><%= link_to " Profil anzeigen ", user_path(:id => freund), :method => :get , :class => 'btn icon-user'%>
-      <%= link_to " Freundschaft beenden ", friend, :method => :delete , :class => 'btn btn-danger icon-remove'%>  </td>
+      <%= link_to " Freundschaft beenden ", friend, :method => :delete , :class => 'btn btn-danger icon-remove'%>  </td></tr>
    <%end%>
    <%end%>
     
