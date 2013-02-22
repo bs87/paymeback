@@ -77,9 +77,7 @@ class DebitsController < ApplicationController
     else
       @seconddebit.art = 'Geliehen'
     end
-      
-      @seconddebit = Debit.new(params[:seconddebit])
-      @seconddebit.save
+      @seconddebit = @seconddebit.create
 
     respond_to do |format|
       if @debit.save

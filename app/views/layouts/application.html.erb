@@ -92,7 +92,7 @@
                 
               </ul>
               <ul class="nav pull-right" >
-                <p><%= link_to current_user.firstname+' '+current_user.lastname, destroy_user_session_path,:class => "  icon-off  ", method: :delete  %> </p>
+                <li><%= link_to current_user.firstname+' '+current_user.lastname, destroy_user_session_path,:class => "  icon-off  ", method: :delete  %> </li>
             </ul>
               <%else%>
                <ul class="nav">
