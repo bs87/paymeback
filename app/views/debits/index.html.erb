@@ -18,11 +18,11 @@
       <tr>
         <td><a href='/debits/?user=<%=debit.emailuser2%>'><%= freund.firstname+' '+freund.lastname %></td>
 <% if debit.art=='Verliehen'%>
-        <td id='verliehen'><%= link_to debit.betrag.to_s+'€', debit%></td>
+        <td id='verliehen' ,style="color:red"><%= link_to debit.betrag.to_s+'€', debit,:style => 'color:green'%></td>
         <td></td>
 <%else%>
         <td>
-        <td id='geliehen'><%= link_to debit.betrag.to_s+'€', debit%></td>
+        <td id='geliehen'><%= link_to debit.betrag.to_s+'€', debit, :style => 'color:red'%></td>
     <%end%>
         <td>
           <%= link_to t('.Editieren'),

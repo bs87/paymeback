@@ -4,8 +4,10 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:emailcurrentuser) %>:</strong></dt>
-  <dd><%= @debit.emailcurrentuser %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:firstname) %>:</strong></dt>
+  <dd><%= @debit.firstname %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:lastname) %>:</strong></dt>
+  <dd><%= @debit.lastname %></dd>
   <dt><strong><%= model_class.human_attribute_name(:emailuser2) %>:</strong></dt>
   <dd><%= @debit.emailuser2 %></dd>
   <dt><strong><%= model_class.human_attribute_name(:betrag) %>:</strong></dt>
@@ -14,24 +16,22 @@
   <dd><%= @debit.datum %></dd>
   <dt><strong><%= model_class.human_attribute_name(:info) %>:</strong></dt>
   <dd><%= @debit.info %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:gezahlt) %>:</strong></dt>
-  <dd><%= @debit.gezahlt %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:firstname) %>:</strong></dt>
-  <dd><%= @debit.firstname %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:lastname) %>:</strong></dt>
-  <dd><%= @debit.lastname %></dd>
   <dt><strong><%= model_class.human_attribute_name(:art) %>:</strong></dt>
   <dd><%= @debit.art %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:gezahlt) %>:</strong></dt>
+  <dd><%= @debit.gezahlt %></dd>
+
+
 </dl>
 
 <div class="form-actions">
-  <%= link_to t('.Zurück'),
-              debits_path, :class => 'btn'  %>
+  
   <%= link_to t('.bearbeiten'),
               edit_debit_path(@debit), :class => 'btn btn-success' %>
   <%= link_to t('.Löschen'),
               debit_path(@debit),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+              :class => 'btn btn-danger' %> <%= link_to t('.Zurück'),
+              debits_path, :class => 'btn'  %>
 </div>

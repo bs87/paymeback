@@ -87,7 +87,7 @@
 
 <br />
 
-<%= link_to 'New Debit', new_debit_path , :class => 'btn btn-success'%>
+<%= link_to 'Neuer Eintrag', new_debit_path , :class => 'btn btn-success'%>
 
 <br />
 <% @guthaben = @verliehen - @geliehen %>
@@ -95,7 +95,13 @@
 <h4>Ihr aktuelles Guthaben beträgt: <%= @guthaben.round(2) %>€ </h4>
 
 	<%else%>
-    	<h1>Dies ist die Startseite für nicht registrierte Nutzer</h1>
+    	<h1 >Paymeback</h1>
+<br/>
+<br/>
+<%= image_tag "logo.jpg" , :style => "align=center"%>
+<br/>
+<br/>
+      <h1 >Behalten Sie den Überblick!</h1>
   <%end%>
 
 </body>
