@@ -67,18 +67,19 @@ class DebitsController < ApplicationController
   # POST /debits
   # POST /debits.json
   def create
-    @debit = Debit.new(params[:debit])
-    @seconddebit = @debit
-    @seconddebit.emailuser2 = @debit.emailcurrentuser
-    @seconddebit.emailcurrentuser = @debit.emailuser2 
+    @debit = Debit.new(params[:debit]) 
     if @debit.art == 'Geliehen'
-        @seconddebit.art = 'Verliehen'
+        @art = 'Verliehen'
+        @betrag = @debit.betrag
         @debit.betrag=@debit.betrag*-1
     else
-      @seconddebit.art = 'Geliehen'
+      @art= 'Geliehen'
+      @betrag = @debit.betrag*-1
     end
-      @seconddebit = @seconddebit.create
 
+    Debit.transaction do
+      Debit.create(:emailcurrentuser => @debit.emailuser2, :emailuser2 => @debit.emailcurrentuser, :betrag => @betrag, :art => @art, :info => @debit.info, :datum => @debit.datum, :gezahlt => @debit.gezahlt)
+  end
     respond_to do |format|
       if @debit.save
         format.html { redirect_to debits_path, notice: 'Debit was successfully created.' }
