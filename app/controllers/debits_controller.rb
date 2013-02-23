@@ -13,7 +13,7 @@ class DebitsController < ApplicationController
         else
               @debits = Debit.where(emailcurrentuser: current_user.email , gezahlt: false )
               #@debits = @debits.find(:all, :select => "*, SUM(betrag) as usersum", :group => 'emailuser2')
-      @debits = @debits.select("Distinct(emailuser2),id,SUM(betrag) as usersum")
+      @debits = @debits.select("Distinct(emailuser2),id,SUM(betrag) as usersum", :group => 'emailuser2')
       end
     end
 
