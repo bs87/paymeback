@@ -25,7 +25,7 @@ class DebitsController < ApplicationController
   # GET /debits/1
   # GET /debits/1.json
   def show
-    @debit = Debit.find(:first, :conditions => ["emailcurrentuser = ? AND id = ?", "#{current_user.email}",params[:id] ], :limit => 1)
+    @debit = Debit.find(:first, :conditions => [emailcurrentuser: current_user.email , id: params[:id] ], :limit => 1)
    
     if @debit == nil
     flash[:error] = "Zugriff Verweigert!  "

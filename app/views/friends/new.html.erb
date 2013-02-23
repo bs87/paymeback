@@ -9,8 +9,8 @@
       <th><%= model_class.human_attribute_name(:Vorname) %></th>
       <th><%= model_class.human_attribute_name(:Nachname) %></th>
       </thead>
-    <% user = User.where("id NOT IN (?)",current_user.id)%>
-     
+      <!-- hier muss not like hin-->
+    <% user = User.where(id: current_user.id)%>
     <tbody>
     <% user.all.each do |benutzer| %>
       
