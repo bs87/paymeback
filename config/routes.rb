@@ -1,11 +1,16 @@
 Paymeback::Application.routes.draw do
 
-  resources :debits
-  resources :friends
+  resources :debits do
+  get :autocomplete_debit_emailcurrentuser, :on => :collection
+  end
+  
+  resources :friends do
+  get :autocomplete_debit_emailcurrentuser, :on => :collection
+  end
   #resources :startsites
  # get "friends"
   #root to: "friends#show"
-  
+
 
 
   ActiveAdmin.routes(self)

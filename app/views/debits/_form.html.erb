@@ -1,8 +1,9 @@
-javascript_include_tag "autocomplete-rails.js"
 <%= form_for(@debit) do |f| %>
   <% if @debit.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@debit.errors.count, "error") %> prohibited this debit from being saved:</h2>
+<%= stylesheet_link_tag "reset", "layout", "themes/base/jquery.ui.all" %>
+<%= javascript_include_tag "jquery.ui.core", "jquery.ui.widget", "jquery.ui.position", "jquery.ui.autocomplete" %>
 
       <ul>
       <% @debit.errors.full_messages.each do |msg| %>
@@ -14,11 +15,14 @@ javascript_include_tag "autocomplete-rails.js"
 
 
 
-  <!--<div class="field">
-    <%= f.label :emailcurrentuser %><br />-->
+
+  <div class="field">
+  
     <%= f.hidden_field :emailcurrentuser, :value => current_user.email%>
+
+    
    
-  <!--</div>-->
+  </div>
   <div class="field">
     <%= f.label :Freund %><br />
     <%= f.text_field :firstname, :autocomplete => "off", :data => { :provide => 'typeahead', :items => "8",  :source => "#{@firstname.to_json}" }  %>
@@ -26,11 +30,10 @@ javascript_include_tag "autocomplete-rails.js"
    
     
     <%= f.label :emailuser2 %><br />
-    <%= f.hidden_field :emailuser2, :value => current_user.email%>
+    <%= f.text_field :emailuser2%>
   </div>
 
-<%= select_tag 'firstname[]', options_for_select( @firstname ), { :multiple => false,:size => 15, :style  => "width:250px" } 
-        %>
+
 
 <!--<%= image_tag "users/23/small/ich5.JPG" %>-->
   <div class="field">
