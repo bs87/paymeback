@@ -28,17 +28,27 @@ class DebitsController < ApplicationController
   # GET /debits/1
   # GET /debits/1.json
   def show
-    @debit = Debit.find(:first, :conditions => ["emailcurrentuser = ? AND id = ?", "#{current_user.email}",params[:id] ], :limit => 1)
-   
-    if @debit == nil
+  @debit = Debit.find(:first, :conditions => ["emailcurrentuser = ? AND id = ?", "#{current_user.email}",params[:id] ], :limit => 1)
+  respond_to do |format|
+  if @debit == nil
     flash[:error] = "Zugriff Verweigert!  "
     redirect_to debits_path
+  else
+   if @debit.read == false    
+      @debit.read = true
+      if @debit.update_attributes(params[:read => true])
+        format.html # show.html.erb
+        format.json { render json: @debit }
+      else
+        flash[:error] ="Ein Fehler ist aufgetreten."
+        redirect_to root_url
+      end
     else
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @debit }
+        format.html # show.html.erb
+        format.json { render json: @nachrichten }
     end
-    end
+   end
+   end
   end
 
   # GET /debits/new
@@ -71,7 +81,8 @@ class DebitsController < ApplicationController
   # POST /debits
   # POST /debits.json
   def create
-    @debit = Debit.new(params[:debit]) 
+    @debit = Debit.new(params[:debit])
+    @debit.read = true
     if @debit.art == 'Geliehen'
         @art = 'Verliehen'
         @betrag = @debit.betrag
