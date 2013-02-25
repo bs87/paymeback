@@ -21,13 +21,13 @@
       <%= f.text_field :topic,:value=> @topic , :class => 'text_area' %>
     </div>
   </div>
+  
   <div class="control-group">
     <%= f.label :Nachricht, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_area :body,  :size => "50x10", :class => 'text_area' %>
     </div>
-  </div>
-  
+  </div>  
 
   <div class="form-actions">
     <%= f.submit 'Senden', :class => 'btn btn-success' %>

@@ -1,6 +1,7 @@
 <%- model_class = Nachrichten -%> 
     <div class="well sidebar-nav">
-      <% news = Nachrichten.where('sentto like ?', "#{current_user.id}")%>
+      <% news1 = Nachrichten.where('sentto like ?', "#{current_user.id}")%>
+      <% news = news1.reverse%>
       <% if news.blank?%>
         <h1>Bisher haben Sie keine Nachrichten empfangen</h1>
       <%else%>
@@ -13,7 +14,7 @@
             <th><%= model_class.human_attribute_name(:Von )%></th>
             <th><%= model_class.human_attribute_name(:Betreff) %></th>
             <th><%= model_class.human_attribute_name(:Gelesen) %></th>
-            <th><%= model_class.human_attribute_name('Gesendet am') %></th>
+            <th><%= model_class.human_attribute_name(:Gesendet_am) %></th>
             <th><%= model_class.human_attribute_name(:um) %></th>
             <!--<th><%=t '.actions', :default => t("helpers.actions") %></th>-->
           </tr>
@@ -60,13 +61,14 @@
       <th><%= model_class.human_attribute_name(:An )%></th>
       <th><%= model_class.human_attribute_name(:Betreff) %></th>
       <th><%= model_class.human_attribute_name(:Gelesen) %></th>
-      <th><%= model_class.human_attribute_name('Gesendet am') %></th>
+      <th><%= model_class.human_attribute_name(:Gesendet_am) %></th>
       <th><%= model_class.human_attribute_name(:um) %></th>
       <!--<th><%=t '.actions', :default => t("helpers.actions") %></th>-->
     </tr>
   </thead>
   <tbody>
-    <% @nachrichtens.each do |nachrichten| %>
+    <% nachrichten1 = nachrichten.reverse%>
+    <% nachrichten1.each do |nachrichten| %>
       <%if nachrichten.sentby == current_user.id%>
         <tr>
           <td><%user1 = User.where('id like ?', "#{nachrichten.sentto}").first%><%= user1.firstname %></td>
