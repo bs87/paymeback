@@ -4,9 +4,9 @@
   <h1><%=t '.Freunde hinzufügen', :model => model_class.model_name.human %></h1>
 </div>
 <table class="table table-striped">
-  <thead>   
   <% if current_user %>
-<tr>
+    <thead> 
+      <tr>
       <th><%= model_class.human_attribute_name(:Vorname) %></th>
       <th><%= model_class.human_attribute_name(:Nachname) %></th>
       </thead>

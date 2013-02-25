@@ -3,10 +3,16 @@
 <div class="page-header">
   <h1><%=t '.Nachrichten Details' %></h1>
 </div>
-<%user2= User.where('id like ?', "#{@nachrichten.sentto}").first%>
+<%user1 = User.where('id like ?', "#{@nachrichten.sentby}").first%>
+<%user2 = User.where('id like ?', "#{@nachrichten.sentto}").first%>
 <dl class="dl-horizontal">
+  <%if @nachrichten.sentto ==current_user.id%>
+  <dt><strong><dt><strong><%= model_class.human_attribute_name(:Sender) %>:</strong></dt>
+  <dd><%= user1.firstname %> <%= user1.lastname %> <%= image_tag user1.photo.url(:small) %></dd>
+  <%else%>
   <dt><strong><%= model_class.human_attribute_name(:Empfänger) %>:</strong></dt>
   <dd><%= user2.firstname  %> <%= user2.lastname  %> <%= image_tag user2.photo.url(:small) %></dd>
+  <%end%>
   <dt><strong><%= model_class.human_attribute_name(:Betreff) %>:</strong></dt>
   <dd><%= @nachrichten.topic %></dd>
   <dt><strong><%= model_class.human_attribute_name(:Nachricht) %>:</strong></dt>
