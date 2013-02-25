@@ -120,9 +120,13 @@
                 <%messages.all.each do |message|%>
                   <% @count+=1 %>
                 <%end%>
+                <%debitnum = Debit.where('emailcurrentuser like ? and read like ? ', "%#{current_user.email}", false)%>
+                <%debitnum.all.each do |debit|%>
+                <% @count+=1%>
+                <% end %>            
                 <% if @count>0 %>
                   <li class="dropdown">
-                  <a data-toggle="dropdown" class="dropdown-toggle" href="#"><%= @count %> Neue Nachrichten<b class="caret"></b></a>
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#"><%= @count %>Benachrichtigungen<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                       <%typ.all.each do |type|%>
                         <%if type.accepted == false%> 
@@ -142,6 +146,13 @@
                             <%= link_to 'Nachricht von: '+freund.firstname+' '+freund.lastname , nachrichten_path(:id => message)%>
                             </li>
                             <%end%>
+                            <%debitnum.all.each do |debit|%>
+                           <%freund = User.where('email like ?',"%#{debit.emailuser2}").first%>
+                           <li>
+                            <%= link_to 'Neue Schulden: '+freund.firstname+' '+freund.lastname , debit_path(:id => debit)%>
+                            </li>
+                            <%end%>
+
                       </ul>
                       <%end%>      
               </ul>
