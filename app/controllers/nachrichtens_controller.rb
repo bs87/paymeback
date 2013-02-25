@@ -14,7 +14,6 @@ class NachrichtensController < ApplicationController
   # GET /nachrichtens/1.json
   def show
     @nachrichten = Nachrichten.find(params[:id])
-    respond_to do |format|
     if @nachrichten.read == false
       if @nachrichten.sentto == current_user.id        
       
@@ -38,7 +37,6 @@ class NachrichtensController < ApplicationController
      # format.html # show.html.erb
       #format.json { render json: @nachrichten }
     #end
-  end
 
   # GET /nachrichtens/new
   # GET /nachrichtens/new.json
