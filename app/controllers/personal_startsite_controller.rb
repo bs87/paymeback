@@ -1,2 +1,0 @@
-class PersonalStartsiteController < ApplicationController
-end

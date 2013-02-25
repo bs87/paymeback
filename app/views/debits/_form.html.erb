@@ -1,40 +1,24 @@
 
 <%= form_for @debit, :html => { :class => 'form-horizontal' } do |f| %>
-  
-  <div class="control-group">
-       <div class="controls">
-      <%= f.hidden_field :emailcurrentuser, :value => current_user.email, :class => 'text_field' %>
-
-    </div>
-
-
-
-
-
-  <div class="field">
-  
-
-    
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
-  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-  <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
-      <script>
+     
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<script>
 
       
   $(function() {
  
-    $( "#project" ).autocomplete({
+    $( "#freund" ).autocomplete({
       minLength: 0,
       source: <%= raw "#{@Fullname.to_json}" %>,
      focus: function( event, ui ) {
-        $( "#project" ).val( ui.item.label );
+        $( "#freund" ).val( ui.item.label );
         return false;
       },
       select: function( event, ui ) {
         $( "#email" ).val( ui.item.email );
         $( "#betrag" ).val( ui.item.label );
-        $( "#project-icon" ).attr( "src", "public" + ui.item.icon );
- 
         return false;
       }
     })
@@ -47,39 +31,38 @@
 </script>
 
 
-<%= image_tag  :src => "images/transparent_1x1.png" ,:id => "project-icon"%>
-
-<%= f.text_field :emailcurrentuser, :value => current_user.email%>
-    
-   
-  </div>
-    <%= f.label :emailuser2 %><br />
-    <%= f.text_field :emailuser2, :id => "email"%>
-  </div>
-
-    <div class="filed">
-  <%= f.label :Freund %><br />
-   <%= f.text_field :firstname, :id => "project" %>
-
-
-
-
-
-
-
-  <div class="control-group">
-    <%= f.label :email, :class => 'control-label' %>
+      <div class="control-group">
+  <%= f.label :Freund, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :emailuser2, :class => 'text_field' %>
+    <%= f.text_field :firstname, :id => "freund", :class => 'text_field' %>
+    
     </div>
   </div>
+ 
+
+    <%= f.hidden_field :emailcurrentuser, :value => current_user.email, :class => 'text_field' %>
+ 
+
+<br />
+
+  <div class="control-group">
+    <%= f.label 'Emailadresse', :class => 'control-label' %>
+    <div class="controls">
+    <%= f.text_field :emailuser2, :id => "email"%>
+  </div>
+  </div>
+
+<br />
+
   <div class="control-group">
     <%= f.label :betrag, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :betrag, :class => 'text_field' %>
     </div>
-
   </div>
+
+<br />
+
   <div class="control-group">
     <%= f.label :datum, :class => 'control-label' %>
     <div class="controls">
@@ -87,11 +70,16 @@
     </div>
   </div>
 
-  <div class="field">
-    <%= f.label :info %><br />
-    <%= f.text_field :info, :id => "info" %>
+<br />
 
+   <div class="control-group">
+ <%= f.label :Info, :class => 'control-label' %>  
+ <div class="controls">  
+ <%= f.text_field :info, :id => "info" %>
+ </div>
   </div>
+
+<br />
 
   <div class="control-group">
     <%= f.label :art, :class => 'control-label' %>
@@ -100,12 +88,16 @@
     </div>
   </div>
 
+<br />
+
   <div class="control-group">
     <%= f.label :gezahlt, :class => 'control-label' %>
     <div class="controls">
       <%= f.check_box :gezahlt, :class => 'text_box' %>
     </div>
   </div>
+
+<br />
 
   <div class="form-actions">
     <%= f.submit  'Erstellen', :class => 'btn btn-success' %>
