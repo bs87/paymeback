@@ -15,26 +15,38 @@
   </thead>
   <tbody>
 
-  <% @debits.each do |key, val|%>
-  <tr>
-    
-        <% if val>0%>
+<%if params[:user].present?
+      @debits = Debit.where(emailcurrentuser: current_user.email , emailuser2: params[:user])
+      @debits = @debits.find(:all, :select => "*, helper as usersum")%>
+      <% @debits.each do |debit| %>
+      <% freund = User.where(email: debit.emailuser2).first%>
+      <tr>
+      <td><a href='/users/<%=freund.id%>'><%= freund.firstname+' '+freund.lastname %></td>
+      <% if debit.art=='Verliehen'%>
+            <td><%= link_to debit.betrag, debit, {:style=>'color:green;'}%></td>
+            <td></td>
+        <% else %>
+            <td></td>
+            <td><%= link_to debit.betrag, debit, {:style=>'color:red;'}%></td>
+        <% end %>
+      <% end %>  
+
+<%else%>
+
+    <% @debits.each do |key, val| %>
+    <% freund = User.where(email: key).first%>
+    <tr>
+      <td><a href='/users/<%=freund.id%>'><%= freund.firstname+' '+freund.lastname %></td>
+      <% if val>0%>
             <td><a href='/debits/?user=<%=key%>' style='color: green;' ><%= val.to_s+'€'%></td>
             <td></td>
-          <%else%>
+        <%else%>
             <td></td>
             <td><a href='/debits/?user=<%=key%>' style='color: red;' ><%= val.to_s+'€'%></td>
-            <%end%>     
-        
-       
-            <td><%= link_to val, {:style=>'color:green;'}%></td>
-            <td></td>
-        
-            <td></td>
-            <td><%= link_to val, {:style=>'color:red;'}%></td>
-        
+        <%end%>     
+   <%end%>
 
-        
+               
       </tr>
     <% end %>
   </tbody>
