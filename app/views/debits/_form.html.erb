@@ -18,27 +18,63 @@
 
   <div class="field">
   
-    <%= f.hidden_field :emailcurrentuser, :value => current_user.email%>
 
+    
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+      <script>
+
+      
+  $(function() {
+ 
+    $( "#project" ).autocomplete({
+      minLength: 0,
+      source: <%= raw "#{@Fullname.to_json}" %>,
+     focus: function( event, ui ) {
+        $( "#project" ).val( ui.item.label );
+        return false;
+      },
+      select: function( event, ui ) {
+        $( "#email" ).val( ui.item.email );
+        $( "#betrag" ).val( ui.item.label );
+        $( "#project-icon" ).attr( "src", "public" + ui.item.icon );
+ 
+        return false;
+      }
+    })
+    .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append( "<a>" + item.label  +" " + item.icon + "</a>" )
+        .appendTo( ul );
+    };
+  }); 
+</script>
+
+
+<%= image_tag  :src => "images/transparent_1x1.png" ,:id => "project-icon"%>
+
+<%= f.text_field :emailcurrentuser, :value => current_user.email%>
     
    
   </div>
-  <div class="field">
-    <%= f.label :Freund %><br />
-    <%= f.text_field :firstname, :autocomplete => "off", :data => { :provide => 'typeahead', :items => "8",  :source => "#{@firstname.to_json}" }  %>
-
-   
-    
     <%= f.label :emailuser2 %><br />
-    <%= f.text_field :emailuser2%>
+    <%= f.text_field :emailuser2, :id => "email"%>
   </div>
+
+    <div class="filed">
+  <%= f.label :Freund %><br />
+   <%= f.text_field :firstname, :id => "project" %>
+
+
+
 
 
 
 <!--<%= image_tag "users/23/small/ich5.JPG" %>-->
   <div class="field">
     <%= f.label :betrag %><br />
-    <%= f.text_field :betrag %>
+    <%= f.text_field  :betrag %>
   </div>
   <div class="field">
     <%= f.label :datum %><br />
@@ -46,7 +82,7 @@
   </div>
   <div class="field">
     <%= f.label :info %><br />
-    <%= f.text_field :info %>
+    <%= f.text_field :info, :id => "info" %>
   </div>
   <div class="field">
     <%= f.label :gezahlt %><br />

@@ -41,7 +41,11 @@ class DebitsController < ApplicationController
    friends2 = current_user.inverse_friends 
    friendsall = friends + friends2
    @friend3 = friendsall
-   @firstname = friendsall.map{|friend| "#{friend.user.firstname},#{friend.user.lastname},<img src='#{current_user.photo.url(:tiny)}'/>"}
+   @Fullname = Hash.new
+
+   @Fullname = friendsall.map{|friend| {'label' => "#{friend.user.firstname} #{friend.user.lastname}", 'email' => "#{friend.user.email}", 'icon' => "<img src='#{friend.user.photo.url(:tiny)}'/>"}}
+   
+   #,<img src='#{current_user.photo.url(:tiny)}'/>"}
   
    #@firstname = User.find(:all,:select=>'firstname, lastname, email').map{|user| "#{user.firstname}, #{user.lastname}"}
   
