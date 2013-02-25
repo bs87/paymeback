@@ -16,6 +16,7 @@ gem 'faker'
 gem 'guard-rspec'
 gem 'factory_girl_rails'
 gem 'sqlite3'
+gem 'cancan'
 end
 
 group :production do
@@ -26,27 +27,26 @@ end
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'therubyracer' ,'~> 0.10.2'
+  gem 'therubyracer'
+  gem 'twitter-bootstrap-rails'
   gem 'less-rails'
+  
+
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  # gem 'therubyracer', :platforms => :ruby
+
   gem 'uglifier', '>= 1.0.3'
 end
-
-
-gem 'twitter-bootstrap-rails'
 gem 'devise'
 gem 'jquery-rails'
 gem 'activeadmin'
 gem 'rolify'
 gem 'cancan'
 gem "paperclip", "~> 3.0"
-<<<<<<< HEAD
-#gem 'ransack'
+gem "paperclip-dropbox"
 gem 'rails3-jquery-autocomplete'
 gem 'jquery-ui-bootstrap-rails'
 gem 'jquery-ui-themes'
-=======
-gem "paperclip-dropbox"
->>>>>>> develop
 # To use ActiveModel has_s :lib => 'RMagick'ecure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
