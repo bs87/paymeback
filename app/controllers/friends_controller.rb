@@ -1,4 +1,5 @@
 class FriendsController < ApplicationController
+ #autocomplete :debit, :emailcurrentuser
   # GET /friends
   # GET /friends.json
   #def index
