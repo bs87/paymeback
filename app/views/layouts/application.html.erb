@@ -101,8 +101,7 @@
                 <%messages.all.each do |message|%>
                   <% @count+=1 %>
                 <%end%>
-                <!-- wieso read=false??-->
-                <%debitnum = Debit.where(emailcurrentuser: current_user.email)%>
+                <%debitnum = Debit.where(emailcurrentuser: current_user.email, read: false)%>
                 <%debitnum.all.each do |debit|%>
                 <% @count+=1%>
                 <% end %>            
