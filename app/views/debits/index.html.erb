@@ -14,38 +14,26 @@
 
   </thead>
   <tbody>
-    <!--<% @debits.each do |debit| %>
-    <% freund = User.where(email: debit.emailuser2).first%>-->
-    <%= @debits.each do |key, val|
-  print val, " von ", key, "; " 
 
- <tr>
-    #<td><a href='/users/<%=freund.id%>'><%= freund.firstname+' '+freund.lastname %></td>
-    <% if  val? %>
+  <% @debits.each do |key, val|%>
+  <tr>
+    
         <% if val>0%>
             <td><a href='/debits/?user=<%=key%>' style='color: green;' ><%= val.to_s+'€'%></td>
             <td></td>
           <%else%>
             <td></td>
-            <td><a href='/debits/?user=<%=key2%>' style='color: red;' ><%= val.to_s+'€'%></td>
+            <td><a href='/debits/?user=<%=key%>' style='color: red;' ><%= val.to_s+'€'%></td>
             <%end%>     
-        <% else %>
-        <% if debit.art=='Verliehen'%>
-            <td><%= link_to val, debit, {:style=>'color:green;'}%></td>
+        
+       
+            <td><%= link_to val, {:style=>'color:green;'}%></td>
             <td></td>
-        <% else %>
+        
             <td></td>
-            <td><%= link_to val, debit, {:style=>'color:red;'}%></td>
-        <% end %>
-    <%end%>
-end %>
-          <!--<%= link_to t('.Editieren'),
-                      edit_debit_path(debit), :class => 'btn btn-mini' %>
-          <%= link_to t('.Löschen'),
-                      debit_path(debit),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>-->
+            <td><%= link_to val, {:style=>'color:red;'}%></td>
+        
+
         
       </tr>
     <% end %>
