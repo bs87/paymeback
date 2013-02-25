@@ -15,9 +15,7 @@
   </thead>
   <tbody>
 
-<%if params[:user].present?
-      @debits = Debit.where(emailcurrentuser: current_user.email , emailuser2: params[:user])
-      @debits = @debits.find(:all, :select => "*, helper as usersum")%>
+<%if params[:user].present?%>
       <% @debits.each do |debit| %>
       <% freund = User.where(email: debit.emailuser2).first%>
       <tr>
