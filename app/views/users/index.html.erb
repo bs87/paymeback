@@ -7,27 +7,17 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:email) %></th>
-      <th><%= model_class.human_attribute_name(:encrypted_password) %></th>
-      <th><%= model_class.human_attribute_name(:reset_password_token) %></th>
-      <th><%= model_class.human_attribute_name(:reset_password_sent_at) %></th>
-      <th><%= model_class.human_attribute_name(:remember_created_at) %></th>
-      <th><%= model_class.human_attribute_name(:current_sign_in_at) %></th>
       <th><%= model_class.human_attribute_name(:last_sign_in_at) %></th>
-      <th><%= model_class.human_attribute_name(:current_sign_in_ip) %></th>
-      <th><%= model_class.human_attribute_name(:last_sign_in_ip) %></th>
-      <th><%= model_class.human_attribute_name(:firstname) %></th>
-      <th><%= model_class.human_attribute_name(:lastname) %></th>
-      <th><%= model_class.human_attribute_name(:user_image_uid) %></th>
+      <th><%= model_class.human_attribute_name(:user_image_uid) %></th>s
       <th><%= model_class.human_attribute_name(:user_image_name) %></th>
       <th><%= model_class.human_attribute_name(:photo_file_name) %></th>
       <th><%= model_class.human_attribute_name(:photo_content_type) %></th>
       <th><%= model_class.human_attribute_name(:photo_file_size) %></th>
       <th><%= model_class.human_attribute_name(:photo_updated_at) %></th>
-      <th><%= model_class.human_attribute_name(:adress) %></th>
-      <th><%= model_class.human_attribute_name(:dateofbirth) %></th>
-      <th><%= model_class.human_attribute_name(:city) %></th>
-      <th><%= model_class.human_attribute_name(:zip) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:Geburtstag) %></th>
+      <th><%= model_class.human_attribute_name(:Adresse) %></th>
+      <th><%= model_class.human_attribute_name(:Postleitzahl) %></th>
+      <th><%= model_class.human_attribute_name(:Stadt) %></th>      
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -36,27 +26,17 @@
       <tr>
         <td><%= link_to user.id, user_path(user) %></td>
         <td><%= user.email %></td>
-        <td><%= user.encrypted_password %></td>
-        <td><%= user.reset_password_token %></td>
-        <td><%= user.reset_password_sent_at %></td>
-        <td><%= user.remember_created_at %></td>
-        <td><%= user.current_sign_in_at %></td>
         <td><%= user.last_sign_in_at %></td>
-        <td><%= user.current_sign_in_ip %></td>
-        <td><%= user.last_sign_in_ip %></td>
-        <td><%= user.firstname %></td>
-        <td><%= user.lastname %></td>
         <td><%= user.user_image_uid %></td>
         <td><%= user.user_image_name %></td>
         <td><%= user.photo_file_name %></td>
         <td><%= user.photo_content_type %></td>
         <td><%= user.photo_file_size %></td>
         <td><%= user.photo_updated_at %></td>
-        <td><%= user.adress %></td>
         <td><%= user.dateofbirth %></td>
-        <td><%= user.city %></td>
+        <td><%= user.adress %></td>
         <td><%= user.zip %></td>
-        <td><%=l user.created_at %></td>
+        <td><%= user.city %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_user_path(user), :class => 'btn btn-mini' %>
