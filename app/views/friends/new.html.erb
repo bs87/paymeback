@@ -10,7 +10,7 @@
       <th><%= model_class.human_attribute_name(:Nachname) %></th>
       </thead>
       <!-- hier muss not like hin-->
-    <% user = User.where(id: current_user.id)%>
+    <% user = User.where(id: not LIKE current_user.id)%>
     <tbody>
     <% user.all.each do |benutzer| %>
       
