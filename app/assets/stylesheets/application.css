@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require_tree .
+ *= require_style
  */
 .sidebar-nav {
     padding: 9px 0;

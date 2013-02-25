@@ -1,8 +1,6 @@
 <%= form_for @nachrichten, :html => { :class => 'form-horizontal' } do |f| %>
    
    <div class="control-group">
-    <%= f.label :Absender, :class => 'control-label' %>
-      <%= f.label current_user.firstname+' '+ current_user.lastname, :class => 'control-label' %>
     <div class="field">
     <%= f.hidden_field :sentby, :value=> current_user.id %><br>
   </div>

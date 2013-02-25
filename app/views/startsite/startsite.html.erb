@@ -1,107 +1,139 @@
 <%- model_class = Friend -%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN""http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-<title>Startseite</title>
-</head>
-<body>
+
 	<% if current_user %>
-        <h1> <%= image_tag current_user.photo.url(:small) %> Willkommen, <%= current_user.firstname%>!</h1> 
+    <h1> <%= image_tag current_user.photo.url(:small) %> Willkommen, <%= current_user.firstname%>!</h1> 
 
 
-<br />
-<div class="page-header">
-  <h1><%=t '.Verliehen', :model => model_class.model_name.human %></h1>
-</div>
-<table class="table table-striped">
-  <thead>   
-  <tr>
-    <th>Emailuser2</th>
-    <th>Betrag</th>
-    <th>Datum</th>
-    <th>Info</th>
-    <th>Gezahlt</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-</thead>
-<% @guthaben=0 %>
-<% @verliehen=0 %>
-<% @geliehen=0 %>
 
-<% @debits.each do |debit| %>
- <% if debit.art == "Verliehen" %>
- <% @verliehen+=debit.betrag %>
-  <tr>
-    <td><%= debit.emailuser2 %></td>
-    <td><%= debit.betrag %></td>
-    <td><%= debit.datum %></td>
-    <td><%= debit.info %></td>
-    <td><%= debit.gezahlt %></td>
-<td><%= link_to 'Details', debit , :class => 'btn '%>
-    <%= link_to 'Bearbeiten', edit_debit_path(debit) , :class => 'btn btn-primary'%>
-    <%= link_to 'Löschen', debit, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
-  </tr>
-  <% end %>
-<% end %>
-</table>
-<h4>Sie haben <%= @verliehen %>€ verliehen. </h4>
+    <br />
+    <div class="page-header">
+      <h1><%=t '.Verliehen', :model => model_class.model_name.human %></h1>
+    </div>
+    <table class="table table-striped">
+      <thead>   
+        <tr>
+          <th>Emailuser2</th>
+          <th>Betrag</th>
+          <th>Datum</th>
+          <th>Info</th>
+          <th>Gezahlt</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+     <% @guthaben=0 %>
+    <% @verliehen=0 %>
+    <% @geliehen=0 %>
+
+    <% @debits.each do |debit| %>
+      <% if debit.art == "Verliehen" %>
+        <% @verliehen+=debit.betrag %>
+        <tr>
+         <td><%= debit.emailuser2 %></td>
+         <td><%= debit.betrag %></td>
+         <td><%= debit.datum %></td>
+         <td><%= debit.info %></td>
+         <td><%= debit.gezahlt %></td>
+         <td><%= link_to 'Details', debit , :class => 'btn '%>
+          <%= link_to 'Bearbeiten', edit_debit_path(debit) , :class => 'btn btn-primary'%>
+          <%= link_to 'Löschen', debit, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </table>
+    <h4>Sie haben <%= @verliehen %>€ verliehen. </h4>
+    <br />
+
+    <div class="page-header">
+      <h1><%=t '.Geliehen', :model => model_class.model_name.human %></h1>
+    </div>
+    <table class="table table-striped">
+      <thead>   
+        <tr>
+          <th>Emailuser2</th>
+          <th>Betrag</th>
+          <th>Datum</th>
+          <th>Info</th>
+          <th>Gezahlt</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead> 
+      <% @debits.each do |debit| %>
+        <% if debit.art == "Geliehen" %>
+          <% @geliehen+=debit.betrag %>
+          <tr>
+            <td><%= debit.emailuser2 %></td>
+            <td><%= debit.betrag %></td>
+            <td><%= debit.datum %></td>
+            <td><%= debit.info %></td>
+            <td><%= debit.gezahlt %></td>
+            <td><%= link_to 'Details', debit , :class => 'btn '%>
+              <%= link_to 'Bearbeiten', edit_debit_path(debit) , :class => 'btn btn-primary'%>
+              <%= link_to 'Löschen', debit, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+    <h4>Sie haben <%= @geliehen %>€ geliehen. </h4>
+    <br />
+    <%= link_to 'Neuer Eintrag', new_debit_path , :class => 'btn btn-success'%>
+    <br />
+    <% @guthaben = @verliehen - @geliehen %>
+    <br />
+    <h4>Ihr aktuelles Guthaben beträgt: <%= @guthaben.round(2) %>€ </h4>
+    <footer>
+        <p>&copy; Paymeback 2013</p>
+      </footer>
+  <%else%>
+  
+
+    
+    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+      <!-- Jumbotron -->
+      <div class="jumbotron">
+        <h1>Paymeback</h1>
+        <p class="lead"></p>
+        <a class="btn btn-large btn-inverse" href="accounts/sign_in">Jetzt anmelden</a>
+      </div>
+
+      <hr>
+
+      <!-- Example row of columns -->
+      <div class="row-fluid">
+        <div class="span4">
+          <h2>Über Uns</h2>
+          <p>Wir sind ein junges Team aus Webentwicklern, die die Welt ein bisschen einfacher machen wollen. </p>
+        </div>
+        <div class="span4">
+          <h2>Paymeback</h2>
+          <p>Mit Paymeback können Sie ganz einfach verwalten wem Sie Geld geliehen haben und wer Ihnen Geld geliehen hat. </p>
+       </div>
+        <div class="span4">
+          <h2>Kontakt</h2>
+          <p>Fachhochschule Münster<br>Johann-Krane-Weg 21-27<br>48149 Münster</p>
+        </div>
+      </div>
+
+      <hr>
 
 
-<br />
+      <div class="footer">
+        <p>&copy; Paymeback 2013</p>
+      </div>
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
 
-<div class="page-header">
-  <h1><%=t '.Geliehen', :model => model_class.model_name.human %></h1>
-</div>
-<table class="table table-striped">
-  <thead>   
-  <tr>
-    <th>Emailuser2</th>
-    <th>Betrag</th>
-    <th>Datum</th>
-    <th>Info</th>
-    <th>Gezahlt</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-</thead> 
-<% @debits.each do |debit| %>
-<% if debit.art == "Geliehen" %>
- <% @geliehen+=debit.betrag %>
-  <tr>
-    <td><%= debit.emailuser2 %></td>
-    <td><%= debit.betrag %></td>
-    <td><%= debit.datum %></td>
-    <td><%= debit.info %></td>
-    <td><%= debit.gezahlt %></td>
-<td><%= link_to 'Details', debit , :class => 'btn '%>
-    <%= link_to 'Bearbeiten', edit_debit_path(debit) , :class => 'btn btn-primary'%>
-    <%= link_to 'Löschen', debit, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
-  </tr>
-  <% end %>
-<% end %>
-</table>
-<h4>Sie haben <%= @geliehen %>€ geliehen. </h4>
 
-<br />
-
-<%= link_to 'Neuer Eintrag', new_debit_path , :class => 'btn btn-success'%>
-
-<br />
-<% @guthaben = @verliehen - @geliehen %>
-<br />
-<h4>Ihr aktuelles Guthaben beträgt: <%= @guthaben.round(2) %>€ </h4>
-
-	<%else%>
-    	<h1 >Paymeback</h1>
-<br/>
-<br/>
-<br/>
-<br/>
-      <h1 >Behalten Sie den Überblick!</h1>
   <%end%>
-
-</body>
+  </body>
 </html>

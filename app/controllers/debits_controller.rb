@@ -1,9 +1,11 @@
 class DebitsController < ApplicationController
    load_and_authorize_resource 
+   autocomplete :debit, :emailcurrentuser
 
   # GET /debits
   # GET /debits.json
   def index
+
     if params[:user].present?
       @debits = Debit.where(emailcurrentuser: current_user.email , emailuser2: params[:user])
       @debits = @debits.find(:all, :select => "*, helper as usersum")
@@ -16,6 +18,7 @@ class DebitsController < ApplicationController
       @debits = @debits.find(:all, :select => "Distinct(emailuser2), id, SUM(betrag) as usersum", :group => 'emailuser2')
       end
     end
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -42,18 +45,19 @@ class DebitsController < ApplicationController
   # GET /debits/new
   # GET /debits/new.json
   def new
-    @debit = Debit.new
+   @debit = Debit.new
 
 
- friends = current_user.friends
-   friends2 = current_user.inverse_friends 
+
+   friends = current_user.friends.where(accepted: true)
+   friends2 = current_user.inverse_friends.where(accepted: true)
    friendsall = friends + friends2
    @friend3 = friendsall
-   @firstname = friendsall.map{|friend| "#{friend.user.firstname},#{friend.user.lastname},<img src='#{current_user.photo.url(:tiny)}'/>"}
-   #@firstname = User.find(:all,:select=>'firstname, lastname, email').map{|user| "#{user.firstname}, #{user.lastname}"}
-  
+   @Fullname = Hash.new
 
-  #@test = @nameall.find(:all,:select=>'firstname, lastname, email').map{|user| "#{user.firstname}, #{user.lastname}"}
+   @Fullname = friendsall.map{|friend| {'label' => "#{friend.user.firstname} #{friend.user.lastname}", 'email' => "#{friend.user.email}", 'icon' => "<img src='#{friend.user.photo.url(:tiny)}'/>"}}
+   
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @debit }

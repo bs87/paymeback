@@ -44,6 +44,9 @@ gem 'rolify'
 gem 'cancan'
 gem "paperclip", "~> 3.0"
 gem "paperclip-dropbox"
+gem 'rails3-jquery-autocomplete'
+gem 'jquery-ui-bootstrap-rails'
+gem 'jquery-ui-themes'
 # To use ActiveModel has_s :lib => 'RMagick'ecure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
