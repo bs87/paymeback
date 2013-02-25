@@ -116,6 +116,10 @@
                     <% @count+=1 %>
                   <%end%>
                 <%end%>
+                <%messages = Nachrichten.where('sentto like ? and read like ?',"%#{current_user.id}",false)%>
+                <%messages.all.each do |message|%>
+                  <% @count+=1 %>
+                <%end%>
                 <% if @count>0 %>
                   <li class="dropdown">
                   <a data-toggle="dropdown" class="dropdown-toggle" href="#"><%= @count %> Neue Nachrichten<b class="caret"></b></a>
@@ -131,6 +135,11 @@
                             </ul>
                           </li>
                            <%end%>
+                           <%messages.all.each do |message|%>
+                           <li>
+                            <%= link_to 'Nachricht anzeigen', nachrichten_path(:id => nachrichten)%>
+                            </li>
+                            <%end%>
                         <%end%>
                       </ul>
                       <%end%>
