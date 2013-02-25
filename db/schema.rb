@@ -58,9 +58,9 @@ ActiveRecord::Schema.define(:version => 20130224144450) do
     t.integer  "sentto",                        :null => false
     t.text     "topic"
     t.text     "body"
-    t.boolean  "read", :default => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.boolean  "read",       :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "roles", :force => true do |t|
