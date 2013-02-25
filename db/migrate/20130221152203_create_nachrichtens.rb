@@ -5,7 +5,7 @@ class CreateNachrichtens < ActiveRecord::Migration
       t.integer :sentto
       t.text :topic
       t.text :body
-      t.boolean :read
+      t.boolean :read, :default => false
       t.string :create
       t.string :destroy
       t.string :show
