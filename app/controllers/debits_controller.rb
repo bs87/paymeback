@@ -18,8 +18,6 @@ class DebitsController < ApplicationController
               #@debits = @debits.find(:all, :select => "*, SUM(betrag) as usersum", :group => 'emailuser2')
     @debits = Debit.where(emailcurrentuser: current_user.email).group("emailuser2").sum("betrag")
    # @hours = Debit.group_by { |h| h.emailuser2 }
-
-
      #@debits.find(:all, :select => "distinct (emailuser2),*, id,SUM(betrag) as usersum")
       #@debits = @debits.select("DISTINCT ON (debits.emailuser2) * ").group("id, emailcurrentuser,emailuser2 ,betrag, datum,info, gezahlt,created_at, updated_at, firstname, lastname,art,helper")
   
