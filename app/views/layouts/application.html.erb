@@ -135,15 +135,15 @@
                             </ul>
                           </li>
                            <%end%>
+                           <%end%>
                            <%messages.all.each do |message|%>
+                           <%freund = User.find(message.sentby)%>
                            <li>
-                            <%= link_to 'Nachricht anzeigen', nachrichten_path(:id => nachrichten)%>
+                            <%= link_to 'Nachricht von: '+freund.firstname+' '+freund.lastname , nachrichten_path(:id => message)%>
                             </li>
                             <%end%>
-                        <%end%>
                       </ul>
-                      <%end%>
-                
+                      <%end%>      
               </ul>
               <ul class="nav pull-right" >
 
