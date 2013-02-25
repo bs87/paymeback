@@ -18,6 +18,7 @@ class NachrichtensController < ApplicationController
       if @nachrichten.sentto == current_user.id        
       
       @nachrichten.read = true
+      respond_to do |format|
       if @nachrichten.update_attributes(params[:read => true])
         format.html # show.html.erb
         format.json { render json: @nachrichten }
@@ -26,9 +27,12 @@ class NachrichtensController < ApplicationController
         redirect_to root_url
       end
     end
+    end
     else
+      respond_to do |format|
         format.html # show.html.erb
         format.json { render json: @nachrichten }
+      end
     end
   end
     
