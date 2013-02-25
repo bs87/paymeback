@@ -13,12 +13,15 @@
     <tbody>
     <% user.all.each do |benutzer| %>
       
-      
-      <td><%= benutzer.firstname %></td>
-      <td><%= benutzer.lastname %></td>
-      <td> <%= image_tag benutzer.photo.url(:tiny)  %></td>
-      <td><%= link_to " Profil anzeigen", user_path(:id => benutzer), :method => :get, :class => 'btn icon-user' %>
-      <%= link_to "Als Freund hinzufügen", friends_path(:friend_id => benutzer), :method => :post, :class => 'btn btn-success' %></td>
+      <%if Friend.where('user_id like ? AND friend_id like ?', "#{current_user.id}","#{benutzer.id}").exists?%>
+      <%elsif Friend.where('friend_id like ? AND user_id like ?', "#{current_user.id}","#{benutzer.id}").exists?%> 
+      <%else%>
+        <td><%= benutzer.firstname %></td>
+        <td><%= benutzer.lastname %></td>
+        <td> <%= image_tag benutzer.photo.url(:tiny)  %></td>
+        <td><%= link_to " Profil anzeigen", user_path(:id => benutzer), :method => :get, :class => 'btn icon-user' %>
+        <%= link_to "Als Freund hinzufügen", friends_path(:friend_id => benutzer), :method => :post, :class => 'btn btn-success' %></td>
+      <%end%>
   </tbody>
       </tr>
     <%end%>
