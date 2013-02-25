@@ -48,8 +48,8 @@ class DebitsController < ApplicationController
 
 
 
-   friends = current_user.friends
-   friends2 = current_user.inverse_friends 
+   friends = current_user.friends.where(accepted: true)
+   friends2 = current_user.inverse_friends.where(accepted: true)
    friendsall = friends + friends2
    @friend3 = friendsall
    @Fullname = Hash.new
