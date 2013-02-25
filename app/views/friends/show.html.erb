@@ -1,37 +1,25 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Friend -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
+  <dd><%= @friend.user_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:friend_id) %>:</strong></dt>
+  <dd><%= @friend.friend_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:accepted) %>:</strong></dt>
+  <dd><%= @friend.accepted %></dd>
+</dl>
 
-
-<% if @friend.friend_id == current_user.id%>
-	<% user = User.where('id like ?', "%#{ @friend.user_id}%").first%>
-<%else%>
-	<% user = User.where('id like ?', "%#{@friend.friend_id}%").first%>
-<%end%>
-
-<p>
-	<b>Vorname:</b>
-	<%= user.firstname%>
-</p>
-<p>
-	<b>Name:</b>
-	<%= user.lastname%>
-</p>
-
-<p>
-	<b>Geburtstag:</b><br>
-	Tag:
-	<%= user.dateofbirth.day%><br>
-	Monat:
-	<%= user.dateofbirth.month%><br>
-	Jahr:
-	<%= user.dateofbirth.year%>
-</p>
-
-<p>
-	<b>Adresse:</b><br>
-	<%= user.adress%><br>
-	<%= user.zip%><br>
-	<%= user.city%><br>
-</p>
-
-<%= link_to 'zürück', friends_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              friends_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_friend_path(@friend), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              friend_path(@friend),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

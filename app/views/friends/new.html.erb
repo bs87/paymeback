@@ -1,15 +1,28 @@
-<h1>Freunde hinzufuegen</h1>
-
-<table>   
+<%- model_class = Friend -%>
+<div class="page-header">
+  <h1><%=t '.Freunde hinzufügen', :model => model_class.model_name.human %></h1>
+</div>
+<table class="table table-striped">
+  <thead>   
   <% if current_user %>
-
+<tr>
+      <th><%= model_class.human_attribute_name(:Vorname) %></th>
+      <th><%= model_class.human_attribute_name(:Nachname) %></th>
+      </thead>
     <% user = User.where('id Not like ?', "#{current_user.id}")%>
+    <tbody>
     <% user.all.each do |benutzer| %>
-      <tr>
+      
+      
       <td><%= benutzer.firstname %></td>
       <td><%= benutzer.lastname %></td>
-      <td><%= link_to "Als Freund hinzufügen", friends_path(:friend_id => benutzer), :method => :post %></td>
+      <td> <%= image_tag benutzer.photo.url(:tiny)  %></td>
+      <td><%= link_to " Profil anzeigen", user_path(:id => benutzer), :method => :get, :class => 'btn icon-user' %>
+      <%= link_to "Als Freund hinzufügen", friends_path(:friend_id => benutzer), :method => :post, :class => 'btn btn-success' %></td>
+  </tbody>
       </tr>
     <%end%>
   <%end%>
 </table>
+<p><%= link_to " Zurück", friends_path , :class => 'btn ' %></p>
+

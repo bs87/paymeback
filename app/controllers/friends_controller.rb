@@ -14,12 +14,12 @@ class FriendsController < ApplicationController
   # GET /friends/1
   # GET /friends/1.json
   def show
-    @friend = Friend.find(params[:id])
+    #@friend = Friend.find(params[:id])
 
-   respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @friend }
-    end
+   #respond_to do |format|
+    #  format.html # show.html.erb
+     # format.json { render json: @friend }
+    #end
   end
 
   # GET /friends/new

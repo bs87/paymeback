@@ -1,12 +1,12 @@
 Paymeback::Application.routes.draw do
 
-  resources :debits do
-  get :autocomplete_debit_emailcurrentuser, :on => :collection
-  end
-  
-  resources :friends do
-  get :autocomplete_debit_emailcurrentuser, :on => :collection
-  end
+
+
+  get "users/show"
+  resources :nachrichtens
+  resources :debits
+  resources :friends
+
   #resources :startsites
  # get "friends"
   #root to: "friends#show"
@@ -15,8 +15,9 @@ Paymeback::Application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  devise_for :users
- 
+  devise_for :users, :path => 'accounts'
+
+  resources :users 
   root to: 'startsite#startsite'
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,17 +1,12 @@
-<%= form_for(@debit) do |f| %>
-  <% if @debit.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@debit.errors.count, "error") %> prohibited this debit from being saved:</h2>
-<%= stylesheet_link_tag "reset", "layout", "themes/base/jquery.ui.all" %>
-<%= javascript_include_tag "jquery.ui.core", "jquery.ui.widget", "jquery.ui.position", "jquery.ui.autocomplete" %>
 
-      <ul>
-      <% @debit.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @debit, :html => { :class => 'form-horizontal' } do |f| %>
+  
+  <div class="control-group">
+       <div class="controls">
+      <%= f.hidden_field :emailcurrentuser, :value => current_user.email, :class => 'text_field' %>
+
     </div>
-  <% end %>
+
 
 
 
@@ -71,24 +66,49 @@
 
 
 
-<!--<%= image_tag "users/23/small/ich5.JPG" %>-->
-  <div class="field">
-    <%= f.label :betrag %><br />
-    <%= f.text_field  :betrag %>
+
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :emailuser2, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :datum %><br />
-    <%= f.date_select :datum %>
+  <div class="control-group">
+    <%= f.label :betrag, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :betrag, :class => 'text_field' %>
+    </div>
+
   </div>
+  <div class="control-group">
+    <%= f.label :datum, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :datum, :class => 'date_select' %>
+    </div>
+  </div>
+
   <div class="field">
     <%= f.label :info %><br />
     <%= f.text_field :info, :id => "info" %>
+
   </div>
-  <div class="field">
-    <%= f.label :gezahlt %><br />
-    <%= f.check_box :gezahlt %>
+
+  <div class="control-group">
+    <%= f.label :art, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :art, [['Verliehen','Verliehen'],['Geliehen','Geliehen']], :class => 'select' %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="control-group">
+    <%= f.label :gezahlt, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :gezahlt, :class => 'text_box' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit  'Erstellen', :class => 'btn btn-success' %>
+ <%= link_to t('.zurück'), debits_path, :class => 'btn'  %>
   </div>
 <% end %>

@@ -5,8 +5,19 @@ class DebitsController < ApplicationController
   # GET /debits
   # GET /debits.json
   def index
-    @debits = Debit.where('emailcurrentuser like  ?', "#{current_user.email}")
-  
+
+    if params[:user].present?
+      @debits = Debit.where('emailcurrentuser like ? and emailuser2 like ?', "#{current_user.email}", "#{params[:user]}%")
+      @debits = @debits.find(:all, :select => "*, helper as usersum")
+   else
+        if params[:art] == "history"
+          @debits = Debit.where('emailcurrentuser like  ?', "#{current_user.email}")
+        else
+              @debits = Debit.where('emailcurrentuser like ? and gezahlt like ?', "#{current_user.email}", false )
+              @debits = @debits.find(:all, :select => "*, SUM(betrag) as usersum", :group => 'emailuser2')
+      end
+    end
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -45,14 +56,7 @@ class DebitsController < ApplicationController
 
    @Fullname = friendsall.map{|friend| {'label' => "#{friend.user.firstname} #{friend.user.lastname}", 'email' => "#{friend.user.email}", 'icon' => "<img src='#{friend.user.photo.url(:tiny)}'/>"}}
    
-   #,<img src='#{current_user.photo.url(:tiny)}'/>"}
-  
-   #@firstname = User.find(:all,:select=>'firstname, lastname, email').map{|user| "#{user.firstname}, #{user.lastname}"}
-  
 
-
-
-  #@test = @nameall.find(:all,:select=>'firstname, lastname, email').map{|user| "#{user.firstname}, #{user.lastname}"}
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @debit }
@@ -67,17 +71,29 @@ class DebitsController < ApplicationController
   # POST /debits
   # POST /debits.json
   def create
-    @debit = Debit.new(params[:debit])
+    @debit = Debit.new(params[:debit]) 
+    if @debit.art == 'Geliehen'
+        @art = 'Verliehen'
+        @betrag = @debit.betrag
+        @debit.betrag=@debit.betrag*-1
+    else
+      @art= 'Geliehen'
+      @betrag = @debit.betrag*-1
+    end
 
+    Debit.transaction do
+      Debit.create(:emailcurrentuser => @debit.emailuser2, :emailuser2 => @debit.emailcurrentuser, :betrag => @betrag, :art => @art, :info => @debit.info, :datum => @debit.datum, :gezahlt => @debit.gezahlt)
+  end
     respond_to do |format|
       if @debit.save
-        format.html { redirect_to @debit, notice: 'Debit was successfully created.' }
+        format.html { redirect_to debits_path, notice: 'Debit was successfully created.' }
         format.json { render json: @debit, status: :created, location: @debit }
       else
         format.html { render action: "new" }
         format.json { render json: @debit.errors, status: :unprocessable_entity }
       end
     end
+   
   end
 
   # PUT /debits/1

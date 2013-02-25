@@ -1,0 +1,76 @@
+<%- model_class = Nachrichten -%>
+<div class="page-header">
+  <h1><%=t '.Empfangene Nachrichten' %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:Von )%></th>
+      <th><%= model_class.human_attribute_name(:Betreff) %></th>
+      <th><%= model_class.human_attribute_name(:Gelesen) %></th>
+      <th><%= model_class.human_attribute_name('Gesendet am') %></th>
+      <th><%= model_class.human_attribute_name(:um) %></th>
+      <!--<th><%=t '.actions', :default => t("helpers.actions") %></th>-->
+    </tr>
+  </thead>
+  <tbody>
+  <% news = Nachrichten.where('sentto like ?', "#{current_user.id}")%>
+  <% news.each do |nachrichten| %>
+      <tr>
+      <td><%user1 = User.where('id like ?', "#{nachrichten.sentby}").first%><%=user1.firstname%></td>
+      <td><%= nachrichten.topic %></td>
+      <%if nachrichten.read==false%>
+        <td>nein</td>
+      <%else%>
+        <td>ja</td>
+      <%end%>
+      <td><%= nachrichten.created_at.day%>.<%=nachrichten.created_at.month%>.<%= nachrichten.created_at.year%></td>
+      <td><%= nachrichten.created_at.hour%>:<%= nachrichten.created_at.min%></td>
+        <td>
+          <%= link_to 'anzeigen', nachrichten_path(:id => nachrichten), :class => 'btn ' %>
+          <%= link_to 'antworten', edit_nachrichten_path(nachrichten),  :class => 'btn ' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br/>
+<div class="page-header">
+  <h1><%=t '.Gesendete Nachrichten' %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:An )%></th>
+      <th><%= model_class.human_attribute_name(:Betreff) %></th>
+      <th><%= model_class.human_attribute_name(:Gelesen) %></th>
+      <th><%= model_class.human_attribute_name('Gesendet am') %></th>
+      <th><%= model_class.human_attribute_name(:um) %></th>
+      <!--<th><%=t '.actions', :default => t("helpers.actions") %></th>-->
+    </tr>
+  </thead>
+  <tbody>
+<% @nachrichtens.each do |nachrichten| %>
+  <%if nachrichten.sentby == current_user.id%>
+      <tr>
+      <td><%user1 = User.where('id like ?', "#{nachrichten.sentto}").first%><%= user1.firstname %></td>
+    <td><%= nachrichten.topic %></td>
+    <%if nachrichten.read==false%>
+        <td>nein</td>
+    <%else%>
+        <td>ja</td>
+    <%end%>
+    <td><%= nachrichten.created_at.day%>.<%=nachrichten.created_at.month%>.<%= nachrichten.created_at.year%></td>
+    <td><%= nachrichten.created_at.hour%>:<%= nachrichten.created_at.min%></td>
+        <td>
+          <%= link_to 'anzeigen', nachrichten, :class => 'btn ' %>
+        </td>
+      </tr>
+    <% end %>
+    <%end%>
+  </tbody>
+</table>
+
+<br/>
+
