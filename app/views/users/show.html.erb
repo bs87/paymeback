@@ -1,4 +1,5 @@
 <%- model_class = User -%>
+<div class="well sidebar-nav">
 <div class="page-header">
   <h1><%= image_tag current_user.photo.url(:small) %>  <%=t @user.firstname%> <%=@user.lastname%></h1> 
 </div>
@@ -47,5 +48,6 @@
 <%end%>
 <%= link_to "Nachricht senden", new_nachrichten_path(:sentto => @user), :method => :get, :class =>'btn'%>
 <%= link_to t('.zurück'), friends_path, :class => 'btn'  %>
+</div>
 </div>
 <%end%>

@@ -43,15 +43,6 @@ ActiveRecord::Schema.define(:version => 20130222151523) do
     t.string   "helper"
   end
 
-  create_table "debts", :force => true do |t|
-    t.string   "Vorname"
-    t.string   "Nachname"
-    t.float    "Betrag"
-    t.text     "info"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "friends", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
@@ -61,13 +52,14 @@ ActiveRecord::Schema.define(:version => 20130222151523) do
   end
 
   create_table "nachrichtens", :force => true do |t|
-    t.integer  "sentby"
-    t.integer  "sentto"
+    t.integer  "sentby",                        :null => false
+    t.integer  "sentto",                        :null => false
     t.text     "topic"
     t.text     "body"
     t.boolean  "read", :default => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+
   end
 
   create_table "roles", :force => true do |t|
@@ -96,16 +88,14 @@ ActiveRecord::Schema.define(:version => 20130222151523) do
     t.datetime "updated_at",                             :null => false
     t.string   "firstname"
     t.string   "lastname"
-    t.string   "user_image_uid"
-    t.string   "user_image_name"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
     t.string   "adress"
     t.date     "dateofbirth"
     t.string   "city"
     t.integer  "zip"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
