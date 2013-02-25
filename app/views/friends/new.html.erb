@@ -10,11 +10,13 @@
       <th><%= model_class.human_attribute_name(:Nachname) %></th>
       </thead>
       <!-- hier muss not like hin-->
-    <% user = User.where(id: !current_user.id)%>
+    <% user = User.find(:all)%>
+   
     <tbody>
-    <% user.all.each do |benutzer| %>
+    <% user.each do |benutzer| %>
+      <%if current_user.email == benutzer.email%>
       
-      
+      <%else%>
       <td><%= benutzer.firstname %></td>
       <td><%= benutzer.lastname %></td>
       <td> <%= image_tag benutzer.photo.url(:tiny)  %></td>
@@ -22,6 +24,7 @@
       <%= link_to "Als Freund hinzufügen", friends_path(:friend_id => benutzer), :method => :post, :class => 'btn btn-success' %></td>
   </tbody>
       </tr>
+      <%end%>
     <%end%>
   <%end%>
 </table>
