@@ -40,11 +40,11 @@
   <br />
   
   <div><%= f.label :Profilfoto_hochladen %>
-  <%= f.file_field :photo, :class => 'btn btn-primary icon-picture'%>
+  <%= f.file_field :photo%>
   </div>
 
 <br/>
 <br/>
   <div><%= f.submit "Registrieren", :class => 'btn btn-success'%></div>
 <% end %>
-<%= render "devise/shared/links" %>
+

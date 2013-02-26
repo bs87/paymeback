@@ -1,20 +1,27 @@
 class DebitsController < ApplicationController
    load_and_authorize_resource 
-   autocomplete :debit, :emailcurrentuser
+   
 
   # GET /debits
   # GET /debits.json
+ 
   def index
 
     if params[:user].present?
-      @debits = Debit.where('emailcurrentuser like ? and emailuser2 like ?', "#{current_user.email}", "#{params[:user]}%")
+      @debits = Debit.where(emailcurrentuser: current_user.email , emailuser2: params[:user])
       @debits = @debits.find(:all, :select => "*, helper as usersum")
    else
         if params[:art] == "history"
-          @debits = Debit.where('emailcurrentuser like  ?', "#{current_user.email}")
+          @debits = Debit.where(emailcurrentuser: current_user.email)
         else
-              @debits = Debit.where('emailcurrentuser like ? and gezahlt like ?', "#{current_user.email}", false )
-              @debits = @debits.find(:all, :select => "*, SUM(betrag) as usersum", :group => 'emailuser2')
+          @debits = Debit.where(emailcurrentuser: current_user.email, gezahlt: false).group("emailuser2").sum("betrag")
+    
+#@debits = Debit.where(emailcurrentuser: current_user.email , gezahlt: false )
+    #@debits = @debits.find(:all, :select => "*, SUM(betrag) as usersum", :group => 'emailuser2')
+   # @hours = Debit.group_by { |h| h.emailuser2 }
+     #@debits.find(:all, :select => "distinct (emailuser2),*, id,SUM(betrag) as usersum")
+      #@debits = @debits.select("DISTINCT ON (debits.emailuser2) * ").group("id, emailcurrentuser,emailuser2 ,betrag, datum,info, gezahlt,created_at, updated_at, firstname, lastname,art,helper")
+  
       end
     end
 
@@ -28,9 +35,13 @@ class DebitsController < ApplicationController
   # GET /debits/1
   # GET /debits/1.json
   def show
-  @debit = Debit.find(:first, :conditions => ["emailcurrentuser = ? AND id = ?", "#{current_user.email}",params[:id] ], :limit => 1)
+
+    @debit = Debit.where(emailcurrentuser: current_user.email , id: params[:id] ).first
+  
+
   respond_to do |format|
   if @debit == nil
+
     flash[:error] = "Zugriff Verweigert!  "
     redirect_to debits_path
   else
@@ -58,8 +69,8 @@ class DebitsController < ApplicationController
 
 
 
-   friends = current_user.friends
-   friends2 = current_user.inverse_friends 
+   friends = current_user.friends.where(accepted: true)
+   friends2 = current_user.inverse_friends.where(accepted: true)
    friendsall = friends + friends2
    @friend3 = friendsall
    @Fullname = Hash.new

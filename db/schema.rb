@@ -45,15 +45,6 @@ ActiveRecord::Schema.define(:version => 20130224144450) do
     t.boolean  "read",             :default => false
   end
 
-  create_table "debts", :force => true do |t|
-    t.string   "Vorname"
-    t.string   "Nachname"
-    t.float    "Betrag"
-    t.text     "info"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "friends", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
@@ -67,9 +58,9 @@ ActiveRecord::Schema.define(:version => 20130224144450) do
     t.integer  "sentto"
     t.text     "topic"
     t.text     "body"
-    t.boolean  "read",       :default => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.boolean  "read"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "roles", :force => true do |t|

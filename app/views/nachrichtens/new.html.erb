@@ -1,5 +1,7 @@
 <%- model_class = Nachrichten -%>
-<div class="page-header">
-  <h1><%=t '.Neue Nachricht', :model => model_class.model_name.human %></h1>
+<div class="well sidebar-nav">
+	<div class="page-header">
+  		<h1><%=t '.Neue Nachricht', :model => model_class.model_name.human %></h1>
+	</div>
+	<%= render :partial => 'form' %>
 </div>
-<%= render :partial => 'form' %>

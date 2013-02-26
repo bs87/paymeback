@@ -61,26 +61,7 @@
 
     <%= stylesheet_link_tag "application", :media => "all" %>
 
-    <!-- For third-generation iPad with high-resolution Retina display: -->
-    <!-- Size should be 144 x 144 pixels -->
-    <%= favicon_link_tag 'images/apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
 
-    <!-- For iPhone with high-resolution Retina display: -->
-    <!-- Size should be 114 x 114 pixels -->
-    <%= favicon_link_tag 'images/apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
-
-    <!-- For first- and second-generation iPad: -->
-    <!-- Size should be 72 x 72 pixels -->
-    <%= favicon_link_tag 'images/apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
-
-    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-    <!-- Size should be 57 x 57 pixels -->
-    <%= favicon_link_tag 'images/apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
-
-    <!-- For all other devices -->
-    <!-- Size should be 32 x 32 pixels -->
-    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
-  </head>
   <body>
 
     <div class="navbar navbar-fluid-top">
@@ -109,28 +90,28 @@
                       <li><%= link_to "Neu Schulden eintragen", new_debit_path %></li>
                     </ul>
                   </li>
-                  <% typ = Friend.where('friend_id like ?', "%#{current_user.id}%")%>
+                  <% typ = Friend.where(friend_id: current_user.email)%>
                 <% @count=0 %>
                 <%typ.all.each do |type|%>
                   <%if type.accepted == false%> 
                     <% @count+=1 %>
                   <%end%>
                 <%end%>
-                <%messages = Nachrichten.where('sentto like ? and read like ?',"%#{current_user.id}",false)%>
+                <%messages = Nachrichten.where(sentto: current_user.id , read: false)%>
                 <%messages.all.each do |message|%>
                   <% @count+=1 %>
                 <%end%>
-                <%debitnum = Debit.where('emailcurrentuser like ? and read like ? ', "%#{current_user.email}", false)%>
+                <%debitnum = Debit.where(emailcurrentuser: current_user.email, read: false)%>
                 <%debitnum.all.each do |debit|%>
                 <% @count+=1%>
                 <% end %>            
                 <% if @count>0 %>
                   <li class="dropdown">
-                  <a data-toggle="dropdown" class="dropdown-toggle" href="#"><%= @count %>Benachrichtigungen<b class="caret"></b></a>
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#"><%= @count %> Benachrichtigungen<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                       <%typ.all.each do |type|%>
                         <%if type.accepted == false%> 
-                          <% user = User.where('id like ? ', "%#{type.user_id}%").first%>
+                          <% user = User.where(id: type.user_id).first%>
                           <li>
                             <a href="/users/<%=user.id%>">Freundschaftsanfrage: <%=user.firstname%> <%=user.lastname%><i class="icon-arrow-right"></i>
                             <ul class="dropdown-menu sub-menu">
@@ -147,7 +128,7 @@
                             </li>
                             <%end%>
                             <%debitnum.all.each do |debit|%>
-                           <%freund = User.where('email like ?',"%#{debit.emailuser2}").first%>
+                           <%freund = User.where(email: debit.emailuser2).first%>
                            <li>
                             <%= link_to 'Neue Schulden: '+freund.firstname+' '+freund.lastname , debit_path(:id => debit)%>
                             </li>
@@ -191,14 +172,13 @@
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
-          <%= bootstrap_flash %>
-          <%= yield %>
+            <%= yield %>
         </div>
   
   <%else%>
 
         <div class="span13">
-          <%= bootstrap_flash %>
+          
           <%= yield %>
         </div>
   <%end%>
