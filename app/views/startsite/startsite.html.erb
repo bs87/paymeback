@@ -6,6 +6,13 @@
 
 
     <br />
+    <div class="well sidebar-nav">
+    <% debittest = Debit.where(emailcurrentuser: current_user.email)%>
+      <% if debittest.blank?%>
+        <h1>Bisher haben Sie kein Geld verliehen</h1>
+
+      <%else%>
+    
     <div class="page-header">
       <h1><%=t '.Verliehen', :model => model_class.model_name.human %></h1>
     </div>
@@ -43,7 +50,18 @@
     <% end %>
     </table>
     <h4>Sie haben <%= @verliehen %>€ verliehen. </h4>
+  
+  <%end%>
+  </div>
     <br />
+    <% debittest = Debit.where(emailcurrentuser: current_user.email)%>
+   
+
+   <div class="well sidebar-nav">   
+      <% if debittest.blank?%>
+        <h1>Bisher haben Sie kein Geld geliehen</h1>
+
+      <%else%>
 
     <div class="page-header">
       <h1><%=t '.Geliehen', :model => model_class.model_name.human %></h1>
@@ -78,12 +96,17 @@
       <% end %>
     </table>
     <h4>Sie haben <%= @geliehen %>€ geliehen. </h4>
+    
+    <%end%>
+    </div>
+    <br />
+
+     <br />
+     <div class="well sidebar-nav">
     <br />
     <%= link_to 'Neuer Eintrag', new_debit_path , :class => 'btn btn-success'%>
     <br />
-    <% @guthaben = @verliehen - @geliehen %>
-    <br />
-    <h4>Ihr aktuelles Guthaben beträgt: <%= @guthaben.round(2) %>€ </h4>
+</div>
     <footer>
         <p>&copy; Paymeback 2013</p>
       </footer>
@@ -125,12 +148,14 @@
 
       <hr>
 
+
       <div class="footer">
         <p>&copy; Paymeback 2013</p>
       </div>
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+
 
   <%end%>
   </body>

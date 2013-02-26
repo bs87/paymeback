@@ -3,8 +3,9 @@
 <div class="page-header">
   <h1><%=t '.Nachrichten Details' %></h1>
 </div>
-<%user1 = User.where('id like ?', "#{@nachrichten.sentby}").first%>
-<%user2 = User.where('id like ?', "#{@nachrichten.sentto}").first%>
+<%user1 = User.where(id: @nachrichten.sentby).first%>
+<%user2= User.where(id: @nachrichten.sentto).first%>
+
 <dl class="dl-horizontal">
   <%if @nachrichten.sentto ==current_user.id%>
   <dt><strong><dt><strong><%= model_class.human_attribute_name(:Sender) %>:</strong></dt>
