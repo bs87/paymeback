@@ -70,7 +70,7 @@
   </thead>
   <tbody>
     <% nachrichten1 = nachrichten.reverse%>
-    <% @nachrichten1.each do |nachrichten| %>
+    <% nachrichten1.each do |nachrichten| %>
       <%if nachrichten.sentby == current_user.id%>
         <tr>
           <td><%user1 = User.where(id: nachrichten.sentto).first%><%= user1.firstname %></td>
