@@ -94,6 +94,9 @@ class DebitsController < ApplicationController
   def create
     @debit = Debit.new(params[:debit])
     @debit.read = true
+    if @debit.betrag == nil
+
+    else
     if @debit.art == 'Geliehen'
         @art = 'Verliehen'
         @betrag = @debit.betrag
@@ -102,7 +105,7 @@ class DebitsController < ApplicationController
       @art= 'Geliehen'
       @betrag = @debit.betrag*-1
     end
-
+end
     Debit.transaction do
       Debit.create(:emailcurrentuser => @debit.emailuser2, :emailuser2 => @debit.emailcurrentuser, :betrag => @betrag, :art => @art, :info => @debit.info, :datum => @debit.datum, :gezahlt => @debit.gezahlt)
   end
