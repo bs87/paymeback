@@ -1,7 +1,7 @@
 
 <%- model_class = Nachrichten -%> 
     <div class="well sidebar-nav">
-      <% news = Nachrichten.where(sentto current_user.id)%>
+      <% news = Nachrichten.where(sentto: current_user.id)%>
       <% if news.blank?%>
         <h1>Bisher haben Sie keine Nachrichten empfangen</h1>
 
@@ -49,7 +49,7 @@
 
 <br/>
 <div class="well sidebar-nav">
-  <%nachrichten = Nachrichten.where(sentby current_user.id)%>
+  <%nachrichten = Nachrichten.where(sentby: current_user.id)%>
   <% if nachrichten.blank?%>
   <h1>Sie haben bisher keine Nachrichten verschickt</h1>
   <%else%>
