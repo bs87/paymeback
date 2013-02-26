@@ -111,7 +111,14 @@ class DebitsController < ApplicationController
   # PUT /debits/1.json
   def update
     @debit = Debit.find(params[:id])
-
+    @seconddebit = Debit.where('emailcurrentuser like ? and emailuser2 like ? and datum like ? and info like ?', @debit.emailuser2, @debit.emailcurrentuser, @debit.datum, @debit.info)
+    @seconddebit.each do |debit|
+      @debitid = debit.id
+      @helper = Debit.find(params[:id => :@debitid])
+    end
+    
+      @helper.update_attributes(params[:debit])
+    
     respond_to do |format|
       if @debit.update_attributes(params[:debit])
         format.html { redirect_to @debit, notice: 'Debit was successfully updated.' }
@@ -130,7 +137,7 @@ class DebitsController < ApplicationController
     if @debit.emailcurrentuser == @debit.owner
       @helper = @debit
       @helper.betrag = @helper.betrag*-1
-      @seconddebit = Debit.where('emailcurrentuser like  ? and emailuser2 like ? and betrag like?', "#{@helper.emailuser2}", "#{@helper.emailcurrentuser}", "#{@helper.betrag}")
+      @seconddebit = Debit.where('emailcurrentuser like  ? and emailuser2 like ? and betrag like? and datum like ?', "#{@helper.emailuser2}", "#{@helper.emailcurrentuser}", "#{@helper.betrag}", "#{@helper.datum}")
       @seconddebit.each do |debit|
         @helper = Debit.find(debit.id)
       end
