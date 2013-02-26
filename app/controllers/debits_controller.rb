@@ -8,8 +8,8 @@ class DebitsController < ApplicationController
   def index
 
     if params[:user].present?
-      @debits = Debit.where(emailcurrentuser: current_user.email , emailuser2: params[:user])
-      @debits = @debits.find(:all, :select => "*, helper as usersum")
+      @debits = Debit.where(emailcurrentuser: current_user.email , emailuser2: params[:user], gezahlt: false)
+    
    else
         if params[:art] == "history"
           @debits = Debit.where(emailcurrentuser: current_user.email)
@@ -122,7 +122,7 @@ class DebitsController < ApplicationController
   # PUT /debits/1.json
   def update
     @debit = Debit.find(params[:id])
-    @seconddebit = Debit.where(emailcurrentuser: @debit.emailuser2, emailuser2: @debit.emailcurrentuserlike, datum: @debit.datum, info: @debit.info)
+    @seconddebit = Debit.where(emailcurrentuser: @debit.emailuser2, emailuser2: @debit.emailcurrentuser, datum: @debit.datum, info: @debit.info)
     @seconddebit.each do |debit|
       @helper = Debit.find(debit.id)
     end

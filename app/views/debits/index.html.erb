@@ -3,6 +3,7 @@
 <div class="page-header">
   <h1><%=t '.Zahlungsübersicht' %></h1>
 </div>
+<a href='/debits/?art=history'>History</a> <a href='/debits'>Zusammenfassung</a>
 <div class="well sidebar-nav">
     <% debittest = Debit.where(emailcurrentuser: current_user.email)%>
       <% if debittest.blank?%>
@@ -23,7 +24,8 @@
   </thead>
   <tbody>
 
-<%if params[:user].present?%>
+
+<%if params[:user].present? or params[:art].present?%>
       <% @debits.each do |debit| %>
       <% freund = User.where(email: debit.emailuser2).first%>
       <tr>
@@ -31,11 +33,20 @@
       <% if debit.art=='Verliehen'%>
             <td><%= link_to debit.betrag, debit, {:style=>'color:green;'}%></td>
             <td></td>
+            <%if debit.gezahlt == true%>
+              <td>Gezahlt!</td>
+            <%else%>
+              <td>Offen</td>
+            <%end%>
             <td><%= link_to " Details ", debit,  :class => 'btn icon-info-sign'%></td>
-            <td></td>
-            <% else %>
+            <%else%>
             <td></td>
             <td><%= link_to debit.betrag, debit, {:style=>'color:red;'}%></td>
+            <%if debit.gezahlt == true%>
+              <td>Gezahlt!</td>
+            <%else%>
+              <td>Offen</td>
+            <%end%>
             <td><%= link_to " Details ", debit,  :class => 'btn icon-info-sign'%>
             
         <% end %>
