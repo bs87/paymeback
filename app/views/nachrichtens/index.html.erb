@@ -1,7 +1,7 @@
 
 <%- model_class = Nachrichten -%> 
     <div class="well sidebar-nav">
-      <% news1 = Nachrichten.where('sentto like ?', "#{current_user.id}")%>
+      <% news1 = Nachrichten.where(sentto: current_user.id)%>
       <% news = news1.reverse%>
       <% if news.blank?%>
         <h1>Bisher haben Sie keine Nachrichten empfangen</h1>
@@ -24,7 +24,7 @@
         <tbody>
           <% news.each do |nachrichten| %>
             <tr>
-              <td><%user1 = User.where('id like ?', "#{nachrichten.sentby}").first%><%=user1.firstname%></td>
+              <td><%user1 = User.where(id: nachrichten.sentby).first%><%=user1.firstname%></td>
               <td><%= nachrichten.topic %></td>
               <%if nachrichten.read==false%>
                 <td>nein</td>
@@ -50,7 +50,7 @@
 
 <br/>
 <div class="well sidebar-nav">
-  <%nachrichten = Nachrichten.where('sentby like ?', "#{current_user.id}")%>
+  <%nachrichten = Nachrichten.where(sentby: current_user.id)%>
   <% if nachrichten.blank?%>
   <h1>Sie haben bisher keine Nachrichten verschickt</h1>
   <%else%>
