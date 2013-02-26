@@ -1,7 +1,8 @@
 
 <%- model_class = Nachrichten -%> 
     <div class="well sidebar-nav">
-      <% news = Nachrichten.where(sentto: current_user.id)%>
+      <% news1 = Nachrichten.where(sentto: current_user.id)%>
+      <% news = news1.reverse%>
       <% if news.blank?%>
         <h1>Bisher haben Sie keine Nachrichten empfangen</h1>
 
@@ -15,7 +16,7 @@
             <th><%= model_class.human_attribute_name(:Von )%></th>
             <th><%= model_class.human_attribute_name(:Betreff) %></th>
             <th><%= model_class.human_attribute_name(:Gelesen) %></th>
-            <th><%= model_class.human_attribute_name('Gesendet am') %></th>
+            <th><%= model_class.human_attribute_name(:Gesendet_am) %></th>
             <th><%= model_class.human_attribute_name(:um) %></th>
             <!--<th><%=t '.actions', :default => t("helpers.actions") %></th>-->
           </tr>
@@ -62,30 +63,30 @@
       <th><%= model_class.human_attribute_name(:An )%></th>
       <th><%= model_class.human_attribute_name(:Betreff) %></th>
       <th><%= model_class.human_attribute_name(:Gelesen) %></th>
-      <th><%= model_class.human_attribute_name('Gesendet am') %></th>
+      <th><%= model_class.human_attribute_name(:Gesendet_am) %></th>
       <th><%= model_class.human_attribute_name(:um) %></th>
       <!--<th><%=t '.actions', :default => t("helpers.actions") %></th>-->
     </tr>
   </thead>
   <tbody>
-
-<% @nachrichtens.each do |nachrichten| %>
-  <%if nachrichten.sentby == current_user.id%>
-      <tr>
-      <td><%user1 = User.where(id: nachrichten.sentto).first%><%= user1.firstname %></td>
-    <td><%= nachrichten.topic %></td>
-    <%if nachrichten.read==false%>
-        <td>nein</td>
-    <%else%>
-        <td>ja</td>
-    <%end%>
-    <td><%= nachrichten.created_at.day%>.<%=nachrichten.created_at.month%>.<%= nachrichten.created_at.year%></td>
-    <td><%= nachrichten.created_at.hour%>:<%= nachrichten.created_at.min%></td>
-        <td>
-          <%= link_to 'anzeigen', nachrichten, :class => 'btn ' %>
-        </td>
-      </tr>
-    <% end %>
+    <% nachrichten1 = nachrichten.reverse%>
+    <% @nachrichten1.each do |nachrichten| %>
+      <%if nachrichten.sentby == current_user.id%>
+        <tr>
+          <td><%user1 = User.where(id: nachrichten.sentto).first%><%= user1.firstname %></td>
+          <td><%= nachrichten.topic %></td>
+          <%if nachrichten.read==false%>
+           <td>nein</td>
+         <%else%>
+           <td>ja</td>
+         <%end%>
+         <td><%= nachrichten.created_at.day%>.<%=nachrichten.created_at.month%>.<%= nachrichten.created_at.year%></td>
+         <td><%= nachrichten.created_at.hour%>:<%= nachrichten.created_at.min%></td>
+         <td>
+           <%= link_to 'anzeigen', nachrichten, :class => 'btn ' %>
+         </td>
+        </tr>
+      <% end %>
     <%end%>
   </tbody>
 </table>

@@ -1,7 +1,11 @@
 <%- model_class = User -%>
 <div class="well sidebar-nav">
 <div class="page-header">
-  <h1><%= image_tag current_user.photo.url(:small) %>  <%=t @user.firstname%> <%=@user.lastname%></h1> 
+  <%if current_user.photo.url%>
+  
+  <%else%><h1><%= image_tag current_user.photo.url(:small) %></h1> 
+  <%end%>
+  <h1><%=t @user.firstname%> <%=@user.lastname%></h1>
 </div>
 
 <dl class="dl-horizontal">
@@ -42,11 +46,11 @@
     <%= link_to t('.Anfrage ablehnen'),  friend1, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},:class => 'btn btn-danger' %>
 		<%end%>
 	<%else%>
-<%= link_to t('.Als Freund hinzufügen'),  friends_path(:friend_id => @user), :method => :post , :class => 'btn btn-success' %>
+<%= link_to t('.Als Freund hinzufügen'),  friends_path(:friend_id => @user), :method => :post , :class => 'btn btn-success icon-user' %>
 
 <%end%>
 <%end%>
-<%= link_to "Nachricht senden", new_nachrichten_path(:sentto => @user), :method => :get, :class =>'btn'%>
+<%= link_to "Nachricht senden", new_nachrichten_path(:sentto => @user), :method => :get, :class =>'btn icon-envelope'%>
 <%= link_to t('.zurück'), friends_path, :class => 'btn'  %>
 </div>
 </div>
