@@ -1,6 +1,6 @@
 class DebitsController < ApplicationController
    load_and_authorize_resource 
-   autocomplete :debit, :emailcurrentuser
+   
 
   # GET /debits
   # GET /debits.json
@@ -36,7 +36,7 @@ class DebitsController < ApplicationController
   # GET /debits/1.json
   def show
 
-    @debit = Debit.find(:first, :conditions => [emailcurrentuser: current_user.email , id: params[:id] ], :limit => 1)
+    @debit = Debit.where(emailcurrentuser: current_user.email , id: params[:id] ).first
   
 
   respond_to do |format|

@@ -3,6 +3,14 @@
 <div class="page-header">
   <h1><%=t '.Zahlungsübersicht' %></h1>
 </div>
+<div class="well sidebar-nav">
+    <% debittest = Debit.where(emailcurrentuser: current_user.email)%>
+      <% if debittest.blank?%>
+        <h1>Bisher haben Sie kein Geld  geliehen oder verliehen </h1>
+
+      <%else%>
+    
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -23,9 +31,13 @@
       <% if debit.art=='Verliehen'%>
             <td><%= link_to debit.betrag, debit, {:style=>'color:green;'}%></td>
             <td></td>
-        <% else %>
+            <td><%= link_to " Details ", debit,  :class => 'btn icon-info-sign'%></td>
+            <td></td>
+            <% else %>
             <td></td>
             <td><%= link_to debit.betrag, debit, {:style=>'color:red;'}%></td>
+            <td><%= link_to " Details ", debit,  :class => 'btn icon-info-sign'%>
+            
         <% end %>
       <% end %>  
 
@@ -38,9 +50,14 @@
       <% if val>0%>
             <td><a href='/debits/?user=<%=key%>' style='color: green;' ><%= val.to_s+'€'%></td>
             <td></td>
-        <%else%>
+            <td><a href='/debits/?user=<%=key%>'  class = 'btn icon-info-sign' > <%=" Detailübersicht "%></td>
+            <td></td>
+            
+            <%else%>
             <td></td>
             <td><a href='/debits/?user=<%=key%>' style='color: red;' ><%= val.to_s+'€'%></td>
+            <td><a href='/debits/?user=<%=key%>'  class = 'btn icon-info-sign' > <%=" Detailübersicht "%></td>
+
         <%end%>     
    <%end%>
 
@@ -49,6 +66,7 @@
     <% end %>
   </tbody>
 </table>
-
+<%end%>
+</div>
 <%= link_to t('.Neuer Eintrag', ), new_debit_path,:class => 'btn btn-success' %>
 
