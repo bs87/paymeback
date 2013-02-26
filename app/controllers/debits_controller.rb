@@ -122,7 +122,7 @@ class DebitsController < ApplicationController
   # PUT /debits/1.json
   def update
     @debit = Debit.find(params[:id])
-    @seconddebit = Debit.where('emailcurrentuser like ? and emailuser2 like ? and datum like ? and info like ?', @debit.emailuser2, @debit.emailcurrentuser, @debit.datum, @debit.info)
+    @seconddebit = Debit.where(emailcurrentuser: @debit.emailuser2, emailuser2: @debit.emailcurrentuserlike, datum: @debit.datum, info: @debit.info)
     @seconddebit.each do |debit|
       @helper = Debit.find(debit.id)
     end
@@ -159,7 +159,7 @@ class DebitsController < ApplicationController
     if @debit.emailcurrentuser == @debit.owner
       @helper = @debit
       @helper.betrag = @helper.betrag*-1
-      @seconddebit = Debit.where('emailcurrentuser like  ? and emailuser2 like ? and betrag like? and datum like ?', "#{@helper.emailuser2}", "#{@helper.emailcurrentuser}", "#{@helper.betrag}", "#{@helper.datum}")
+      @seconddebit = Debit.where(emailcurrentuser: @debit.emailuser2, emailuser2: @debit.emailcurrentuserlike, datum: @debit.datum, info: @debit.info)
       @seconddebit.each do |debit|
         @helper = Debit.find(debit.id)
       end
