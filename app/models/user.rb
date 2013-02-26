@@ -39,8 +39,7 @@ validates :zip, :length=>{:minimum=>5, :maximum=>5}
 
 
   has_attached_file :photo, :storage => :dropbox,:dropbox_credentials => "#{Rails.root}/config/dropbox_config.yml", :styles => { :small => "150x150>", :tiny => "50x50", :icon => "16x16" },:dropbox_options => {       
-:path => proc { |style| "#{style}/#{id}_#{photo.original_filename}"},:unique_filename => true   
-  }
+:path => proc { |style| "#{style}/#{id}_#{photo.original_filename}"},:unique_filename => true }
                   #:url  => "/assets/users/:id/:style/:basename.:extension",
                   #:path => ":rails_root/public/assets/users/:id/:style/:basename.:extension"
 

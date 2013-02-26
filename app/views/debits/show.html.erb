@@ -2,7 +2,7 @@
 <div class="page-header">
   <h1><%=t '.Eintragsdetails' %></h1>
 </div>
-
+<%=@debit %>
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name("Freund") %>:</strong></dt>
   <dd><%= @debit.firstname %></dd>
@@ -18,15 +18,11 @@
   <dd><%= @debit.gezahlt %></dd>
   <dt><strong><%= model_class.human_attribute_name(:info) %>:</strong></dt>
   <dd> <%= @debit.info %></dd>
-
-
-
 </dl>
 
 <div class="form-actions">
   
-  <%= link_to t('.bearbeiten'),
-              edit_debit_path(@debit), :class => 'btn btn-success' %>
-  <%= link_to t('.Löschen'), debit_path(@debit),:method => :delete,  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger' %> 
-              <%= link_to t('.Zurück'), debits_path, :class => 'btn'  %>
+  <%= link_to t('.bearbeiten'), edit_debit_path(@debit), :class => 'btn btn-success' %>
+  <%= link_to t('.Löschen'), @debit,:method => :delete,  :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-danger' %> 
+  <%= link_to t('.Zurück'), debits_path, :class => 'btn'  %>
 </div>
