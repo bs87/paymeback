@@ -125,7 +125,25 @@ end
   # PUT /debits/1.json
   def update
     @debit = Debit.find(params[:id])
-
+    @seconddebit = Debit.where(emailcurrentuser: @debit.emailuser2, emailuser2: @debit.emailcurrentuserlike, datum: @debit.datum, info: @debit.info)
+    @seconddebit.each do |debit|
+      @helper = Debit.find(debit.id)
+    end
+    @helper.destroy
+    @helper = Debit.new(params[:debit])
+    if @helper.art == 'Geliehen'
+     
+      @helper2 = @helper.betrag*-1
+      params[:debit][:betrag] = @helper2
+      @helper.art = 'Verliehen'
+    else
+      @helper.art = 'Geliehen'
+      @helper.betrag=@helper.betrag*-1
+    end
+    Debit.transaction do
+      Debit.create(:emailcurrentuser => @helper.emailuser2, :emailuser2 => @helper.emailcurrentuser, :betrag => @helper.betrag, :art => @helper.art, :info => @helper.info, :datum => @helper.datum, :gezahlt => @helper.gezahlt)
+  end
+      
     respond_to do |format|
       if @debit.update_attributes(params[:debit])
         format.html { redirect_to @debit, notice: 'Debit was successfully updated.' }
@@ -144,7 +162,7 @@ end
     if @debit.emailcurrentuser == @debit.owner
       @helper = @debit
       @helper.betrag = @helper.betrag*-1
-      @seconddebit = Debit.where('emailcurrentuser like  ? and emailuser2 like ? and betrag like?', "#{@helper.emailuser2}", "#{@helper.emailcurrentuser}", "#{@helper.betrag}")
+      @seconddebit = Debit.where(emailcurrentuser: @debit.emailuser2, emailuser2: @debit.emailcurrentuserlike, datum: @debit.datum, info: @debit.info)
       @seconddebit.each do |debit|
         @helper = Debit.find(debit.id)
       end
