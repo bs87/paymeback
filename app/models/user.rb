@@ -12,16 +12,10 @@ class User < ActiveRecord::Base
   attr_accessible :firstname, :lastname, :email, :password, :password_confirmation, :remember_me, :city, :zip, :dateofbirth, :adress, :photo, :friends
 
 
-has_many :nachrichtens
+  has_many :nachrichtens
   has_many :nachrichts, :through => :nachrichtens
   has_many :inverse_nachrichtens, :class_name => "Nachrichten", :foreign_key =>"sentto"
   has_many :inverse_nachrichts, :through => :inverse_nachrichtens, :source => :user
-
-
-
-
-#Postleitzahl hat 5 Ziffern
-validates :zip, :length=>{:minimum=>5, :maximum=>5}
 
 
 #User wird automatisch als reguser angelegt
@@ -45,7 +39,9 @@ validates :zip, :length=>{:minimum=>5, :maximum=>5}
                   #:path => ":rails_root/public/assets/users/:id/:style/:basename.:extension"
 
 
-
+#Postleitzahl hat 5 Ziffern
+validates :email, :uniqueness => true
+validates :zip, :length=>{:minimum=>5, :maximum=>5}
 validates_attachment_size :photo, :less_than => 5.megabytes
 validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
