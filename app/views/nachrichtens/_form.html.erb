@@ -1,5 +1,18 @@
 <%= form_for @nachrichten, :html => { :class => 'form-horizontal' } do |f| %>
-   
+   <% if @nachrichten.errors.any? %>
+    <div id="error_explanation">
+      <h2>Eintrag konnte nicht erstellt werden! <%= @nachrichten.errors.count %> Fehler wurden gefunden </h2>
+
+      <ul>
+      <% @nachrichten.errors.full_messages.each do |msg| %>
+      
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
    <div class="control-group">
     <div class="field">
     <%= f.hidden_field :sentby, :value=> current_user.id %><br>
