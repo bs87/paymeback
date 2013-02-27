@@ -1,6 +1,17 @@
 <%- model_class = Friend -%>
 
+  
+
 	<% if current_user %>
+  <div class="container">
+    <% flash.each do |name, msg| %>
+      <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+      <a class="close" data-dismiss="alert">x</a>
+      <%= msg  %>
+      </div>
+    <% end %>
+  </div>
+  
     <h1> <%= image_tag current_user.photo.url(:small) %> Willkommen, <%= current_user.firstname%>!</h1> 
 
 
