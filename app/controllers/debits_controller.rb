@@ -90,7 +90,7 @@ class DebitsController < ApplicationController
 
   # POST /debits
   # POST /debits.json
-  def create
+   def create
     @debit = Debit.new(params[:debit])
     @debit.read = true
     if @debit.art == 'Geliehen'
@@ -102,7 +102,7 @@ class DebitsController < ApplicationController
       @betrag = @debit.betrag*-1
     end
 
-  Debit.transaction do
+    Debit.transaction do
       Debit.create(:emailcurrentuser => @debit.emailuser2, :emailuser2 => @debit.emailcurrentuser, :betrag => @betrag, :art => @art, :info => @debit.info, :datum => @debit.datum, :gezahlt => @debit.gezahlt, :faelligkeit => @debit.faelligkeit)
   end
     respond_to do |format|
