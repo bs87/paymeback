@@ -106,7 +106,7 @@
                 <% @count+=1%>
                 <% end %>
                 <!--<%debitablauf = Debit.where("emailcurrentuser like ? and faelligkeit < ?", current_user.email, DateTime.now) %>-->
-                <%debitablauf = Debit.where(emailcurrentuser: current_user.email) %>
+                <%debitablauf = Debit.where(emailcurrentuser: current_user.email, gezahlt: false) %>
                 <%debitablauf.all.each do |debit|%>
                 <%if debit.faelligkeit < DateTime.now%>
                   <% @count+=1%>
