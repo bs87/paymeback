@@ -1,30 +1,23 @@
-paymeback
-=========
+#paymeback
+Mit Paymeback können Sie ganz einfach verwalten wem Sie Geld geliehen haben und wer Ihnen Geld geliehen hat. 
 
 
-Installation
-=========
-Repository auf lokalen Rechner clonen:
+##Installation
+* Repository auf lokalen Rechner clonen:
+	git clone https://github.com/bs87/paymeback.git
 
- git clone https://github.com/bs87/paymeback.git
+* In den Ordner paymeback wechseln:
+	cd paymeback
 
-In den Ordner paymeback wechseln:
+* Gemset anlegen und benutzen:
+	
+	rvm gemset create paymeback
+ 	rvm gemset use paymeback
 
- cd paymeback
+* Gems auf den aktuellsten Stand bringen:
 
-
-
-Gemset anlegen und benutzen:
-
- rvm gemset create paymeback
-
- rvm gemset use paymeback
-
-Gems auf den aktuellsten Stand bringen:
-
- gem update
-
- gem install rails
+ 	gem update
+ 	gem install rails
 
 paymeback spezifische Gems installieren:
 
@@ -36,7 +29,7 @@ Datenbank und Testdaten anlegen:
 
  rake db:test:prepare
 
- 
+
 paymeback starten:
 
   rails s
