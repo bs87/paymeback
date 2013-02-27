@@ -166,6 +166,9 @@
               <li><%= link_to 'Einstellungen', edit_user_registration_path %></li>
               <li><%= link_to 'Freunde', friends_path%></li>
               <li><%= link_to 'Nachrichten', nachrichtens_path%></li>
+              <% if current_user.email == "admin@admin.de"%> 
+              <li><%= link_to 'Benutzerverwaltung', "/admin" %></li>
+              <%end%>
               <li><%= link_to 'Home', root_path, method: :delete %></li>
               <%end%>
             </ul>
