@@ -17,8 +17,8 @@
 	lennard = User.create email:'lennard@admin.de', firstname:'Lennard', lastname:'Gudd', password:'Test1234', password_confirmation: 'Test1234', adress: 'Verbindungsstrasse 7', :zip => 48146, :city => 'Muenster', :dateofbirth => '1989-03-20'
 	andre = User.create email:'andre@admin.de', firstname:'Andre', lastname:'Konetzka', password:'Test1234', password_confirmation: 'Test1234', adress: 'Sassendorferstrasse 12', :zip => 47123, :city => 'Bad Sassendorf', :dateofbirth => '1990-10-15'
 	manni = User.create email:'manni@admin.de', firstname:'Manni', lastname:'Do', password:'Test1234', password_confirmation:'Test1234', adress:'Hafenweg 15', :zip => 48155, :city => 'Muenster', :dateofbirth => '1990-10-15'
-	thomas = User.create email:'thomas@admin.de', firstname:'Thomas', lastname:'Grosskopf', password:'Test1234', password_confirmation: 'Test1234', adress: 'Hafenweg 14', :zip => 48155, :city => 'Muenster', :dateofbirth => '1980-10-24'
-	peter = User.create email:'peter@admin.de', firstname:'Peter', lastname:'Hollstegge', password:'Test1234', password_confirmation: 'Test1234', adress: 'Hafenweg 14', :zip => 48155, :city => 'Muenster', :dateofbirth => '1980-10-24'
+	thomas = User.create email:'thomas@admin.de', firstname:'Thomas', lastname:'Hollstege', password:'Test1234', password_confirmation: 'Test1234', adress: 'Hafenweg 14', :zip => 48155, :city => 'Muenster', :dateofbirth => '1980-10-24'
+	peter = User.create email:'peter@admin.de', firstname:'Peter', lastname:'Grosskopf', password:'Test1234', password_confirmation: 'Test1234', adress: 'Hafenweg 14', :zip => 48155, :city => 'Muenster', :dateofbirth => '1980-10-24'
 	
 
 	# Freunde und Freundschaftsanfragen hinzufügen
@@ -39,7 +39,8 @@
 	thomaspetern = Nachrichten.create :sentby => 9, :sentto => 10, :topic => 'Essensgeld', :body => 'Hey, ich bekommen noch Essensgeld von Dir', :read => true
 	peterthomann = Nachrichten.create :sentby => 10, :sentto => 9, :topic => 're:Essensgeld', :body => 'Na dann erstell doch einen debit.', :read => true
 	thomaspetern2 = Nachrichten.create :sentby => 9, :sentto => 10, :topic => 're:re:Essensgeld', :body => 'Der Debit ist erstellt ;)', :read => false
-	
+	mannipetern = Nachrichten.create :sentby => 8, :sentto => 10, :topic => 'Webprojekt', :body =>'Hallo, ich brauche Hilfe bei meinem Projekt', :read => false
+	mannithomasn = Nachrichten.create :sentby => 8, :sentto => 9, :topic => 'Webprojekt', :body =>'Hallo, ich brauche Hilfe bei meinem Projekt', :read => false
 
 	#Debit eintragen	
 	#thomaspeterd = Debit.create 
