@@ -90,7 +90,7 @@ class DebitsController < ApplicationController
 
   # POST /debits
   # POST /debits.json
-   def create
+  def create
     @debit = Debit.new(params[:debit])
     @debit.read = true
     if @debit.art == 'Geliehen'
@@ -103,7 +103,7 @@ class DebitsController < ApplicationController
     end
 
     Debit.transaction do
-      Debit.create(:emailcurrentuser => @debit.emailuser2, :emailuser2 => @debit.emailcurrentuser, :betrag => @betrag, :art => @art, :info => @debit.info, :datum => @debit.datum, :gezahlt => @debit.gezahlt, :faelligkeit => @debit.faelligkeit)
+      Debit.create(:emailcurrentuser => @debit.emailuser2, :emailuser2 => @debit.emailcurrentuser, :betrag => @betrag, :art => @art, :info => @debit.info, :datum => @debit.datum, :gezahlt => @debit.gezahlt, :firstname => current_user.firstname+' '+current_user.lastname, :faelligkeit => @debit.faelligkeit)
   end
     respond_to do |format|
       if @debit.save
@@ -137,7 +137,7 @@ class DebitsController < ApplicationController
       @helper.betrag=@helper.betrag*-1
     end
     Debit.transaction do
-      Debit.create(:emailcurrentuser => @helper.emailuser2, :emailuser2 => @helper.emailcurrentuser, :betrag => @helper.betrag, :art => @helper.art, :info => @helper.info, :datum => @helper.datum, :gezahlt => @helper.gezahlt)
+      Debit.create(:emailcurrentuser => @helper.emailuser2, :emailuser2 => @helper.emailcurrentuser, :betrag => @helper.betrag, :art => @helper.art, :info => @helper.info, :datum => @helper.datum, :gezahlt => @helper.gezahlt, :firstname => current_user.firstname+' '+current_user.lastname, :faelligkeit => @helper.faelligkeit)
   end
       
     respond_to do |format|
