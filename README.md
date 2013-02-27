@@ -35,9 +35,41 @@ Mit Paymeback können Sie ganz einfach verwalten wem Sie Geld geliehen haben und
   			
   			rails s
 
+##Start
+==========
+###Anmeldung
+
+Wir haben folgende Benutzer angelegt:
+* Emailadresse: peter@admin.de, Passwort: Test1234
+* Emailadresse: thomas@admin.de, Passwort: Test1234
+Diese Benutzer haben die Rolle user und können andere Benutzerkonten nicht verwalten, <br>
+hierfür gibt es noch folgenden Benutzer:
+* Emailadresse: admin@admin.de, Passwort: Test1234
+
+###Debits
+
+
+###Freunde
+Hier werden die Freunde des Benutzers angezeigt.
+
+Funktion:
+* angemeldete Benutzer können andere Benutzer als Freunde hinzufügen. 
+* diese bekommen dann eine Freundschaftsanfrage, bei dem hinzufügenden Benutzer unter ausstehende Anfragen zu sehen.
+* Eine Anfrage kann entweder angenommen oder abgelehnt werden.
+* Die Freundschaft kann von beiden Benutzern beendet werden.
+* Es können nur Schulden für Benutzer eingetragen werden, mit denen der Benutzer befreundet ist.
+
+###Nachrichten
+Hier findet man das Kommunikationszentrum der Benutzer
+
+Funktion:
+* angemeldete Benutzer können anderen Benutzern Nachrichten schicken.
+* Unter gesendete und empfangene Nachrichten werden alle Nachrichten des Benutzers angezeigt.
+* Nachrichten können z.B. über das Profil eines Benutzers oder über die Details einer Schuld erstellt werden.
+* 
 
 ##Heroku
-=========
+==========
 http://paymeback.herokuapp.com/
 
 
