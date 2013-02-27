@@ -11,7 +11,7 @@ en:
       inactive: "Ihr Account wurde noch nicht aktiviert."
       invalid: "Ungültige Emailadresse oder Passwort."
       invalid_token: "Authentifikation ungültig."
-      locked: "Ihr Account ist gesperrt."
+      locked: "Ihr Account ist gesperrt. Bitte wenden Sie sich an den Administrator"
       not_found_in_database: "Ungültige Emailadresse oder Passwort ."
       timeout: "Ihre Sitzung ist abgelaufen, bitte melden Sie sich erneut an um fortzufahren."
       unauthenticated: "Sie müssen sich anmelden oder registrieren um fortzufahren."
