@@ -41,13 +41,17 @@ Mit Paymeback können Sie ganz einfach verwalten wem Sie Geld geliehen haben und
 
 Wir haben folgende Benutzer angelegt:
 * Emailadresse: peter@admin.de, Passwort: Test1234
-* Emailadresse: thomas@admin.de, Passwort: Test1234
+* Emailadresse: thomas@admin.de, Passwort: Test1234 <br><br>
 Diese Benutzer haben die Rolle user und können andere Benutzerkonten nicht verwalten, <br>
 hierfür gibt es noch folgenden Benutzer:
 * Emailadresse: admin@admin.de, Passwort: Test1234
 
 ###Debits
 
+
+Funktion
+* Es können nur Schulden für Benutzer eingetragen werden, mit denen der Benutzer befreundet ist.
+*
 
 ###Freunde
 Hier werden die Freunde des Benutzers angezeigt.
@@ -57,7 +61,7 @@ Funktion:
 * diese bekommen dann eine Freundschaftsanfrage, bei dem hinzufügenden Benutzer unter ausstehende Anfragen zu sehen.
 * Eine Anfrage kann entweder angenommen oder abgelehnt werden.
 * Die Freundschaft kann von beiden Benutzern beendet werden.
-* Es können nur Schulden für Benutzer eingetragen werden, mit denen der Benutzer befreundet ist.
+
 
 ###Nachrichten
 Hier findet man das Kommunikationszentrum der Benutzer
