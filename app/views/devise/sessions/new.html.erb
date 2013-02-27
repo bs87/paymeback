@@ -12,7 +12,7 @@
 <br />
   <% if devise_mapping.rememberable? -%>
     <div><%= f.label :angemeldet_bleiben %> <%= f.check_box :remember_me %> </div>
-  <% end -%>
+  <% end %>
 <br />
   <div><%= f.submit "Anmelden", :class => 'btn  btn-success '  %> <br/><br/>
   <%= link_to "Passwort vergessen?", new_password_path(resource_name),:class => 'btn  btn-warning icon-question-sign' %><br /> </div>
