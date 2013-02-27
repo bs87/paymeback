@@ -5,7 +5,7 @@ Mit Paymeback können Sie ganz einfach verwalten wem Sie Geld geliehen haben und
 ##Installation
 * Repository auf lokalen Rechner clonen:
 
-	git clone https://github.com/bs87/paymeback.git
+				git clone https://github.com/bs87/paymeback.git
 
 * In den Ordner paymeback wechseln:
 
