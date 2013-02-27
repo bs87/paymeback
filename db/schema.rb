@@ -45,15 +45,6 @@ ActiveRecord::Schema.define(:version => 20130227153309) do
     t.date     "faelligkeit"
   end
 
-  create_table "debts", :force => true do |t|
-    t.string   "Vorname"
-    t.string   "Nachname"
-    t.float    "Betrag"
-    t.text     "info"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "friends", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
