@@ -7,6 +7,11 @@ class DebitsController < ApplicationController
  
   def index
 
+    debitfriends = current_user.friends.where(accepted: true)
+    debitfriends2 = current_user.inverse_friends.where(accepted: true)
+    @debitfriendsall = debitfriends + debitfriends2
+
+
     if params[:user].present?
       @debits = Debit.where(emailcurrentuser: current_user.email , emailuser2: params[:user])
       @debits = @debits.find(:all, :select => "*, helper as usersum")
@@ -16,12 +21,6 @@ class DebitsController < ApplicationController
         else
           @debits = Debit.where(emailcurrentuser: current_user.email, gezahlt: false).group("emailuser2").sum("betrag")
     
-#@debits = Debit.where(emailcurrentuser: current_user.email , gezahlt: false )
-    #@debits = @debits.find(:all, :select => "*, SUM(betrag) as usersum", :group => 'emailuser2')
-   # @hours = Debit.group_by { |h| h.emailuser2 }
-     #@debits.find(:all, :select => "distinct (emailuser2),*, id,SUM(betrag) as usersum")
-      #@debits = @debits.select("DISTINCT ON (debits.emailuser2) * ").group("id, emailcurrentuser,emailuser2 ,betrag, datum,info, gezahlt,created_at, updated_at, firstname, lastname,art,helper")
-  
       end
     end
 
@@ -146,7 +145,7 @@ end
       
     respond_to do |format|
       if @debit.update_attributes(params[:debit])
-        format.html { redirect_to @debit, notice: 'Debit was successfully updated.' }
+        format.html { redirect_to @debit, notice: 'Eintrag wurde erfolgreich erstellt' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -162,7 +161,7 @@ end
     if @debit.emailcurrentuser == @debit.owner
       @helper = @debit
       @helper.betrag = @helper.betrag*-1
-      @seconddebit = Debit.where(emailcurrentuser: @debit.emailuser2, emailuser2: @debit.emailcurrentuserlike, datum: @debit.datum, info: @debit.info)
+      @seconddebit = Debit.where(emailcurrentuser: @debit.emailuser2, emailuser2: @debit.emailcurrentuser, datum: @debit.datum, info: @debit.info)
       @seconddebit.each do |debit|
         @helper = Debit.find(debit.id)
       end

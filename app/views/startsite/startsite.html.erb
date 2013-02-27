@@ -103,9 +103,14 @@
 
      <br />
      <div class="well sidebar-nav">
-    <br />
-    <%= link_to 'Neuer Eintrag', new_debit_path , :class => 'btn btn-success'%>
-    <br />
+<% if @debitfriendsall.blank?%>
+<p><%= link_to t('.Neuer Eintrag', ), nil,:class => 'btn btn-success  disabled' %></p>
+   <p>Neuer Eintrag nicht möglich da Sie noch keine Freunde in Ihrer Freundesliste haben!</p>
+   <p><%= link_to " Freunde finden", new_friend_path , :class => 'btn btn-success icon-user' %></p>
+ <%else%>
+<%= link_to t('.Neuer Eintrag', ), new_debit_path,:class => 'btn btn-success' %>
+<%end%>
+
 </div>
     <footer>
         <p>&copy; Paymeback 2013</p>

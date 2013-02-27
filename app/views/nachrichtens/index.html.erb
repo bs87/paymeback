@@ -1,5 +1,16 @@
 
 <%- model_class = Nachrichten -%> 
+
+
+    <div class="container">
+    <% flash.each do |name, msg| %>
+      <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+      <a class="close" data-dismiss="alert">x</a>
+      <%= msg  %>
+      </div>
+    <% end %>
+  </div>
+
     <div class="well sidebar-nav">
       <% news1 = Nachrichten.where(sentto: current_user.id)%>
       <% news = news1.reverse%>
