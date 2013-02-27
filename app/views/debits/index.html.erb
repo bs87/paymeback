@@ -1,5 +1,16 @@
 
 <%- model_class = Debit -%>
+
+    <div class="container">
+    <% flash.each do |name, msg| %>
+      <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+      <a class="close" data-dismiss="alert">x</a>
+      <%= msg  %>
+      </div>
+    <% end %>
+  </div>
+ 
+
 <div class="page-header">
   <h1><%=t '.Zahlungsübersicht' %></h1>
 </div>
@@ -7,7 +18,7 @@
 <div class="well sidebar-nav">
     <% debittest = Debit.where(emailcurrentuser: current_user.email)%>
       <% if debittest.blank?%>
-        <h1>Bisher haben Sie kein Geld  geliehen oder verliehen </h1>
+        <h1>Bisher haben Sie kein Geld geliehen oder verliehen </h1>
 
       <%else%>
     
@@ -38,8 +49,10 @@
             <%else%>
               <td>Offen</td>
             <%end%>
-            <td><%= link_to " Details ", debit,  :class => 'btn icon-info-sign'%></td>
-            <%else%>
+            <td><%= link_to " Details ", debit,  :class => 'btn icon-info-sign'%>
+             <%= link_to t('.Löschen'), debit,:method => :delete,  :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-danger' %> </td>
+            <td></td>
+            <% else %>
             <td></td>
             <td><%= link_to debit.betrag, debit, {:style=>'color:red;'}%></td>
             <%if debit.gezahlt == true%>
@@ -48,7 +61,7 @@
               <td>Offen</td>
             <%end%>
             <td><%= link_to " Details ", debit,  :class => 'btn icon-info-sign'%>
-            
+              <%= link_to t('.Löschen'), debit,:method => :delete,  :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-danger' %> </td>  
         <% end %>
       <% end %>  
 
@@ -79,5 +92,13 @@
 </table>
 <%end%>
 </div>
-<%= link_to t('.Neuer Eintrag', ), new_debit_path,:class => 'btn btn-success' %>
 
+<div class="well sidebar-nav">
+<% if @debitfriendsall.blank?%>
+<p><%= link_to t('.Neuer Eintrag', ), nil,:class => 'btn btn-success  disabled' %></p>
+   <p>Neuer Eintrag nicht möglich da Sie noch keine Freunde in Ihrer Freundesliste haben!</p>
+   <p><%= link_to " Freunde finden", new_friend_path , :class => 'btn btn-success icon-user' %></p>
+ <%else%>
+<%= link_to t('.Neuer Eintrag', ), new_debit_path,:class => 'btn btn-success' %>
+<%end%>
+</div>

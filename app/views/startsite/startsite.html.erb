@@ -1,6 +1,17 @@
 <%- model_class = Friend -%>
 
+  
+
 	<% if current_user %>
+  <div class="container">
+    <% flash.each do |name, msg| %>
+      <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+      <a class="close" data-dismiss="alert">x</a>
+      <%= msg  %>
+      </div>
+    <% end %>
+  </div>
+  
     <h1> <%= image_tag current_user.photo.url(:small) %> Willkommen, <%= current_user.firstname%>!</h1> 
 
 
@@ -103,9 +114,14 @@
 
      <br />
      <div class="well sidebar-nav">
-    <br />
-    <%= link_to 'Neuer Eintrag', new_debit_path , :class => 'btn btn-success'%>
-    <br />
+<% if @debitfriendsall.blank?%>
+<p><%= link_to t('.Neuer Eintrag', ), nil,:class => 'btn btn-success  disabled' %></p>
+   <p>Neuer Eintrag nicht möglich da Sie noch keine Freunde in Ihrer Freundesliste haben!</p>
+   <p><%= link_to " Freunde finden", new_friend_path , :class => 'btn btn-success icon-user' %></p>
+ <%else%>
+<%= link_to t('.Neuer Eintrag', ), new_debit_path,:class => 'btn btn-success' %>
+<%end%>
+
 </div>
     <footer>
         <p>&copy; Paymeback 2013</p>

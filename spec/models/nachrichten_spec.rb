@@ -8,3 +8,4 @@ describe Nachrichten do
 	end
 
 end
+

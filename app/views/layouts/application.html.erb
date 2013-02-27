@@ -177,13 +177,20 @@
   
   <%else%>
 
-        <div class="span13">
-          
-          <%= yield %>
-        </div>
+  <div class="span13">
+    <div class="container">
+    <% flash.each do |name, msg| %>
+      <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+      <a class="close" data-dismiss="alert">x</a>
+      <%= msg  %>
+      </div>
+    <% end %>
+  </div>
+  <%= yield %>
+  </div>
   <%end%>
-      </div><!--/row-->
-    </div> <!-- /container -->
+  </div><!--/row-->
+  </div> <!-- /container -->
   
     <!-- Javascripts
     ================================================== -->
