@@ -7,7 +7,9 @@ index do
     column :adress
     column :city
     column :zip
-    column :lock
+    column :failed_attempts
+    column :locked_at
+    
     default_actions
   end
 
@@ -17,8 +19,8 @@ f.input :firstname
 f.input :lastname
 f.input :email
 f.input :password
-f.input :password_confirmation
-f.input :lock
+f.input :failed_attempts
+f.input :locked_at
 f.input :roles, :label => "Rolle", :as => :check_boxes
 
 end

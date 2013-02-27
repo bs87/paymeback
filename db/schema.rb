@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130227141548) do
+ActiveRecord::Schema.define(:version => 20130227153309) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -98,8 +98,7 @@ ActiveRecord::Schema.define(:version => 20130227141548) do
     t.date     "dateofbirth"
     t.string   "city"
     t.integer  "zip"
-    t.integer  "failed_attempts",        :default => 0
-    t.boolean  "unlock_token"
+    t.integer  "failed_attempts"
     t.datetime "locked_at"
   end
 

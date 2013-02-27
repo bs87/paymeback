@@ -78,7 +78,7 @@
                 <li class="dropdown">
                   <a data-toggle="dropdown" class="dropdown-toggle" href="#">Profil<b class="caret"></b></a>
                      <ul class="dropdown-menu">
-                      <li><a href="/user/<%= current_user.id%>">Mein Profil</a></li>
+                      <li><a href="/users/<%= current_user.id%>">Mein Profil</a></li>
                       <li><%= link_to 'Freunde', friends_path%></li>
                       <li><%= link_to "Freunde finden", new_friend_path %></li>
                     </ul>
@@ -167,7 +167,7 @@
               <li><%= link_to 'Freunde', friends_path%></li>
               <li><%= link_to 'Nachrichten', nachrichtens_path%></li>
               <% if current_user.email == "admin@admin.de"%> 
-              <li><%= link_to 'Benutzerverwaltung', "/admin" %></li>
+              <li><%= link_to 'Benutzerverwaltung', "/admin/users" %></li>
               <%end%>
               <li><%= link_to 'Home', root_path, method: :delete %></li>
               <%end%>

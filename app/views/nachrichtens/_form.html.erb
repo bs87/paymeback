@@ -15,14 +15,23 @@
   
    <div class="control-group">
     <div class="field">
-    <%= f.hidden_field :sentby, :value=> current_user.id %><br>
+      <%if current_user%>
+      <%= f.hidden_field :sentby, :value=> current_user.id %><br>
+      <%else%>
+      <% dummy = User.where(email: "dummy@admin.de").first%>
+      <%= f.hidden_field :sentby, :value=>dummy.id  %><br>
+      <%end%>
   </div>
 </div>
 
   <% user = User.where(id: @sentto).first%>  
   <div class="control-group">
-    <%= f.label :Empfänger, :class => 'control-label' %>    
+    <%= f.label :Empfänger, :class => 'control-label' %>
+    <%if current_user%>    
     <%= f.label :title, user.firstname + " " + user.lastname , :class => 'control-label' %>
+    <%else%>
+      <%= f.label :title, "Administrator" , :class => 'control-label' %>
+      <%end%>
     <div class="field">
     <%= f.hidden_field :sentto, :value=> @sentto %><br>
   </div>
