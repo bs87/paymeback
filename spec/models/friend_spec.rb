@@ -29,18 +29,35 @@ describe Friend do
 	#it "Anfrage annehmen" do
 	#	f = Friend.new :user_id => "1", :friend_id => "2", :accepted =>"false"
 	#	f.save 
-	#	Friend.update f
-	#	f.should be_valid
+	#	f = Friend.update f
+	#	r = false
+	#	if f==1
+	#		r=true
+	#	else
+	#	end
+	#	r.should be_true
 	#end
 
 	it "loeschen testen" do
 		f = Friend.new :user_id => "1", :friend_id => "2", :accepted =>"false" 
 		f.save
 		f = Friend.delete f 
-		if f==1
-			be_valid
+		r = false
+		if f ==1
+		 	r=true
+		else
 		end
+		r.should be_true		
+	end
 
+  	it "should belong to user" do
+		c = Friend.reflect_on_association(:user)
+	    c.macro.should == :belongs_to
+	end
+
+	it "should belong to friendship" do
+		c = Friend.reflect_on_association(:friendship)
+	    c.macro.should == :belongs_to
 	end
 
 end
