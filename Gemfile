@@ -49,7 +49,7 @@ gem "paperclip-dropbox"
 gem 'rails3-jquery-autocomplete'
 gem 'jquery-ui-bootstrap-rails'
 gem 'jquery-ui-themes'
-gem 'dynamic_form'
+#gem 'dynamic_form'
 # To use ActiveModel has_s :lib => 'RMagick'ecure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
