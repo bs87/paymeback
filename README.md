@@ -41,3 +41,26 @@ Version: 3.2.12
 
 Verwendete Gems
 ==========
+rspec-rails (2.13.0)
+faker (1.1.2)
+guard-rspec (2.4.1)
+factory_girl_rails (4.2.1)
+sqlite3 (1.3.7)
+cancan (1.6.9)
+pg (0.14.1)
+sass-rails (3.2.6)
+coffee-rails (3.2.2)
+therubyracer (0.11.3)
+twitter-bootstrap-rails (2.2.4)
+less-rails (2.2.6)
+uglifier (1.3.0)
+devise (2.2.3)
+jquery-rails (2.2.1)
+activeadmin (0.5.1)
+rolify (3.2.0)
+paperclip (3.4.1)
+paperclip-dropbox (1.1.2)
+rails3-jquery-autocomplete (1.0.11)
+jquery-ui-bootstrap-rails (0.0.2)
+jquery-ui-themes (0.0.8)
+..
