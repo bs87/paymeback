@@ -104,7 +104,14 @@
                 <%debitnum = Debit.where(emailcurrentuser: current_user.email, read: false)%>
                 <%debitnum.all.each do |debit|%>
                 <% @count+=1%>
-                <% end %>            
+                <% end %>
+                <!--<%debitablauf = Debit.where("emailcurrentuser like ? and faelligkeit < ?", current_user.email, DateTime.now) %>-->
+                <%debitablauf = Debit.where(emailcurrentuser: current_user.email) %>
+                <%debitablauf.all.each do |debit|%>
+                <%if debit.faelligkeit < DateTime.now%>
+                  <% @count+=1%>
+                <%end%>
+                <% end %>           
                 <% if @count>0 %>
                   <li class="dropdown">
                   <a data-toggle="dropdown" class="dropdown-toggle" href="#"><%= @count %> Benachrichtigungen<b class="caret"></b></a>
@@ -133,6 +140,14 @@
                             <%= link_to 'Neue Schulden: '+freund.firstname+' '+freund.lastname , debit_path(:id => debit)%>
                             </li>
                             <%end%>
+                            <%debitablauf.all.each do |debit|%>
+                            <%if debit.faelligkeit < DateTime.now%>
+                              <%freund = User.where(email: debit.emailuser2).first%>
+                              <li>
+                              <%= link_to 'Fälligkeitsdatum überschritten: '+freund.firstname+' '+freund.lastname , debit_path(:id => debit)%>
+                              </li>
+                            <%end%>
+                          <%end%>
 
                       </ul>
                       <%end%>      
