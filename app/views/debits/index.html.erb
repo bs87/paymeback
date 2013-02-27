@@ -47,7 +47,7 @@
             <%else%>
               <td>Offen</td>
             <%end%>
-            <td><%=debit.updated_at.to_formatted_s(:short)%></td>
+            <td><%=debit.faelligkeit.to_formatted_s(:short)%></td>
             <td><%= link_to " Details ", debit,  :class => 'btn icon-info-sign'%>
              <%= link_to t('.Löschen'), debit,:method => :delete,  :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-danger' %> </td>
             <td></td>
@@ -59,7 +59,7 @@
             <%else%>
               <td>Offen</td>
             <%end%>
-            <td><%=debit.updated_at.to_formatted_s(:short)%></td>
+            <td><%=debit.faelligkeit.to_formatted_s(:short)%></td>
             <td><%= link_to " Details ", debit,  :class => 'btn icon-info-sign'%>
               <%= link_to t('.Löschen'), debit,:method => :delete,  :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-danger' %> </td>  
         <% end %>
