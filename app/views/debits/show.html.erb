@@ -21,8 +21,10 @@
 </dl>
 
 <div class="form-actions">
+<%user =User.where(email: @debit.emailuser2).first%>
   
   <%= link_to t('.bearbeiten'), edit_debit_path(@debit), :class => 'btn btn-success' %>
   <%= link_to t('.Löschen'), @debit,:method => :delete,  :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-danger' %> 
+  <%= link_to t('.Frage senden'), new_nachrichten_path(:sentto => user.id , :topic => @debit.info), :method => :get, :class =>'btn icon-envelope'%>
   <%= link_to t('.Zurück'), debits_path, :class => 'btn'  %>
 </div>
