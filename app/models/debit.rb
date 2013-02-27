@@ -1,6 +1,6 @@
 class Debit < ActiveRecord::Base
 
-attr_accessible :betrag, :datum, :emailcurrentuser, :emailuser2, :gezahlt, :info, :art, :firstname, :lastname, :read, :owner
+attr_accessible :betrag, :datum, :emailcurrentuser, :emailuser2, :gezahlt, :info, :art, :firstname, :lastname, :read, :owner, :faelligkeit
 
 validates :firstname, presence: true
 validates :emailuser2, presence: true

@@ -2,7 +2,6 @@
 <div class="page-header">
   <h1><%=t '.Eintragsdetails' %></h1>
 </div>
-<%=@debit %>
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name("Freund") %>:</strong></dt>
   <dd><%= @debit.firstname %></dd>
@@ -12,6 +11,8 @@
   <dd><%= @debit.betrag %></dd>
   <dt><strong><%= model_class.human_attribute_name(:datum) %>:</strong></dt>
   <dd><%= @debit.datum %></dd>
+  <dt><strong><%= model_class.human_attribute_name("Fälligkeit") %>:</strong></dt>
+  <dd><%= @debit.faelligkeit %></dd>
   <dt><strong><%= model_class.human_attribute_name(:art) %>:</strong></dt>
   <dd><%= @debit.art %></dd>
   <dt><strong><%= model_class.human_attribute_name(:gezahlt) %>:</strong></dt>

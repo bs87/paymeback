@@ -14,6 +14,7 @@
 <div class="page-header">
   <h1><%=t '.Zahlungsübersicht' %></h1>
 </div>
+<a href='/debits/?art=history'>History</a> <a href='/debits'>Zusammenfassung</a>
 <div class="well sidebar-nav">
     <% debittest = Debit.where(emailcurrentuser: current_user.email)%>
       <% if debittest.blank?%>
@@ -33,8 +34,40 @@
 
   </thead>
   <tbody>
+<%if params[:art].present?%>
+      <% @debits.each do |debit| %>
+      <% freund = User.where(email: debit.emailuser2).first%>
+      <tr>
+      <td><a href='/users/<%=freund.id%>'><%= freund.firstname+' '+freund.lastname %></td>
+      <% if debit.art=='Verliehen'%>
+            <td><%= link_to debit.betrag, debit, {:style=>'color:green;'}%></td>
+            <td></td>
+            <%if debit.gezahlt == true%>
+              <td>Gezahlt!</td>
+            <%else%>
+              <td>Offen</td>
+            <%end%>
+            <td><%=debit.updated_at.to_formatted_s(:short)%></td>
+            <td><%= link_to " Details ", debit,  :class => 'btn icon-info-sign'%>
+             <%= link_to t('.Löschen'), debit,:method => :delete,  :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-danger' %> </td>
+            <td></td>
+            <% else %>
+            <td></td>
+            <td><%= link_to debit.betrag, debit, {:style=>'color:red;'}%></td>
+            <%if debit.gezahlt == true%>
+              <td>Gezahlt!</td>
+            <%else%>
+              <td>Offen</td>
+            <%end%>
+            <td><%=debit.updated_at.to_formatted_s(:short)%></td>
+            <td><%= link_to " Details ", debit,  :class => 'btn icon-info-sign'%>
+              <%= link_to t('.Löschen'), debit,:method => :delete,  :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-danger' %> </td>  
+        <% end %>
+      <% end %>  
 
-<%if params[:user].present?%>
+<%else%>
+
+<%if params[:user].present? or params[:art].present?%>
       <% @debits.each do |debit| %>
       <% freund = User.where(email: debit.emailuser2).first%>
       <tr>
@@ -54,7 +87,6 @@
       <% end %>  
 
 <%else%>
-
     <% @debits.each do |key, val| %>
     <% freund = User.where(email: key).first%>
     <tr>
@@ -71,6 +103,7 @@
             <td><a href='/debits/?user=<%=key%>'  class = 'btn icon-info-sign' > <%=" Detailübersicht "%></td>
 
         <%end%>     
+   <%end%>
    <%end%>
 
                
