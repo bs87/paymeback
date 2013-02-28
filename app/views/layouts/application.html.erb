@@ -153,14 +153,18 @@
                       <%end%>      
               </ul>
               <ul class="nav pull-right" >
-
+              <p></p>
                 <p><%= link_to current_user.firstname+' '+current_user.lastname, destroy_user_session_path,:class => "  icon-off  ", method: :delete  %> </p>
-                <p><%= link_to ' ', edit_user_registration_path,:class => "  icon-wrench  "  %> </p>
+                
             </ul>
               <%else%>
                <ul class="nav">
               <li><%= link_to 'Anmelden', new_user_session_path  %></li>
               <li><%= link_to 'Registrieren', new_user_registration_path  %></li>
+              </ul>
+              <ul style = "float: right" class="nav pull-right">
+              <li><%= link_to 'Demo', "/startsite/demo" %></li>
+              
               </ul>
               <%end%>
             
@@ -178,12 +182,12 @@
               <!--<li class="nav-header">Sidebar</li>-->
               <% if current_user %>
               <li><%= link_to 'Zahlungsübersicht', debits_path  %></li>
-              <li><%= link_to 'Einstellungen', edit_user_registration_path %></li>
               <li><%= link_to 'Freunde', friends_path%></li>
               <li><%= link_to 'Nachrichten', nachrichtens_path%></li>
               <% if current_user.email == "admin@admin.de"%> 
               <li><%= link_to 'Benutzerverwaltung', "/admin/users" %></li>
               <%end%>
+              <li><%= link_to 'Einstellungen', edit_user_registration_path %></li>
               <li><%= link_to 'Home', root_path, method: :delete %></li>
               <%end%>
             </ul>
@@ -195,7 +199,7 @@
   
   <%else%>
 
-  <div class="span13">
+  <div class="span13" >
     <div class="container">
     <% flash.each do |name, msg| %>
       <div class="alert alert-<%= name == :notice ? "success" : "error" %>">

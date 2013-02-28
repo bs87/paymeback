@@ -17,8 +17,8 @@
   <% end %>
 <br />
   <div><%= f.submit "Anmelden", :class => 'btn  btn-success '  %> <br/><br/>
-  <%= link_to "Passwort vergessen?", new_password_path(resource_name),:class => 'btn  btn-warning icon-question-sign' %><br /> </div><br/><br/>
-  <%= link_to "Administrator Kontaktieren", new_nachrichten_path(:sentto => admin.id), :method => :get, :class =>'btn icon-envelope'%>
+  <%= link_to " Passwort vergessen? ", new_password_path(resource_name),:class => 'btn  btn-warning icon-question-sign' %><br /> </div><br/>
+  <%= link_to " Administrator Kontaktieren ", new_nachrichten_path(:sentto => admin.id), :method => :get, :class =>'btn icon-envelope'%>
 <% end %>
 
 

@@ -14,7 +14,6 @@
 <div class="page-header">
   <h1><%=t '.Zahlungsübersicht' %></h1>
 </div>
-<a href='/debits/?art=history'>History</a> <a href='/debits'>Zusammenfassung</a>
 <div class="well sidebar-nav">
     <% debittest = Debit.where(emailcurrentuser: current_user.email)%>
       <% if debittest.blank?%>
@@ -22,6 +21,7 @@
 
       <%else%>
     
+<p><%= link_to " Aktuelle Übersicht ", "/debits",  :class => ' btn icon-list'%>  <%= link_to " History ", "/debits/?art=history",  :class => 'btn icon-calendar'%></p>
 
 <table class="table table-striped">
   <thead>

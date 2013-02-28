@@ -7,7 +7,9 @@ Paymeback::Application.routes.draw do
   resources :debits
   resources :friends
 
-  #resources :startsites
+ get "startsite/demo" 
+  
+
  # get "friends"
   #root to: "friends#show"
 
