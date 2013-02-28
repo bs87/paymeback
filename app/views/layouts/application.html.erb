@@ -183,9 +183,9 @@
               <!--<li class="nav-header">Sidebar</li>-->
               <% if current_user %>
               <li><%= link_to 'Zahlungsübersicht', debits_path  %></li>
-              <li><%= link_to 'Freunde', friends_path%></li>
+              <li><%= link_to 'Freunde', friends_path, :id => "freundebutton"%></li>
               <li><%= link_to 'Nachrichten', nachrichtens_path%></li>
-              <% if current_user.email == "admin@admin.de"%> 
+              <% if current_user.email == "admin@admin.de"%>  
               <li><%= link_to 'Benutzerverwaltung', "/admin/users" %></li>
               <%end%>
               <li><%= link_to 'Einstellungen', edit_user_registration_path %></li>

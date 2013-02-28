@@ -85,7 +85,7 @@
   </div>
 
   <div class="control-group">
-    <%= f.label :faelligkeit, :class => 'control-label' %>
+    <%= f.label 'Fälligkeit', :class => 'control-label' %>
     <div class="controls">
       <%= f.date_select :faelligkeit, :class => 'date_select', :default => {:month => Date.today.next_month.month } %>
     </div>

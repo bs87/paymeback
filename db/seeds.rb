@@ -19,6 +19,7 @@
 	manni = User.create email:'manni@paymeback.de', firstname:'Manni', lastname:'Do', password:'Test1234', password_confirmation:'Test1234', adress:'Hafenweg 15', :zip => 48155, :city => 'Muenster', :dateofbirth => '1990-10-15'
 	thomas = User.create email:'thomas@paymeback.de', firstname:'Thomas', lastname:'Hollstege', password:'Test1234', password_confirmation: 'Test1234', adress: 'Hafenweg 14', :zip => 48155, :city => 'Muenster', :dateofbirth => '1980-10-24'
 	peter = User.create email:'peter@paymeback.de', firstname:'Peter', lastname:'Grosskopf', password:'Test1234', password_confirmation: 'Test1234', adress: 'Hafenweg 14', :zip => 48155, :city => 'Muenster', :dateofbirth => '1980-10-24'
+	dummy = User.create email:'dummy@paymeback.de', firstname:'Dummy', lastname:'Dummy', password:'Test1234', password_confirmation: 'Test1234', adress: 'Dummyweg 14', :zip => 48155, :city => 'Muenster', :dateofbirth => '1980-10-24'
 
 	
 
