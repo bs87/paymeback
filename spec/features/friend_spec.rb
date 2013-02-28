@@ -41,7 +41,8 @@ it "Freundschaftsanfrage wieder stonieren" do
 
 	it "Freundschaft beenden" do
 	User.create email: "test@paymeback.de", firstname: "Testuser",firstname: "Testuser"
-	Friend.create user_id: user.id, friend_id: 2, accepted: true 	
+	User.create email: "test2@paymeback.de", firstname: "Testuser2",firstname: "Testuser2"
+	Friend.create user_id: '1', friend_id: '2', accepted: "true" 	
 	find("#freundebutton").click 
 	find("#freundefinden").click 
 	first("#freundehinzufuegen").click 
