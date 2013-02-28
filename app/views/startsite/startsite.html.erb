@@ -49,7 +49,7 @@
         <% @verliehen+=debit.betrag %>
         <tr>
          <td><%= debit.emailuser2 %></td>
-         <td><%= debit.betrag %></td>
+         <td><%= sprintf("%.2f",debit.betrag)+' €' %></td>
          <td><%= debit.datum %></td>
          <td><%= debit.info %></td>
          <td><%= debit.gezahlt %></td>
@@ -95,7 +95,7 @@
           <% @geliehen+=debit.betrag %>
           <tr>
             <td><%= debit.emailuser2 %></td>
-            <td><%= debit.betrag %></td>
+            <td><%= sprintf("%.2f",debit.betrag)+' €' %></td>
             <td><%= debit.datum %></td>
             <td><%= debit.info %></td>
             <td><%= debit.gezahlt %></td>
@@ -129,7 +129,6 @@
   <%else%>
   
 
-    
     <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
@@ -138,27 +137,28 @@
                     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="../assets/ico/favicon.png">
       <!-- Jumbotron -->
-      <div class="jumbotron">
-        <h1>Paymeback</h1>
+      <div class="jumbotron fluid">
+        <img src="/assets/paymebackpig.jpg" alt="logo"/>
+        <h1>Paymeback</h1><br>
         <a class="btn btn-large btn-inverse" href="accounts/sign_in">Jetzt anmelden</a>
       </div>
 
-      <hr>
 
+      <hr>
 
   
 
       <!-- Example row of columns -->
       <div class="row-fluid">
-        <div class="span4">
+        <div class="span4 well">
           <h2>Über Uns</h2>
-          <p>Wir sind ein junges Team aus Webentwicklern, die die Welt ein bisschen einfacher machen wollen. </p>
+          <p>Wir sind ein junges Team aus Wirtschaftsinformatikern von der FH- Münster, die die Welt ein bisschen einfacher machen wollen.</p>
         </div>
-        <div class="span4">
+        <div class="span4 well">
           <h2>Paymeback</h2>
           <p>Mit Paymeback können Sie ganz einfach verwalten wem Sie Geld geliehen haben und wer Ihnen Geld geliehen hat. </p>
        </div>
-        <div class="span4">
+        <div class="span4 well">
           <h2>Kontakt</h2>
           <p>Fachhochschule Münster<br>Johann-Krane-Weg 21-27<br>48149 Münster</p>
         </div>
@@ -167,7 +167,7 @@
       <hr>
 
 
-      <div class="footer">
+      <div class="footer-fluid">
         <p>&copy; Paymeback 2013</p>
       </div>
     <!-- Le javascript
@@ -177,4 +177,4 @@
 
   <%end%>
   </body>
-</html>
+

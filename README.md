@@ -40,8 +40,8 @@ Mit Paymeback können Sie ganz einfach verwalten wem Sie Geld geliehen haben und
 ###Anmeldung
 
 Wir haben folgende Benutzer angelegt:
-* Emailadresse: peter@admin.de, Passwort: Test1234
-* Emailadresse: thomas@admin.de, Passwort: Test1234 <br><br>
+* Emailadresse: peter@paymeback.de, Passwort: Test1234
+* Emailadresse: thomas@paymeback.de, Passwort: Test1234 <br><br>
 Diese Benutzer haben die Rolle user und können andere Benutzerkonten nicht verwalten, <br>
 hierfür gibt es noch folgenden Benutzer:
 * Emailadresse: admin@admin.de, Passwort: Test1234

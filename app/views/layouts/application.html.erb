@@ -20,15 +20,15 @@
       /* Custom container */
       .container {
         margin: 0 auto;
-        max-width: 1000px;
+        max-width: 1600px;
       }
       .container > hr {
-       margin: 60px 0;
+       margin: 40px 0;
       }
 
       /* Main marketing message and sign up button */
      .jumbotron {
-       margin: 80px auto;
+       margin: 5px auto;
        text-align: center;
      }
      .jumbotron h1 {
@@ -63,6 +63,7 @@
 
 
   <body>
+
 
     <div class="navbar navbar-fluid-top">
       <div class="navbar-inner">
@@ -113,8 +114,8 @@
                 <%end%>
                 <% end %>           
                 <% if @count>0 %>
-                  <li class="dropdown">
-                  <a data-toggle="dropdown" class="dropdown-toggle" href="#"><%= @count %> Benachrichtigungen<b class="caret"></b></a>
+                  <li class="dropdown active">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#"><b><%= @count %> Benachrichtigungen</b></a>
                     <ul class="dropdown-menu">
                       <%typ.all.each do |type|%>
                         <%if type.accepted == false%> 
@@ -176,7 +177,7 @@
   <%if current_user%>
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
+        <div class="span2">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <!--<li class="nav-header">Sidebar</li>-->
@@ -196,11 +197,10 @@
         <div class="span9">
             <%= yield %>
         </div>
+      </div>
+    </div>
   
   <%else%>
-
-
-  <div class="span12">
     <div class="container">
     <% flash.each do |name, msg| %>
       <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
@@ -208,13 +208,10 @@
       <%= msg  %>
       </div>
     <% end %>
-  </div>
   <%= yield %>
   </div>
   <%end%>
-  </div><!--/row-->
-  </div> <!-- /container -->
-  
+
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
