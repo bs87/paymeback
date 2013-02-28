@@ -27,7 +27,7 @@
       <td><%= benutzer.lastname %></td>
       <td> <%= image_tag benutzer.photo.url(:tiny)  %></td>
       <td><%= link_to " Profil anzeigen", user_path(:id => benutzer), :method => :get, :class => 'btn icon-user' %>
-            <%= link_to "Als Freund hinzufügen",  friends_path(:friend_id => benutzer), :method => :post, :class => 'btn btn-success', :id => "Als Freund hinzufuegen"%></td>
+            <%= link_to "Als Freund hinzufügen",  friends_path(:friend_id => benutzer), :method => :post, :class => 'btn btn-success', :id => "freundehinzufuegen"%></td>
 
       <%end%>
 
