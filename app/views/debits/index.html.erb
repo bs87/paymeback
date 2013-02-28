@@ -21,6 +21,7 @@
 
       <%else%>
     
+<p><%= link_to " Aktuelle Übersicht ", "/debits",  :class => ' btn icon-list'%>  <%= link_to " History ", "/debits/?art=history",  :class => 'btn icon-calendar'%></p>
 
 <table class="table table-striped">
   <thead>
@@ -33,21 +34,32 @@
 
   </thead>
   <tbody>
-
-<%if params[:user].present?%>
+<%if params[:art].present?%>
       <% @debits.each do |debit| %>
       <% freund = User.where(email: debit.emailuser2).first%>
       <tr>
       <td><a href='/users/<%=freund.id%>'><%= freund.firstname+' '+freund.lastname %></td>
       <% if debit.art=='Verliehen'%>
-            <td><%= link_to debit.betrag, debit, {:style=>'color:green;'}%></td>
+            <td><%= link_to sprintf("%.2f",debit.betrag)+' €', debit, {:style=>'color:green;'}%></td>
             <td></td>
+            <%if debit.gezahlt == true%>
+              <td>Gezahlt!</td>
+            <%else%>
+              <td>Offen</td>
+            <%end%>
+            <td><%=debit.faelligkeit.to_formatted_s(:short)%></td>
             <td><%= link_to " Details ", debit,  :class => 'btn icon-info-sign'%>
              <%= link_to t('.Löschen'), debit,:method => :delete,  :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-danger' %> </td>
             <td></td>
             <% else %>
             <td></td>
-            <td><%= link_to debit.betrag, debit, {:style=>'color:red;'}%></td>
+            <td><%= link_to sprintf("%.2f",debit.betrag)+' €', debit, {:style=>'color:red;'}%></td>
+            <%if debit.gezahlt == true%>
+              <td>Gezahlt!</td>
+            <%else%>
+              <td>Offen</td>
+            <%end%>
+            <td><%=debit.faelligkeit.to_formatted_s(:short)%></td>
             <td><%= link_to " Details ", debit,  :class => 'btn icon-info-sign'%>
               <%= link_to t('.Löschen'), debit,:method => :delete,  :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-danger' %> </td>  
         <% end %>
@@ -55,22 +67,43 @@
 
 <%else%>
 
+<%if params[:user].present? or params[:art].present?%>
+      <% @debits.each do |debit| %>
+      <% freund = User.where(email: debit.emailuser2).first%>
+      <tr>
+      <td><a href='/users/<%=freund.id%>'><%= freund.firstname+' '+freund.lastname %></td>
+      <% if debit.art=='Verliehen'%>
+            <td><%= link_to sprintf("%.2f",debit.betrag)+' €', debit, {:style=>'color:green;'}%></td>
+            <td></td>
+            <td><%= link_to " Details ", debit,  :class => 'btn icon-info-sign'%>
+             <%= link_to t('.Löschen'), debit,:method => :delete,  :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-danger' %> </td>
+            <td></td>
+            <% else %>
+            <td></td>
+            <td><%= link_to sprintf("%.2f",debit.betrag)+' €', debit, {:style=>'color:red;'}%></td>
+            <td><%= link_to " Details ", debit,  :class => 'btn icon-info-sign'%>
+              <%= link_to t('.Löschen'), debit,:method => :delete,  :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-danger' %> </td>  
+        <% end %>
+      <% end %>  
+
+<%else%>
     <% @debits.each do |key, val| %>
     <% freund = User.where(email: key).first%>
     <tr>
       <td><a href='/users/<%=freund.id%>'><%= freund.firstname+' '+freund.lastname %></td>
       <% if val>0%>
-            <td><a href='/debits/?user=<%=key%>' style='color: green;' ><%= val.to_s+'€'%></td>
+            <td><a href='/debits/?user=<%=key%>' style='color: green;' ><%= sprintf("%.2f",val)+' €'%></td>
             <td></td>
             <td><a href='/debits/?user=<%=key%>'  class = 'btn icon-info-sign' > <%=" Detailübersicht "%></td>
             <td></td>
             
             <%else%>
             <td></td>
-            <td><a href='/debits/?user=<%=key%>' style='color: red;' ><%= val.to_s+'€'%></td>
+            <td><a href='/debits/?user=<%=key%>' style='color: red;' ><%= sprintf("%.2f",val)+' €'%></td>
             <td><a href='/debits/?user=<%=key%>'  class = 'btn icon-info-sign' > <%=" Detailübersicht "%></td>
 
         <%end%>     
+   <%end%>
    <%end%>
 
                

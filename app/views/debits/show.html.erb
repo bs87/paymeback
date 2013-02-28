@@ -2,16 +2,17 @@
 <div class="page-header">
   <h1><%=t '.Eintragsdetails' %></h1>
 </div>
-<%=@debit %>
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name("Freund") %>:</strong></dt>
   <dd><%= @debit.firstname %></dd>
   <dt><strong><%= model_class.human_attribute_name("Freund Emailadresse") %>:</strong></dt>
   <dd><%= @debit.emailuser2 %></dd>
   <dt><strong><%= model_class.human_attribute_name(:betrag) %>:</strong></dt>
-  <dd><%= @debit.betrag %></dd>
+  <dd><%= sprintf("%.2f",@debit.betrag)+' €' %></dd>
   <dt><strong><%= model_class.human_attribute_name(:datum) %>:</strong></dt>
   <dd><%= @debit.datum %></dd>
+  <dt><strong><%= model_class.human_attribute_name("Fälligkeit") %>:</strong></dt>
+  <dd><%= @debit.faelligkeit %></dd>
   <dt><strong><%= model_class.human_attribute_name(:art) %>:</strong></dt>
   <dd><%= @debit.art %></dd>
   <dt><strong><%= model_class.human_attribute_name(:gezahlt) %>:</strong></dt>
@@ -21,8 +22,10 @@
 </dl>
 
 <div class="form-actions">
+<%user =User.where(email: @debit.emailuser2).first%>
   
   <%= link_to t('.bearbeiten'), edit_debit_path(@debit), :class => 'btn btn-success' %>
   <%= link_to t('.Löschen'), @debit,:method => :delete,  :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-danger' %> 
+  <%= link_to t('.Frage senden'), new_nachrichten_path(:sentto => user.id , :topic => @debit.info), :method => :get, :class =>'btn icon-envelope'%>
   <%= link_to t('.Zurück'), debits_path, :class => 'btn'  %>
 </div>

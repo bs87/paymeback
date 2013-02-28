@@ -13,8 +13,8 @@ class DebitsController < ApplicationController
 
 
     if params[:user].present?
-      @debits = Debit.where(emailcurrentuser: current_user.email , emailuser2: params[:user])
-      @debits = @debits.find(:all, :select => "*, helper as usersum")
+      @debits = Debit.where(emailcurrentuser: current_user.email , emailuser2: params[:user], gezahlt: false)
+    
    else
         if params[:art] == "history"
           @debits = Debit.where(emailcurrentuser: current_user.email)
@@ -93,9 +93,6 @@ class DebitsController < ApplicationController
   def create
     @debit = Debit.new(params[:debit])
     @debit.read = true
-    if @debit.betrag == nil
-
-    else
     if @debit.art == 'Geliehen'
         @art = 'Verliehen'
         @betrag = @debit.betrag
@@ -104,9 +101,9 @@ class DebitsController < ApplicationController
       @art= 'Geliehen'
       @betrag = @debit.betrag*-1
     end
-end
+
     Debit.transaction do
-      Debit.create(:emailcurrentuser => @debit.emailuser2, :emailuser2 => @debit.emailcurrentuser, :betrag => @betrag, :art => @art, :info => @debit.info, :datum => @debit.datum, :gezahlt => @debit.gezahlt)
+      Debit.create(:emailcurrentuser => @debit.emailuser2, :emailuser2 => @debit.emailcurrentuser, :betrag => @betrag, :art => @art, :info => @debit.info, :datum => @debit.datum, :gezahlt => @debit.gezahlt, :firstname => current_user.firstname+' '+current_user.lastname, :faelligkeit => @debit.faelligkeit)
   end
     respond_to do |format|
       if @debit.save
@@ -124,7 +121,7 @@ end
   # PUT /debits/1.json
   def update
     @debit = Debit.find(params[:id])
-    @seconddebit = Debit.where(emailcurrentuser: @debit.emailuser2, emailuser2: @debit.emailcurrentuserlike, datum: @debit.datum, info: @debit.info)
+    @seconddebit = Debit.where(emailcurrentuser: @debit.emailuser2, emailuser2: @debit.emailcurrentuser, datum: @debit.datum, info: @debit.info)
     @seconddebit.each do |debit|
       @helper = Debit.find(debit.id)
     end
@@ -140,7 +137,7 @@ end
       @helper.betrag=@helper.betrag*-1
     end
     Debit.transaction do
-      Debit.create(:emailcurrentuser => @helper.emailuser2, :emailuser2 => @helper.emailcurrentuser, :betrag => @helper.betrag, :art => @helper.art, :info => @helper.info, :datum => @helper.datum, :gezahlt => @helper.gezahlt)
+      Debit.create(:emailcurrentuser => @helper.emailuser2, :emailuser2 => @helper.emailcurrentuser, :betrag => @helper.betrag, :art => @helper.art, :info => @helper.info, :datum => @helper.datum, :gezahlt => @helper.gezahlt, :firstname => current_user.firstname+' '+current_user.lastname, :faelligkeit => @helper.faelligkeit)
   end
       
     respond_to do |format|

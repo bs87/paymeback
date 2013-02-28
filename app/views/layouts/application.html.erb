@@ -20,7 +20,7 @@
       /* Custom container */
       .container {
         margin: 0 auto;
-        max-width: 1000px;
+        max-width: 1600px;
       }
       .container > hr {
        margin: 60px 0;
@@ -64,6 +64,7 @@
 
   <body>
 
+
     <div class="navbar navbar-fluid-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -90,7 +91,7 @@
                       <li><%= link_to "Neu Schulden eintragen", new_debit_path %></li>
                     </ul>
                   </li>
-                  <% typ = Friend.where(friend_id: current_user.email)%>
+                  <% typ = Friend.where(friend_id: current_user.id)%>
                 <% @count=0 %>
                 <%typ.all.each do |type|%>
                   <%if type.accepted == false%> 
@@ -104,10 +105,17 @@
                 <%debitnum = Debit.where(emailcurrentuser: current_user.email, read: false)%>
                 <%debitnum.all.each do |debit|%>
                 <% @count+=1%>
-                <% end %>            
+                <% end %>
+                <!--<%debitablauf = Debit.where("emailcurrentuser like ? and faelligkeit < ?", current_user.email, DateTime.now) %>-->
+                <%debitablauf = Debit.where(emailcurrentuser: current_user.email, gezahlt: false) %>
+                <%debitablauf.all.each do |debit|%>
+                <%if debit.faelligkeit < DateTime.now%>
+                  <% @count+=1%>
+                <%end%>
+                <% end %>           
                 <% if @count>0 %>
-                  <li class="dropdown">
-                  <a data-toggle="dropdown" class="dropdown-toggle" href="#"><%= @count %> Benachrichtigungen<b class="caret"></b></a>
+                  <li class="dropdown active">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#"><b><%= @count %> Benachrichtigungen</b></a>
                     <ul class="dropdown-menu">
                       <%typ.all.each do |type|%>
                         <%if type.accepted == false%> 
@@ -133,19 +141,31 @@
                             <%= link_to 'Neue Schulden: '+freund.firstname+' '+freund.lastname , debit_path(:id => debit)%>
                             </li>
                             <%end%>
+                            <%debitablauf.all.each do |debit|%>
+                            <%if debit.faelligkeit < DateTime.now%>
+                              <%freund = User.where(email: debit.emailuser2).first%>
+                              <li>
+                              <%= link_to 'Fälligkeitsdatum überschritten: '+freund.firstname+' '+freund.lastname , debit_path(:id => debit)%>
+                              </li>
+                            <%end%>
+                          <%end%>
 
                       </ul>
                       <%end%>      
               </ul>
               <ul class="nav pull-right" >
-
+              <p></p>
                 <p><%= link_to current_user.firstname+' '+current_user.lastname, destroy_user_session_path,:class => "  icon-off  ", method: :delete  %> </p>
-                <p><%= link_to ' ', edit_user_registration_path,:class => "  icon-wrench  "  %> </p>
+                
             </ul>
               <%else%>
                <ul class="nav">
               <li><%= link_to 'Anmelden', new_user_session_path  %></li>
               <li><%= link_to 'Registrieren', new_user_registration_path  %></li>
+              </ul>
+              <ul style = "float: right" class="nav pull-right">
+              <li><%= link_to 'Demo', "/startsite/demo" %></li>
+              
               </ul>
               <%end%>
             
@@ -157,15 +177,18 @@
   <%if current_user%>
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
+        <div class="span2">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <!--<li class="nav-header">Sidebar</li>-->
               <% if current_user %>
               <li><%= link_to 'Zahlungsübersicht', debits_path  %></li>
-              <li><%= link_to 'Einstellungen', edit_user_registration_path %></li>
-              <li><%= link_to 'Freunde', friends_path%></li>
+              <li><%= link_to 'Freunde', friends_path, :id => "freundebutton"%></li>
               <li><%= link_to 'Nachrichten', nachrichtens_path%></li>
+              <% if current_user.email == "admin@admin.de"%>  
+              <li><%= link_to 'Benutzerverwaltung', "/admin/users" %></li>
+              <%end%>
+              <li><%= link_to 'Einstellungen', edit_user_registration_path %></li>
               <li><%= link_to 'Home', root_path, method: :delete %></li>
               <%end%>
             </ul>
@@ -174,10 +197,10 @@
         <div class="span9">
             <%= yield %>
         </div>
+      </div>
+    </div>
   
   <%else%>
-
-  <div class="span13">
     <div class="container">
     <% flash.each do |name, msg| %>
       <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
@@ -185,13 +208,10 @@
       <%= msg  %>
       </div>
     <% end %>
-  </div>
   <%= yield %>
   </div>
   <%end%>
-  </div><!--/row-->
-  </div> <!-- /container -->
-  
+
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

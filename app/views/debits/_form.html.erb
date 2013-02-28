@@ -62,7 +62,7 @@
   <div class="control-group">
     <%= f.label 'Emailadresse', :class => 'control-label' %>
     <div class="controls">
-    <%= f.text_field :emailuser2, :id => "email"%>
+    <%= f.email_field :emailuser2, :id => "email"%>
   </div>
   </div>
 
@@ -81,6 +81,13 @@
     <%= f.label :datum, :class => 'control-label' %>
     <div class="controls">
       <%= f.date_select :datum, :class => 'date_select' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label 'Fälligkeit', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :faelligkeit, :class => 'date_select', :default => {:month => Date.today.next_month.month } %>
     </div>
   </div>
 

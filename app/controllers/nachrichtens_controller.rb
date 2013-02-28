@@ -13,7 +13,16 @@ class NachrichtensController < ApplicationController
   # GET /nachrichtens/1
   # GET /nachrichtens/1.json
   def show
-    @nachrichten = Nachrichten.find(params[:id])
+    @nachrichten = Nachrichten.where(sentby: current_user.id, id: params[:id]).first
+    if @nachrichten ==nil
+      @nachrichten = Nachrichten.where(sentto: current_user.id, id: params[:id]).first
+      if @nachrichten==nil
+        flash[:error] ="Zugriff verweigert."
+        redirect_to root_url
+      end 
+    end
+    if @nachrichten ==nil
+    else
     if @nachrichten.read == false
       if @nachrichten.sentto == current_user.id        
       
@@ -34,6 +43,7 @@ class NachrichtensController < ApplicationController
         format.json { render json: @nachrichten }
       end
     end
+  end
   end
     
 
