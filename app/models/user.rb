@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :firstname, :lastname, :email, :password, :password_confirmation, :remember_me, :city, :zip, :dateofbirth, :adress, :photo, :friends, :lock,  :role_ids, :failed_attempts, :unlock_token, :locked_at
 
-
+  has_many :debits
   has_many :nachrichtens
   has_many :nachrichts, :through => :nachrichtens
   has_many :inverse_nachrichtens, :class_name => "Nachrichten", :foreign_key =>"sentto"
@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   has_many :debits
 
 
-  has_attached_file :photo, :storage => :dropbox,:dropbox_credentials => "#{Rails.root}/config/dropbox_config.yml", :styles => { :small => "150x150>", :tiny => "50x50", :icon => "16x16" },:dropbox_options => {       
+  has_attached_file :photo, :default_url => "/assets/missing.png", :storage => :dropbox,:dropbox_credentials => "#{Rails.root}/config/dropbox_config.yml", :styles => { :small => "150x150>", :tiny => "50x50", :icon => "16x16" },:dropbox_options => {       
 :path => proc { |style| "#{style}/#{id}_#{photo.original_filename}"},:unique_filename => true }
                   #:url  => "/assets/users/:id/:style/:basename.:extension",
                   #:path => ":rails_root/public/assets/users/:id/:style/:basename.:extension"
