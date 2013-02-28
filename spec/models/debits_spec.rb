@@ -25,4 +25,27 @@ describe Debit do
 		f = Debit.create :emailcurrentuser => "lukas@admin.de", :firstname => 'Lukas', :emailuser2 => "sabri@admin.de", :info => 'Test', :art => 'Verliehen', :id => 1
 		f.should_not be_valid
 	end
+
+	it "destroy testen" do
+		f = Debit.create :emailcurrentuser => "lukas@admin.de", :firstname => "Lukas", :emailuser2 => "sabri@admin.de", :betrag => 20, :info => 'Test', :art => 'Verliehen' 
+		f.save
+		f = Debit.delete f 
+		r = false
+		if f ==1
+		 	r=true
+		else
+		end
+		r.should be_true
+	end
+
+	it "update testen" do
+		f = Debit.create :emailcurrentuser => "lukas@admin.de", :firstname => "Lukas", :emailuser2 => "sabri@admin.de", :betrag => 20, :info => 'Test', :art => 'Verliehen' 
+		f.save
+		r = false 
+		if f.update_attributes :emailcurrentuser => "lukas@admin.de", :firstname => "Lukas", :emailuser2 => "sabri@admin.de", :betrag => 40, :info => 'Test', :art => 'Geliehen' 
+			r = true
+		else
+		end
+		r.should be_true
+	end
 end
