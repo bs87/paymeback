@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :firstname, :lastname, :email, :password, :password_confirmation, :remember_me, :city, :zip, :dateofbirth, :adress, :photo, :friends, :lock,  :role_ids, :failed_attempts, :unlock_token, :locked_at
 
-
+  has_many :debits
   has_many :nachrichtens
   has_many :nachrichts, :through => :nachrichtens
   has_many :inverse_nachrichtens, :class_name => "Nachrichten", :foreign_key =>"sentto"
