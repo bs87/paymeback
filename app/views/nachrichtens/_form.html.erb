@@ -18,7 +18,7 @@
       <%if current_user%>
       <%= f.hidden_field :sentby, :value=> current_user.id %><br>
       <%else%>
-      <% dummy = User.where(email: "dummy@admin.de").first%>
+      <% dummy = User.where(email: "dummy@paymeback.de").first%>
       <%= f.hidden_field :sentby, :value=>dummy.id  %><br>
       <%end%>
   </div>
