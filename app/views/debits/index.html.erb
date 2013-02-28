@@ -40,7 +40,7 @@
       <tr>
       <td><a href='/users/<%=freund.id%>'><%= freund.firstname+' '+freund.lastname %></td>
       <% if debit.art=='Verliehen'%>
-            <td><%= link_to debit.betrag, debit, {:style=>'color:green;'}%></td>
+            <td><%= link_to sprintf("%.2f",debit.betrag)+' €', debit, {:style=>'color:green;'}%></td>
             <td></td>
             <%if debit.gezahlt == true%>
               <td>Gezahlt!</td>
@@ -53,7 +53,7 @@
             <td></td>
             <% else %>
             <td></td>
-            <td><%= link_to debit.betrag, debit, {:style=>'color:red;'}%></td>
+            <td><%= link_to sprintf("%.2f",debit.betrag)+' €', debit, {:style=>'color:red;'}%></td>
             <%if debit.gezahlt == true%>
               <td>Gezahlt!</td>
             <%else%>
@@ -73,14 +73,14 @@
       <tr>
       <td><a href='/users/<%=freund.id%>'><%= freund.firstname+' '+freund.lastname %></td>
       <% if debit.art=='Verliehen'%>
-            <td><%= link_to debit.betrag, debit, {:style=>'color:green;'}%></td>
+            <td><%= link_to sprintf("%.2f",debit.betrag)+' €', debit, {:style=>'color:green;'}%></td>
             <td></td>
             <td><%= link_to " Details ", debit,  :class => 'btn icon-info-sign'%>
              <%= link_to t('.Löschen'), debit,:method => :delete,  :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-danger' %> </td>
             <td></td>
             <% else %>
             <td></td>
-            <td><%= link_to debit.betrag, debit, {:style=>'color:red;'}%></td>
+            <td><%= link_to sprintf("%.2f",debit.betrag)+' €', debit, {:style=>'color:red;'}%></td>
             <td><%= link_to " Details ", debit,  :class => 'btn icon-info-sign'%>
               <%= link_to t('.Löschen'), debit,:method => :delete,  :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-danger' %> </td>  
         <% end %>
@@ -92,14 +92,14 @@
     <tr>
       <td><a href='/users/<%=freund.id%>'><%= freund.firstname+' '+freund.lastname %></td>
       <% if val>0%>
-            <td><a href='/debits/?user=<%=key%>' style='color: green;' ><%= val.to_s+'€'%></td>
+            <td><a href='/debits/?user=<%=key%>' style='color: green;' ><%= sprintf("%.2f",val)+' €'%></td>
             <td></td>
             <td><a href='/debits/?user=<%=key%>'  class = 'btn icon-info-sign' > <%=" Detailübersicht "%></td>
             <td></td>
             
             <%else%>
             <td></td>
-            <td><a href='/debits/?user=<%=key%>' style='color: red;' ><%= val.to_s+'€'%></td>
+            <td><a href='/debits/?user=<%=key%>' style='color: red;' ><%= sprintf("%.2f",val)+' €'%></td>
             <td><a href='/debits/?user=<%=key%>'  class = 'btn icon-info-sign' > <%=" Detailübersicht "%></td>
 
         <%end%>     

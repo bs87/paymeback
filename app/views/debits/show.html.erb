@@ -8,7 +8,7 @@
   <dt><strong><%= model_class.human_attribute_name("Freund Emailadresse") %>:</strong></dt>
   <dd><%= @debit.emailuser2 %></dd>
   <dt><strong><%= model_class.human_attribute_name(:betrag) %>:</strong></dt>
-  <dd><%= @debit.betrag %></dd>
+  <dd><%= sprintf("%.2f",@debit.betrag)+' €' %></dd>
   <dt><strong><%= model_class.human_attribute_name(:datum) %>:</strong></dt>
   <dd><%= @debit.datum %></dd>
   <dt><strong><%= model_class.human_attribute_name("Fälligkeit") %>:</strong></dt>
