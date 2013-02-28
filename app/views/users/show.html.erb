@@ -32,26 +32,26 @@
 <%friend = Friend.where(user_id: current_user.id , friend_id: @user.id).first%>
 <% if friend%>
 		<% if friend.accepted == true%>
-  <%= link_to t('.Freundschaft beenden'), friend, :method => :delete, :class => 'btn'  %>
+  <%= link_to t('. Freundschaft beenden'), friend, :method => :delete, :class => 'btn btn-danger icon-remove'  %>
   	<%else%>
-  <%= link_to t('.Anfrage stornieren'),  friend, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, :class => 'btn btn-danger' %>
+  <%= link_to " Anfrage stornieren",  friend, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, :class => 'btn btn-danger icon-remove' %>
 	<%end%>
 <% else%>
 <%friend1 = Friend.where(user_id: @user.id , friend_id: current_user.id).first%>
 	<% if friend1%>
 		<% if friend1.accepted == true%>
-<%= link_to t('.Freundschaft beenden'),  friend1, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, :class => 'btn btn-danger' %>
+<%= link_to t('. Freundschaft beenden'),  friend1, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, :class => 'btn btn-danger icon-remove' %>
 		<%else%>
-    <%= link_to " annehmen ", friend1, :method => :put, :class => 'btn btn-success icon-ok' %> 
-    <%= link_to t('.Anfrage ablehnen'),  friend1, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},:class => 'btn btn-danger' %>
+    <%= link_to " annehmen", friend1, :method => :put, :class => 'btn btn-success icon-ok' %> 
+    <%= link_to " ablehnen",  friend1, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},:class => 'btn btn-danger icon-remove' %>
 		<%end%>
 	<%else%>
-<%= link_to t('.Als Freund hinzufügen'),  friends_path(:friend_id => @user), :method => :post , :class => 'btn btn-success icon-user' %>
+<%= link_to t('. Als Freund hinzufügen'),  friends_path(:friend_id => @user), :method => :post , :class => 'btn btn-success icon-user' %>
 
 <%end%>
 <%end%>
 <%= link_to " Nachricht senden", new_nachrichten_path(:sentto => @user), :method => :get, :class =>'btn icon-envelope'%>
-<%= link_to t('.zurück'), friends_path, :class => 'btn'  %>
+<%= link_to t('. zurück'), friends_path, :class => 'btn icon-arrow-left'  %>
 </div>
 </div>
 <%end%>
