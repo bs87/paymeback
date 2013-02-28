@@ -8,22 +8,46 @@ describe 'Sign in' do
 	end
 
 it "Auf Freunde klicken um die Freundeseite zu sehen" do
-	click_on 'Freunde'
+	find("#freundebutton").click 
 		page.should have_content "Deine Freunde"
 	end
 
 it "Auf Freunde finden um Freunde hinzuzufuegen" do
-	click_on 'Freunde finden'
-		page.should have_content "Als Freund"
+	find("#freundebutton").click 
+	User.create email: "test@paymeback.de", firstname: "Testuser",firstname: "Testuser"
+	User.create email: "test2@paymeback.de", firstname: "Testuser2",firstname: "Testuser2"
+	find("#freundefinden").click 
+	page.should have_content "Als Freund"
 	end
 
 it "Auf Freunde Hinzufuegen Freund eine anfrage zu stellen" do
-	click_on 'Als Freund hinzufuegen'
-		page.should have_content "Vorname"
+	User.create email: "test@paymeback.de", firstname: "Testuser",firstname: "Testuser"
+	User.create email: "test2@paymeback.de", firstname: "Testuser2",firstname: "Testuser2"
+	find("#freundebutton").click 
+	find("#freundefinden").click 
+	first("#freundehinzufuegen").click 
+	page.should have_content "Deine Freunde"
 	end
 
-	it "Auf Freunde Hinzufuegen Freund eine anfrage zu stellen" do
-	click_on 'Als Freund'
-		page.should have_content "Freund hinzugefuegt."
+it "Freundschaftsanfrage wieder stonieren" do
+	User.create email: "test@paymeback.de", firstname: "Testuser",firstname: "Testuser"
+	User.create email: "test2@paymeback.de", firstname: "Testuser2",firstname: "Testuser2"
+	find("#freundebutton").click 
+	find("#freundefinden").click 
+	first("#freundehinzufuegen").click 
+	click_on("Anfrage stornieren")
+	page.should have_content "Freundschaft beendet."
 	end
+
+	it "Freundschaft beenden" do
+	User.create email: "test@paymeback.de", firstname: "Testuser",firstname: "Testuser"
+	Friend.create user_id: user.id, friend_id: 2, accepted: true 	
+	find("#freundebutton").click 
+	find("#freundefinden").click 
+	first("#freundehinzufuegen").click 
+	click_on("Freundschaft beenden")
+	page.should have_content "Freundschaft beendet."
+	end
+
+
 end
