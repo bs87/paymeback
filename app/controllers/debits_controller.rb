@@ -149,7 +149,6 @@ class DebitsController < ApplicationController
       end
       @debit.destroy
       @helper.destroy
-      flash[:notice] = "Eintrag erfolgreich gelöscht"
     else
       flash[:notice] = "Sie haben kein Berechtigung da sie nicht der Besitzer sind."
     end

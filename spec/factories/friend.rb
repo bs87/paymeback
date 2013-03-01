@@ -60,14 +60,4 @@ FactoryGirl.define do
 		body 'Hallo Welt'
 	end
 end
-FactoryGirl.define do
- factory :user2, class: 'User' do
- id 12
- email 'dummy2@paymeback.de'
- firstname 'dummy2'
- lastname 'dummy2'
- zip '48143'
- password 'hackme!!'
- password_confirmation 'hackme!!'
-end
-end
+
