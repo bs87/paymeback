@@ -4,18 +4,14 @@ require 'spec_helper'
 
 describe 'Sign in' do
 	before(:each) do
-
-		user = FactoryGirl.create(:user)
-		user1 = FactoryGirl.create(:user1)
-		user2 = FactoryGirl.create(:user2)
-		friend = FactoryGirl.create(:friend)
-		#friend2 = FactoryGirl.create(:friend2)
-		friendanfrage = FactoryGirl.create(:friendanfrage)
-		#@friend3 = FactoryGirl.create(:friend3)
-		#@friend4 = FactoryGirl.create(:friend4)
-		
-		sign_in(user)
-	end
+	@user = FactoryGirl.create(:user)
+	@user1 = FactoryGirl.create(:user1)
+	@user2 = FactoryGirl.create(:user2)
+	@user3 = FactoryGirl.create(:user3)
+	@friend = FactoryGirl.create(:friend)
+	@friendanfrage = FactoryGirl.create(:friendanfrage)
+	sign_in(@user)
+end
 
 
 it "Auf Freunde klicken um die Freundeseite zu sehen" do
@@ -28,6 +24,13 @@ it "Auf Freunde finden um Freunde hinzuzufuegen" do
 	find("#freundefinden").click 
 	page.should have_content "Als Freund"
 	end
+
+#it "Freundschaft beenden" do
+#	find("#freundebutton").click 
+#	first("#profilanzeigen").click
+#	find("#freundschaftbeenden").click
+#	page.should have_content "Freundschaft beendet"
+#	end
 
 it "Auf Freunde Hinzufuegen Freund eine anfrage zu stellen" do
 	find("#freundebutton").click 
@@ -44,14 +47,7 @@ it "Freundschaftsanfrage wieder stonieren" do
 	page.should have_content "Freundschaft beendet."
 	end
 
-it "Freundschaft beenden" do
-	find("#freundebutton").click 
-	find("#freundefinden").click 
-	first("#freundehinzufuegen").click 
-	visit friends_path
-	first("#freundschaftbeenden").click 
-	page.should have_content "Freundschaft beendet."
-	end
+
 
 it "Freundschaftsanfrage annehmen" do
 	find("#freundebutton").click 
