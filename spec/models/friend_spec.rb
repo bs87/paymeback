@@ -59,5 +59,15 @@ describe Friend do
 		c = Friend.reflect_on_association(:friendship)
 	    c.macro.should == :belongs_to
 	end
+	
+	it "friends belongs_to user" do
+		friend = Friend.reflect_on_association(:user)
+		friend.macro.should == :belongs_to
+	end
+
+	it "friends belongs_to friendship" do
+		friend = Friend.reflect_on_association (:friendship)
+		friend.macro.should == :belongs_to
+	end
 
 end

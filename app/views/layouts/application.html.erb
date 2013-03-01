@@ -88,7 +88,7 @@
                   <a data-toggle="dropdown" class="dropdown-toggle" href="#">Zahlungsübersicht<b class="caret"></b></a>
                      <ul class="dropdown-menu">
                       <li><%= link_to 'Übersicht', debits_path%></li>
-                      <li><%= link_to "Neu Schulden eintragen", new_debit_path %></li>
+                      <li><%= link_to "Neue Schulden eintragen", new_debit_path %></li>
                     </ul>
                   </li>
                   <% typ = Friend.where(friend_id: current_user.id)%>
@@ -114,8 +114,13 @@
                 <%end%>
                 <% end %>           
                 <% if @count>0 %>
+                  <% if @count == 1%>
+                    <% @Nachricht=' Benachrichtigung'%>
+                    <% else %>
+                    <% @Nachricht=' Benachrichtigungen'%>
+                    <%end%>
                   <li class="dropdown active">
-                  <a data-toggle="dropdown" class="dropdown-toggle" href="#"><b><%= @count %> Benachrichtigungen</b></a>
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#"><b><%= @count.to_s+' '+@Nachricht %></b></a>
                     <ul class="dropdown-menu">
                       <%typ.all.each do |type|%>
                         <%if type.accepted == false%> 
@@ -182,8 +187,10 @@
             <ul class="nav nav-list">
               <!--<li class="nav-header">Sidebar</li>-->
               <% if current_user %>
-              <li><%= link_to 'Zahlungsübersicht', debits_path  %></li>
+
+              <li><%= link_to 'Zahlungsübersicht', debits_path, :id=> 'Zahlungen'%></li>
               <li><%= link_to 'Freunde', friends_path, :id => "freundebutton"%></li>
+
               <li><%= link_to 'Nachrichten', nachrichtens_path%></li>
               <% if current_user.email == "admin@admin.de"%>  
               <li><%= link_to 'Benutzerverwaltung', "/admin/users" %></li>

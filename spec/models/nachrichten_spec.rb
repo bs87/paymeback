@@ -42,7 +42,14 @@ describe Nachrichten do
 		n.should be_valid
 	end
 
+	it "nachrichtens belongs_to user" do
+		nachrichten = Nachrichten.reflect_on_association(:user)
+		nachrichten.macro.should == :belongs_to
+	end
+
+	it "nachrichtens belongs_to nachrichts" do
+		nachrichten = Nachrichten.reflect_on_association(:nachricht)
+		nachrichten.macro.should == :belongs_to
+	end
 end
-
-
 
