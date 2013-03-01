@@ -1,7 +1,8 @@
 FactoryGirl.define do
-	factory :friend do
-		friend_id "2"
-		user_id "1"
+	factory :friend, class: 'Friend' do
+		friend_id "11"
+		user_id "10"
+		accepted "true" 
 	end
 end
 
@@ -43,4 +44,15 @@ FactoryGirl.define do
 		topic 'test'
 		body 'Hallo Welt'
 	end
+end
+FactoryGirl.define do
+ factory :user2, class: 'User' do
+ id 12
+ email 'dummy2@paymeback.de'
+ firstname 'dummy2'
+ lastname 'dummy2'
+ zip '48143'
+ password 'hackme!!'
+ password_confirmation 'hackme!!'
+end
 end
