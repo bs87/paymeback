@@ -4,6 +4,7 @@ factory :debit1, class: 'Debit' do
 id 1
 emailcurrentuser "dummy24@paymeback.de"
 emailuser2 "dummy1@paymeback.de"
+owner "dummy24@paymeback.de"
 firstname "Dummy"
 betrag 20
 art "Geliehen"

@@ -150,7 +150,7 @@ class DebitsController < ApplicationController
       @debit.destroy
       @helper.destroy
     else
-      flash[:notice] = "Sie haben kein Berechtigung da sie nicht der Besitzer sind."
+      flash[:notice] = "Sie haben keine Berechtigung da sie nicht der Besitzer sind."
     end
       respond_to do |format|
         format.html { redirect_to debits_url}
