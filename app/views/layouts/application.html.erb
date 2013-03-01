@@ -114,8 +114,13 @@
                 <%end%>
                 <% end %>           
                 <% if @count>0 %>
+                  <% if @count == 1%>
+                    <% @Nachricht=' Benachrichtigung'%>
+                    <% else %>
+                    <% @Nachricht=' Benachrichtigungen'%>
+                    <%end%>
                   <li class="dropdown active">
-                  <a data-toggle="dropdown" class="dropdown-toggle" href="#"><b><%= @count %> Benachrichtigungen</b></a>
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#"><b><%= @count.to_s+' '+@Nachricht %></b></a>
                     <ul class="dropdown-menu">
                       <%typ.all.each do |type|%>
                         <%if type.accepted == false%> 
