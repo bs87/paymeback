@@ -3,12 +3,16 @@ require 'spec_helper'
 
 describe 'FreundeTest:' do 
 	before(:each) do
-		@user = FactoryGirl.create(:user)
-		@user1 = FactoryGirl.create(:user1)
-		@user2 = FactoryGirl.create(:user2)
-		@friend = FactoryGirl.create(:friend)
-		@friendanfrage = FactoryGirl.create(:friendanfrage)
-		sign_in(@user)
+		user = FactoryGirl.create(:user)
+		user1 = FactoryGirl.create(:user1)
+		user2 = FactoryGirl.create(:user2)
+		friend = FactoryGirl.create(:friend)
+		#friend2 = FactoryGirl.create(:friend2)
+		friendanfrage = FactoryGirl.create(:friendanfrage)
+		#@friend3 = FactoryGirl.create(:friend3)
+		#@friend4 = FactoryGirl.create(:friend4)
+		
+		sign_in(user)
 	end
 
 it "Auf Freunde klicken um die Freundeseite zu sehen" do
@@ -41,6 +45,7 @@ it "Freundschaftsanfrage wieder stonieren" do
 	find("#freundebutton").click 
 	find("#freundefinden").click 
 	first("#freundehinzufuegen").click 
+	visit friends_path
 	first("#freundschaftbeenden").click 
 	page.should have_content "Freundschaft beendet."
 	end

@@ -7,6 +7,22 @@ FactoryGirl.define do
 end
 
 FactoryGirl.define do
+	factory :friend2, class: 'Friend' do
+		friend_id "12"
+		user_id "10"
+		accepted "true" 
+	end
+end
+
+FactoryGirl.define do
+	factory :friendanfrage, class: 'Friend' do
+		friend_id "10"
+		user_id "11"
+		accepted "false" 
+	end
+end
+
+FactoryGirl.define do
 factory :user, class: 'User' do
 id 10 
 email 'dummy24@paymeback.de'
@@ -37,16 +53,6 @@ end
 end
 
 FactoryGirl.define do
-factory :nachricht, class: 'Nachrichten' do
-id 23
-sentby '11'
-sentto '10'
-topic 'test'
-body 'Hallo Welt'
-end
-end
-
-FactoryGirl.define do
  factory :user2, class: 'User' do
  id 12
  email 'dummy2@paymeback.de'
@@ -57,3 +63,16 @@ FactoryGirl.define do
  password_confirmation 'hackme!!'
 end
 end
+
+
+
+FactoryGirl.define do
+factory :nachricht, class: 'Nachrichten' do
+id 23
+sentby '11'
+sentto '10'
+topic 'test'
+body 'Hallo Welt'
+end
+end
+
