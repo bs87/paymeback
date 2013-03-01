@@ -29,7 +29,7 @@ Mit Paymeback können Sie ganz einfach verwalten wem Sie Geld geliehen haben und
  			
  			rake db:reset
  			rake db:test:prepare
-			Info: Beim seeden werden Bilder über paperclip-dropbox in ddas Dropboxverzeichnis geladen. Sollte man nun erneut seeden kommt es zu einer Fehlermeldung, dass die Bilder schon vorhanden sind. Falls dies der Fall ist schreibt und eine Mail, dann löschen wir die Bilder in der Dropbox
+
 * ImageMagick installieren:
   			
   			sudo apt-get install imagemagick imagemagick-doc
