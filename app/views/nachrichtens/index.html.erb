@@ -45,8 +45,8 @@
               <td><%= nachrichten.created_at.day%>.<%=nachrichten.created_at.month%>.<%= nachrichten.created_at.year%></td>
               <td><%= nachrichten.created_at.hour%>:<%= nachrichten.created_at.min%></td>
               <td>
-                <%= link_to 'anzeigen', nachrichten_path(:id => nachrichten), :class => 'btn ' %>
-                <%= link_to 'antworten', edit_nachrichten_path(nachrichten),  :class => 'btn ' %>
+                <%= link_to 'anzeigen', nachrichten_path(:id => nachrichten), :class => 'btn ', :id => "ansehen" %>
+                <%= link_to 'antworten', edit_nachrichten_path(nachrichten),  :class => 'btn ', :id => "beantworten"%>
               </td>
             </tr>
           <% end %>
@@ -94,7 +94,7 @@
             <td><%= nachrichten.created_at.day%>.<%=nachrichten.created_at.month%>.<%= nachrichten.created_at.year%></td>
             <td><%= nachrichten.created_at.hour%>:<%= nachrichten.created_at.min%></td>
             <td>
-              <%= link_to 'anzeigen', nachrichten, :class => 'btn ' %>
+              <%= link_to 'anzeigen', nachrichten, :class => 'btn ', :id => "ansehen"%>
             </td>
           </tr>
          <% end %>

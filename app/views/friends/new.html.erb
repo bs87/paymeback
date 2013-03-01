@@ -26,11 +26,11 @@
       <td><%= benutzer.firstname %></td>
       <td><%= benutzer.lastname %></td>
       <%if benutzer.photo_file_name.blank? %>
-      <td><img src="/assets/missing_small.png"   /> </td>
+        <td><img src="/assets/missing_small.png"   /> </td>
       <%else%>
-      <td><%= image_tag benutzer.photo.url(:tiny)  %> </td>
+        <td><%= image_tag benutzer.photo.url(:tiny)  %> </td>
       <%end%>
-      <td><%= link_to " Profil anzeigen", user_path(:id => benutzer), :method => :get, :class => 'btn icon-user' %>
+      <td><%= link_to " Profil anzeigen", user_path(:id => benutzer), :method => :get, :class => 'btn icon-user', :id => "profilanzeigen"%>
             <%= link_to "Als Freund hinzufügen",  friends_path(:friend_id => benutzer), :method => :post, :class => 'btn btn-success icon-plus-sign', :id => "freundehinzufuegen"%></td>
       <%end%>
 

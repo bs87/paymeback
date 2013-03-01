@@ -24,8 +24,7 @@ class NachrichtensController < ApplicationController
     if @nachrichten ==nil
     else
     if @nachrichten.read == false
-      if @nachrichten.sentto == current_user.id        
-      
+      if @nachrichten.sentto == current_user.id       
       @nachrichten.read = true
       respond_to do |format|
       if @nachrichten.update_attributes(params[:read => true])
@@ -45,43 +44,24 @@ class NachrichtensController < ApplicationController
     end
   end
   end
-    
-
-    #respond_to do |format|
-     # format.html # show.html.erb
-      #format.json { render json: @nachrichten }
-    #end
-
   # GET /nachrichtens/new
   # GET /nachrichtens/new.json
   def new
     @nachrichten = Nachrichten.new
     @sentto = params[:sentto]
     @topic = params[:topic]
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @nachrichten }
     end
   end
-
   # GET /nachrichtens/1/edit
   def edit
     @nachrichten = Nachrichten.find(params[:id])
     @sentto = @nachrichten.sentby
     @topic = "re:"+@nachrichten.topic
     @nachrichtens = Nachrichten.new
-    #respond_to do |format|
-      #@nachrichtens.sentto = @nachrichten.sentby
-      #@nachrichtens.sentby = @nachrichten.sentto
-      #@nachrichtens.topic = "re:"+@nachrichten.topic
-      #if @nachrichtens.save
         redirect_to new_nachrichten_path(:sentto => @sentto, :topic => @topic), :method => :get
-    #  else
-     #   flash[:error] ="Antwort konnte nicht verschickt werden."
-      #  redirect_to root_url
-      #end
-    #end
   end
 
   # POST /nachrichtens
