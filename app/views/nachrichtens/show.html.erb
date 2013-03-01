@@ -33,7 +33,7 @@
 
 <div class="form-actions">
   <%if user2.id == current_user.id%>
-  <%= link_to 'Antworten', edit_nachrichten_path ,:class => 'btn btn-primary'%>
+  <%= link_to 'Antworten', edit_nachrichten_path ,:class => 'btn btn-primary', :id =>"beantworten"%>
 <%end%>
   <%= link_to t('.Zurück'),nachrichtens_path, :class => 'btn'  %>
  </div>
