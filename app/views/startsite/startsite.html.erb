@@ -55,7 +55,7 @@
          <td><%= debit.gezahlt %></td>
          <td><%= link_to 'Details', debit , :class => 'btn '%>
           <%= link_to 'Bearbeiten', edit_debit_path(debit) , :class => 'btn btn-primary'%>
-          <%= link_to 'Löschen', debit, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+          <%= link_to 'Löschen', debit, method: :delete, data: { confirm: 'Are you sure?' }, :id => 'loeschen', :class => 'btn btn-danger' %></td>
         </tr>
       <% end %>
     <% end %>
@@ -101,7 +101,7 @@
             <td><%= debit.gezahlt %></td>
             <td><%= link_to 'Details', debit , :class => 'btn '%>
               <%= link_to 'Bearbeiten', edit_debit_path(debit) , :class => 'btn btn-primary'%>
-              <%= link_to 'Löschen', debit, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+              <%= link_to 'Löschen', debit, method: :delete, data: { confirm: 'Are you sure?' }, :id => 'loeschen', :class => 'btn btn-danger' %></td>
           </tr>
         <% end %>
       <% end %>
@@ -138,14 +138,13 @@
                                    <link rel="shortcut icon" href="../assets/ico/favicon.png">
       <!-- Jumbotron -->
       <div class="jumbotron fluid">
-        <h1>Paymeback</h1>
+        <img src="/assets/paymebackpig.jpg" alt="logo"/>
+        <h1>Paymeback</h1><br>
         <a class="btn btn-large btn-inverse" href="accounts/sign_in">Jetzt anmelden</a>
       </div>
 
 
-
       <hr>
-
 
   
 

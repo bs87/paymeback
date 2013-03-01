@@ -6,21 +6,17 @@ class DebitsController < ApplicationController
   # GET /debits.json
  
   def index
-
     debitfriends = current_user.friends.where(accepted: true)
     debitfriends2 = current_user.inverse_friends.where(accepted: true)
     @debitfriendsall = debitfriends + debitfriends2
 
-
     if params[:user].present?
-      @debits = Debit.where(emailcurrentuser: current_user.email , emailuser2: params[:user], gezahlt: false)
-    
+      @debits = Debit.where(emailcurrentuser: current_user.email , emailuser2: params[:user], gezahlt: false)    
    else
         if params[:art] == "history"
           @debits = Debit.where(emailcurrentuser: current_user.email)
         else
-          @debits = Debit.where(emailcurrentuser: current_user.email, gezahlt: false).group("emailuser2").sum("betrag")
-    
+          @debits = Debit.where(emailcurrentuser: current_user.email, gezahlt: false).group("emailuser2").sum("betrag")    
       end
     end
 
@@ -34,13 +30,9 @@ class DebitsController < ApplicationController
   # GET /debits/1
   # GET /debits/1.json
   def show
-
     @debit = Debit.where(emailcurrentuser: current_user.email , id: params[:id] ).first
-  
-
   respond_to do |format|
   if @debit == nil
-
     flash[:error] = "Zugriff Verweigert!  "
     redirect_to debits_path
   else
@@ -65,18 +57,13 @@ class DebitsController < ApplicationController
   # GET /debits/new.json
   def new
    @debit = Debit.new
-
-
-
-   friends = current_user.friends.where(accepted: true)
-   friends2 = current_user.inverse_friends.where(accepted: true)
-   friendsall = friends + friends2
-   @friend3 = friendsall
-   @Fullname = Hash.new
-
-   @Fullname = friendsall.map{|friend| {'label' => "#{friend.user.firstname} #{friend.user.lastname}", 'email' => "#{friend.user.email}", 'icon' => "<img src='#{friend.user.photo.url(:tiny)}'/>"}}
-   
-
+   @friends = current_user.friends.where(accepted: true)
+   @friends2 = current_user.inverse_friends.where(accepted: true)
+  friendsall = @friends + @friends2
+   @friend3 = friendsall 
+@Fullname = friendsall.map{|friend| {'label' => "#{friend.user.firstname} #{friend.user.lastname}", 'email' => "#{friend.user.email}", 'icon' => "<img src='#{friend.user.photo.url(:tiny)}'/>"}}
+   #@Fullname = @friends.map{|friend| {'label' => "#{friend.user.firstname} #{friend.user.lastname}", 'email' => "#{friend.user.email}", 'icon' => "<img src='#{friend.user.photo.url(:tiny)}'/>"}}
+   #@Fullname2 = @friends2.map{|friend| {'label' => "#{friend.user.firstname} #{friend.user.lastname}", 'email' => "#{friend.user.email}", 'icon' => "<img src='#{friend.user.photo.url(:tiny)}'/>"}} 
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @debit }
@@ -101,7 +88,6 @@ class DebitsController < ApplicationController
       @art= 'Geliehen'
       @betrag = @debit.betrag*-1
     end
-
     Debit.transaction do
       Debit.create(:emailcurrentuser => @debit.emailuser2, :emailuser2 => @debit.emailcurrentuser, :betrag => @betrag, :art => @art, :info => @debit.info, :datum => @debit.datum, :gezahlt => @debit.gezahlt, :firstname => current_user.firstname+' '+current_user.lastname, :faelligkeit => @debit.faelligkeit)
   end
@@ -138,8 +124,7 @@ class DebitsController < ApplicationController
     end
     Debit.transaction do
       Debit.create(:emailcurrentuser => @helper.emailuser2, :emailuser2 => @helper.emailcurrentuser, :betrag => @helper.betrag, :art => @helper.art, :info => @helper.info, :datum => @helper.datum, :gezahlt => @helper.gezahlt, :firstname => current_user.firstname+' '+current_user.lastname, :faelligkeit => @helper.faelligkeit)
-  end
-      
+  end      
     respond_to do |format|
       if @debit.update_attributes(params[:debit])
         format.html { redirect_to @debit, notice: 'Eintrag wurde erfolgreich erstellt' }
@@ -165,9 +150,8 @@ class DebitsController < ApplicationController
       @debit.destroy
       @helper.destroy
     else
-      flash[:notice] = "Sie haben kein Berechtigung da sie nicht der Besitzer sind."
+      flash[:notice] = "Sie haben keine Berechtigung da sie nicht der Besitzer sind."
     end
-
       respond_to do |format|
         format.html { redirect_to debits_url}
         format.json { head :no_content }

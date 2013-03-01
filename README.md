@@ -30,6 +30,9 @@ Mit Paymeback können Sie ganz einfach verwalten wem Sie Geld geliehen haben und
  			rake db:reset
  			rake db:test:prepare
 
+* ImageMagick installieren:
+  			
+  			sudo apt-get install imagemagick imagemagick-doc
 
 * paymeback starten:
   			
@@ -47,11 +50,15 @@ hierfür gibt es noch folgenden Benutzer:
 * Emailadresse: admin@admin.de, Passwort: Test1234
 
 ###Debits
-
+Hier können Nutzer ihre Schulden verwalten. 
 
 Funktion
 * Es können nur Schulden für Benutzer eingetragen werden, mit denen der Benutzer befreundet ist.
-*
+* Es kann ein Fälligkeitsdatum gesetzt werden
+* Nur der Erzeuger (Owner) kann Schulden wieder löschen
+* Ein Freund erhält automatisch eine Benachrichtung sobald jemand anderes eine Schuld für ihn eingetragen oder verändert hat
+* Für jeden Freund gibt es eine Einzelauflistung
+* In der Zusammenfassung werden die Beträge einzelner Nutzer gegeneinander verrechnet
 
 ###Freunde
 Hier werden die Freunde des Benutzers angezeigt.
@@ -70,7 +77,16 @@ Funktion:
 * angemeldete Benutzer können anderen Benutzern Nachrichten schicken.
 * Unter gesendete und empfangene Nachrichten werden alle Nachrichten des Benutzers angezeigt.
 * Nachrichten können z.B. über das Profil eines Benutzers oder über die Details einer Schuld erstellt werden.
-* 
+
+
+###Admin Dashboard
+Hier kann der Admin User verwalten
+
+Funktion:
+* Benutzer sperren
+* Benutzer entsperren
+* Benutzer zur einer Rolle hinzufügen
+
 
 ##Heroku
 ==========

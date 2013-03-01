@@ -10,16 +10,20 @@ gem 'rails', '3.2.12'
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :developement, :test do
+group   :developement do
 gem 'rspec-rails'
 gem 'faker'
 gem 'guard-rspec'
-gem 'factory_girl_rails'
 #gem 'sqlite3'
-gem 'cancan'
+gem 'factory_girl_rails', :require => false
+gem 'capybara'
 end
 
-group :production, :developement do
+group :test do
+	gem 'rspec-rails'
+end
+
+group :production do
 gem 'pg'
 end
 
@@ -30,12 +34,7 @@ group :assets do
   gem 'therubyracer'
   gem 'twitter-bootstrap-rails'
   gem 'less-rails'
-  
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
-gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier', '>= 1.0.3'
 end
 
 
@@ -49,7 +48,7 @@ gem "paperclip-dropbox"
 gem 'rails3-jquery-autocomplete'
 gem 'jquery-ui-bootstrap-rails'
 gem 'jquery-ui-themes'
-gem 'capybara'
+
 #gem 'dynamic_form'
 # To use ActiveModel has_s :lib => 'RMagick'ecure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

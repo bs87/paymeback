@@ -31,7 +31,7 @@
       },
       select: function( event, ui ) {
         $( "#email" ).val( ui.item.email );
-        $( "#betrag" ).val( ui.item.label );
+        
         return false;
       }
     })
@@ -43,7 +43,8 @@
   }); 
 </script>
 
-
+<!--<%=@Fullname%>
+<%=@Fullname2%>-->
       <div class="control-group">
   <%= f.label :Freund, :class => 'control-label' %>
     <div class="controls">
@@ -71,7 +72,7 @@
   <div class="control-group">
     <%= f.label :betrag, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :betrag, :class => 'text_field' %>
+      <%= f.text_field :betrag, :id => 'betrag', :class => 'text_field' %>
     </div>
   </div>
 
@@ -105,7 +106,7 @@
   <div class="control-group">
     <%= f.label :art, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :art, [['Verliehen','Verliehen'],['Geliehen','Geliehen']], :class => 'select' %>
+      <%= f.select :art, [['Verliehen','Verliehen'],['Geliehen','Geliehen']], :id => 'art', :class => 'select' %>
     </div>
   </div>
 
