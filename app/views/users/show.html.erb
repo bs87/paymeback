@@ -9,21 +9,16 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:Email) %>:</strong></dt>
-  <dd><%= @user.email %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:Geburtstag) %>:</strong></dt>
-  <dd><%= @user.dateofbirth.day %>.<%= @user.dateofbirth.month%>.<%= @user.dateofbirth.year%></dd>
-  <dt><strong><%= model_class.human_attribute_name(:Adresse) %>:</strong></dt>
-  <dd><%= @user.adress %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:Postleitzahl) %>:</strong></dt>
-  <dd><%= @user.zip %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:Stadt) %>:</strong></dt>
-  <dd><%= @user.city %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:Email) %>:</strong></dt><dd><%= @user.email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:Geburtstag) %>:</strong></dt><dd><%= @user.dateofbirth.day%>.<%= @user.dateofbirth.month%>.<%= @user.dateofbirth.year%></dd>
+  <dt><strong><%= model_class.human_attribute_name(:Adresse) %>:</strong></dt><dd><%= @user.adress %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:Postleitzahl) %>:</strong></dt><dd><%= @user.zip %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:Stadt) %>:</strong></dt><dd><%= @user.city %></dd>
 </dl>
 
 
 <% if @user.id == current_user.id%>
-  <%= link_to "Profil bearbeiten", edit_user_registration_path%><br>
+  <%= link_to " Profil bearbeiten", edit_user_registration_path, :class => 'btn icon-tasks'  %><br>
 <%else%>
 <%friend = Friend.where(user_id: current_user.id ,friend_id: @user.id).first%>
 
@@ -47,10 +42,9 @@
 		<%end%>
 	<%else%>
 <%= link_to t('. Als Freund hinzufügen'),  friends_path(:friend_id => @user), :method => :post , :class => 'btn btn-success icon-user' %>
-
 <%end%>
 <%end%>
-<%= link_to " Nachricht senden", new_nachrichten_path(:sentto => @user), :method => :get, :class =>'btn icon-envelope'%>
+<%= link_to " Nachricht senden", new_nachrichten_path(:sentto => @user), :method => :get, :class =>'btn icon-envelope', :id=>"nachrichtsenden"%>
 <%= link_to t('. zurück'), friends_path, :class => 'btn icon-arrow-left'  %>
 </div>
 </div>

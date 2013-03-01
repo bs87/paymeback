@@ -33,15 +33,10 @@
       <td><img src="/assets/missing_small.png"   /> </td>
       <%else%>
       <td><%= image_tag freund.photo.url(:tiny)  %> </td>
-<<<<<<< HEAD
-      <td><%= link_to " Profil anzeigen", user_path(:id => freund), :method => :get , :class => 'btn icon-user'%>
-        <%= link_to " Nachricht senden", new_nachrichten_path(:sentto => freund), :method => :get, :class =>'btn icon-envelope'%>
-=======
       <%end%>
       <td><%= link_to " Profil anzeigen", user_path(:id => freund), :method => :get , :class => 'btn icon-user', :id => "profilanzeigen"%>
-        <%= link_to "Nachricht senden ", new_nachrichten_path(:sentto => freund), :method => :get, :class =>'btn icon-envelope', :id => "nachrichtsenden"%>
->>>>>>> friend_test
-      <%= link_to " Freundschaft beenden ", friend, :method => :delete , :class => 'btn btn-danger icon-remove'%>  </td></tr>
+        <%= link_to " Nachricht senden", new_nachrichten_path(:sentto => freund), :method => :get, :class =>'btn icon-envelope', :id => "nachrichtsenden"%>
+      <%= link_to " Freundschaft beenden", friend, :method => :delete , :class => 'btn btn-danger icon-remove'%>  </td></tr>
    <%end%>
    <%end%>
     
@@ -59,7 +54,7 @@
       <%else%>
       <td><%= image_tag freund.photo.url(:tiny)  %> </td>
       <%end%>
-      <td><%= link_to " Profil anzeigen ", user_path(:id => freund), :method => :get , :class => 'btn icon-user'%>
+      <td><%= link_to " Profil anzeigen", user_path(:id => freund), :method => :get , :class => 'btn icon-user'%>
         <%= link_to " Nachricht senden", new_nachrichten_path(:sentto => freund), :method => :get, :class =>'btn icon-envelope'%>
       <%= link_to " Freundschaft beenden", friend, :method => :delete , :class => 'btn btn-danger icon-remove'%> </td>
    <%end%>
@@ -70,14 +65,10 @@
 </table>
 </div>
 <!-- Freundschaftsanfragen-->
-<div class="well sidebar-nav">
-<div class="page-header">
+<div class="well sidebar-nav"><div class="page-header">
   <h1><%=t '.Freundschaftsanfragen' %></h1>
 </div>
-
-<table class="table table-striped">
-     
-      
+<table class="table table-striped">      
       <tr>
       <th><%= model_class.human_attribute_name(:Person) %></th>
       
