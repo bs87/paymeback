@@ -17,7 +17,7 @@ zip '48143'
 city 'muenster'
 password 'hackme!!'
 password_confirmation 'hackme!!'
-dateofbirth '1980-10-10'
+dateofbirth {DateTime.now}
 end
 end
 
@@ -32,7 +32,7 @@ zip '48143'
 city 'muenster'
 password 'hackme!!'
 password_confirmation 'hackme!!'
-dateofbirth '1980-10-24'
+dateofbirth {DateTime.now}
 end
 end
 
@@ -54,5 +54,6 @@ FactoryGirl.define do
  zip '48143'
  password 'hackme!!'
  password_confirmation 'hackme!!'
+ dateofbirth {DateTime.now}
 end
 end
