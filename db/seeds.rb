@@ -12,7 +12,6 @@
 	admin.add_role :admin
 	flo = User.create email:'flo@paymeback.de', firstname:'Flo', lastname:'Kopp', password:'Test1234', password_confirmation: 'Test1234', adress: 'Hellmannsweg 19', :zip  => 46499, :city  => 'Hamminkeln', :dateofbirth => '1988-07-20' , :photo => File.open(File.join(Rails.root , '/app/assets/images/logo.jpg'))
 	bjoern = User.create email:'bjoern@paymeback.de', firstname:'Bjoern', lastname:'Simon', password:'Test1234', password_confirmation: 'Test1234', adress: 'Steinfurterstrasse 80', :zip => 48153, :city => 'Muenster', :dateofbirth => '1987-01-05', :photo => File.open(File.join(Rails.root , '/app/assets/images/logo.jpg'))
-	lukas = User.create email:'lukas@paymeback.de', firstname:'Lukas', lastname:'Koopmann', password:'Test1234', password_confirmation: 'Test1234', adress: 'Warendorferstrasse 56', :zip => 48151, :city => 'Muenster', :dateofbirth => '1990-09-05', :photo => File.open(File.join(Rails.root , '/app/assets/images/logo.jpg'))
 	sabri = User.create email:'sabri@paymeback.de', firstname:'Sabri', lastname:'Koch', password:'Test1234', password_confirmation: 'Test1234', adress: 'Hauptstrasse 5', :zip => 48143, :city => 'Muenster-Albachten', :dateofbirth => '1988-01-02', :photo => File.open(File.join(Rails.root , '/app/assets/images/logo.jpg'))
 	lennard = User.create email:'lennard@paymeback.de', firstname:'Lennard', lastname:'Gudd', password:'Test1234', password_confirmation: 'Test1234', adress: 'Verbindungsstrasse 7', :zip => 48146, :city => 'Muenster', :dateofbirth => '1989-03-20', :photo => File.open(File.join(Rails.root , '/app/assets/images/logo.jpg'))
 	andre = User.create email:'andre@paymeback.de', firstname:'Andre', lastname:'Konetzka', password:'Test1234', password_confirmation: 'Test1234', adress: 'Sassendorferstrasse 12', :zip => 47123, :city => 'Bad Sassendorf', :dateofbirth => '1990-10-15', :photo => File.open(File.join(Rails.root , '/app/assets/images/logo.jpg'))
@@ -27,12 +26,9 @@
 	floadmin = Friend.create :user_id => 2, :friend_id => 1, :accepted => true
 	flopeter = Friend.create :user_id => 10, :friend_id => 2, :accepted => true
 	flothomas = Friend.create :user_id => 9, :friend_id => 2, :accepted => true
-	flolukas = Friend.create :user_id => 2, :friend_id => 4, :accepted => false
 	thomaspeter = Friend.create :user_id => 9, :friend_id => 10, :accepted => true
-	thomaslukas = Friend.create :user_id => 9, :friend_id => 4, :accepted => false
 	thomasbjoern = Friend.create :user_id => 9, :friend_id => 3, :accepted => true
 	peterbjoern = Friend.create :user_id => 10, :friend_id => 3, :accepted => true
-	peterlukas = Friend.create :user_id => 10, :friend_id => 4, :accepted => false
 	andrethomas = Friend.create :user_id => 7, :friend_id => 9, :accepted => false
 	andrepeter = Friend.create :user_id	=> 7, :friend_id => 10, :accepted => false
 
@@ -47,10 +43,10 @@
 	#Debit eintragen	
 	thomaspeterd1 = Debit.create emailcurrentuser: 'thomas@paymeback.de', emailuser2: 'peter@paymeback.de', firstname: 'Peter Grosskopf', info: 'Essensgeld Mittagspause', art: 'Verliehen', betrag: 10, owner: 'thomas@paymeback.de', datum: '2013-02-14', faelligkeit: '2013-03-01', read: true, gezahlt: false
 	peterthomasd1 = Debit.create emailcurrentuser: 'peter@paymeback.de', emailuser2: 'thomas@paymeback.de', firstname: 'Thomas Hollstegge', info: 'Essensgeld Mittagspause', art: 'Geliehen', betrag: -10, datum: '2013-02-14', faelligkeit: '2013-03-01', read: false, gezahlt: false
-	lukaspeterd1 = Debit.create emailcurrentuser: 'lukas@paymeback.de', emailuser2: 'peter@paymeback.de', firstname: 'Peter Grosskopf', info: 'Kuchen', art: 'Verliehen', betrag: 5, owner: 'lukas@paymeback.de', datum: '2013-02-20', faelligkeit: '2013-04-01', read: true, gezahlt: false
-	peterlukasd1 = Debit.create emailcurrentuser: 'peter@paymeback.de', emailuser2: 'lukas@paymeback.de', firstname: 'Lukas Koopmann', info: 'Kuchen', art: 'Geliehen', betrag: -5, datum: '2013-02-20', faelligkeit: '2013-04-01', read: false, gezahlt: false
-	peterlukasd2 = Debit.create emailcurrentuser: 'peter@paymeback.de', emailuser2: 'lukas@paymeback.de', firstname: 'Lukas Koopmann', info: 'Eis essen', art: 'Gehliehen', betrag: -10, datum: '2013-02-23', faelligkeit: '2013-04-01', read: true, gezahlt: false
-	lukaspeterd2 = Debit.create emailcurrentuser: 'lukas@paymeback.de', emailuser2: 'peter@paymeback.de', firstname: 'Peter Grosskopf', info: 'Eis essen', art: 'Verliehen', betrag: 10, owner: 'lukas@paymeback.de', datum: '2013-02-23', faelligkeit: '2013-04-01', read: true, gezahlt: false
+	bjoernpeterd1 = Debit.create emailcurrentuser: 'bjoern@paymeback.de', emailuser2: 'peter@paymeback.de', firstname: 'Peter Grosskopf', info: 'Kuchen', art: 'Verliehen', betrag: 5, owner: 'bjoern@paymeback.de', datum: '2013-02-20', faelligkeit: '2013-04-01', read: true, gezahlt: false
+	peterbjoernd1 = Debit.create emailcurrentuser: 'peter@paymeback.de', emailuser2: 'bjoern@paymeback.de', firstname: 'Bjoern Simon', info: 'Kuchen', art: 'Geliehen', betrag: -5, datum: '2013-02-20', faelligkeit: '2013-04-01', read: false, gezahlt: false
+	peterbjoernd2 = Debit.create emailcurrentuser: 'peter@paymeback.de', emailuser2: 'bjoern@paymeback.de', firstname: 'Bjoern Simon', info: 'Eis essen', art: 'Gehliehen', betrag: -10, datum: '2013-02-23', faelligkeit: '2013-04-01', read: true, gezahlt: false
+	bjoernpeterd2 = Debit.create emailcurrentuser: 'bjoern@paymeback.de', emailuser2: 'peter@paymeback.de', firstname: 'Peter Grosskopf', info: 'Eis essen', art: 'Verliehen', betrag: 10, owner: 'bjoern@paymeback.de', datum: '2013-02-23', faelligkeit: '2013-04-01', read: true, gezahlt: false
 	thomasflod1 = Debit.create emailcurrentuser: 'thomas@paymeback.de', emailuser2: 'flo@paymeback.de', firstname: 'Flo Kopp', info: 'Kino', art: 'Geliehen', betrag: -15, owner: 'thomas@paymeback.de', datum: '2013-02-19', faelligkeit: '2013-04-01', read: true, gezahlt: false
 	flothomasd1 = Debit.create emailcurrentuser: 'flo@paymeback.de', emailuser2: 'thomas@paymeback.de', firstname: 'Thomas Hollstegge', info: 'Kino', art: 'Verliehen', betrag: -15, datum: '2013-02-19', faelligkeit: '2013-04-01', read: true, gezahlt: false
 	thomasflod2 = Debit.create emailcurrentuser: 'thomas@paymeback.de', emailuser2: 'flo@paymeback.de', firstname: 'Flo Kopp', info: 'GoKart fahren', art: 'Verliehen', betrag: 10, owner: 'thomas@paymeback.de', datum: '2013-02-20', faelligkeit: '2013-04-01', read: true, gezahlt: false

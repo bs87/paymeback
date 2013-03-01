@@ -45,7 +45,7 @@ Mit Paymeback können Sie ganz einfach verwalten wem Sie Geld geliehen haben und
 Wir haben folgende Benutzer angelegt:
 * Emailadresse: peter@paymeback.de, Passwort: Test1234
 * Emailadresse: thomas@paymeback.de, Passwort: Test1234 <br><br>
-Diese Benutzer haben die Rolle user und können andere Benutzerkonten nicht verwalten, <br>
+Diese Benutzer haben die Rolle reguser und können andere Benutzerkonten nicht verwalten, <br>
 hierfür gibt es noch folgenden Benutzer:
 * Emailadresse: admin@admin.de, Passwort: Test1234
 
@@ -84,7 +84,7 @@ Hier kann der Admin User verwalten
 
 Funktion:
 * Benutzer sperren
-* Benutzer entsperren
+* Benutzer entsperren (lock entfernen und lock_at löschen)
 * Benutzer zur einer Rolle hinzufügen
 
 
