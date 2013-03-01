@@ -38,7 +38,7 @@ it "Freundschaftsanfrage wieder stonieren" do
 	page.should have_content "Freundschaft beendet."
 	end
 
-	it "Freundschaft beenden" do
+it "Freundschaft beenden" do
 	find("#freundebutton").click 
 	find("#freundefinden").click 
 	first("#freundehinzufuegen").click 
@@ -46,7 +46,7 @@ it "Freundschaftsanfrage wieder stonieren" do
 	page.should have_content "Freundschaft beendet."
 	end
 
-	it "Freundschaftsanfrage annehmen" do
+it "Freundschaftsanfrage annehmen" do
 	find("#freundebutton").click 
 	find("#freundefinden").click 
 	first("#freundehinzufuegen").click 
@@ -55,7 +55,7 @@ it "Freundschaftsanfrage wieder stonieren" do
 	end
 
 
-	it "Nachricht an Freund senden" do
+it "Nachricht an Freund senden" do
 	find("#freundebutton").click 
 	first("#nachrichtsenden").click
 	page.should have_content "Neue Nachricht"
