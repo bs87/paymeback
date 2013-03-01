@@ -4,11 +4,10 @@ require 'spec_helper.rb'
 
 describe 'Freundschaften:' do
 	before(:each) do
-
-
 		user = FactoryGirl.create(:user)
 		user1 = FactoryGirl.create(:user1)
 		user2 = FactoryGirl.create(:user2)
+		user3 = FactoryGirl.create(:user3)
 		friend = FactoryGirl.create(:friend)
 		friendanfrage = FactoryGirl.create(:friendanfrage)	
 		sign_in(user)

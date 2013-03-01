@@ -7,13 +7,6 @@ accepted "true"
 end
 end
 
-#FactoryGirl.define do
-#	factory :friend2, class: 'Friend' do
-#		friend_id "12"
-#		user_id "10"
-#		accepted "true" 
-#	end
-#end
 
 FactoryGirl.define do
 	factory :friendanfrage, class: 'Friend' do
@@ -27,7 +20,6 @@ end
 
 FactoryGirl.define do
 factory :user, class: 'User' do
-
 id 10 
 email 'dummy24@paymeback.de'
 firstname 'dummy'
@@ -73,8 +65,8 @@ FactoryGirl.define do
 factory :user3, class: 'User' do
 id 13
 email 'dummy1424@paymeback.de'
-firstname 'dummy21'
-lastname 'dummy21'
+firstname 'dummy12'
+lastname 'dummy12'
 adress 'hafenstrasse 12'
 zip '48143'
 city 'muenster'
@@ -83,6 +75,7 @@ password_confirmation 'hackme!!'
 dateofbirth {DateTime.now}
 end
 end
+
 
 FactoryGirl.define do
 factory :nachricht, class: 'Nachrichten' do
