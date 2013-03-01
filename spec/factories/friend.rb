@@ -37,14 +37,15 @@ end
 end
 
 FactoryGirl.define do
-	factory :nachricht, class: 'Nachrichten' do
-		id 23
-		sentby '11'
-		sentto '10'
-		topic 'test'
-		body 'Hallo Welt'
-	end
+factory :nachricht, class: 'Nachrichten' do
+id 23
+sentby '11'
+sentto '10'
+topic 'test'
+body 'Hallo Welt'
 end
+end
+
 FactoryGirl.define do
  factory :user2, class: 'User' do
  id 12
