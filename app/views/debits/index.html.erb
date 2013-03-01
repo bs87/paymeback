@@ -24,17 +24,19 @@
 <p><%= link_to " Aktuelle Übersicht ", "/debits",  :class => ' btn icon-list'%>  <%= link_to " History ", "/debits/?art=history",  :class => 'btn icon-calendar'%></p>
 
 <table class="table table-striped">
+  <%if params[:art].present?%>
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:Person) %></th>
       <th><%= model_class.human_attribute_name(:Verliehen) %></th>
       <th><%= model_class.human_attribute_name(:Geliehen) %></th>
+      <th><%= model_class.human_attribute_name(:Status) %></th>
+      <th><%= model_class.human_attribute_name(:Fälligkeit) %></th>
       <!--<th><%=t '.actions', :default => t("helpers.actions") %></th>-->
     </tr>
 
   </thead>
   <tbody>
-<%if params[:art].present?%>
       <% @debits.each do |debit| %>
       <% freund = User.where(email: debit.emailuser2).first%>
       <tr>
@@ -68,6 +70,16 @@
 <%else%>
 
 <%if params[:user].present? or params[:art].present?%>
+ <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:Person) %></th>
+      <th><%= model_class.human_attribute_name(:Verliehen) %></th>
+      <th><%= model_class.human_attribute_name(:Geliehen) %></th>
+      <!--<th><%=t '.actions', :default => t("helpers.actions") %></th>-->
+    </tr>
+
+  </thead> 
+  <tbody>
       <% @debits.each do |debit| %>
       <% freund = User.where(email: debit.emailuser2).first%>
       <tr>
@@ -87,6 +99,16 @@
       <% end %>  
 
 <%else%>
+ <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:Person) %></th>
+      <th><%= model_class.human_attribute_name(:Verliehen) %></th>
+      <th><%= model_class.human_attribute_name(:Geliehen) %></th>
+      <!--<th><%=t '.actions', :default => t("helpers.actions") %></th>-->
+    </tr>
+
+  </thead> 
+  <tbody>
     <% @debits.each do |key, val| %>
     <% freund = User.where(email: key).first%>
     <tr>

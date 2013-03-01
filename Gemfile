@@ -10,13 +10,15 @@ gem 'rails', '3.2.12'
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :developement, :test do
+group :developement do
+gem 'sqlite3'
+end
+
+group :test do
 gem 'rspec-rails'
 gem 'faker'
 gem 'guard-rspec'
-gem 'factory_girl_rails'
-gem 'sqlite3'
-gem 'cancan'
+gem 'factory_girl_rails', :require => false
 end
 
 group :production, :developement do
