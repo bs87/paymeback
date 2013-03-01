@@ -25,8 +25,8 @@
 
 	# Freunde und Freundschaftsanfragen hinzufügen
 	floadmin = Friend.create :user_id => 2, :friend_id => 1, :accepted => true
-	flopeter = Friend.create :user_id => 10, :friend_id => 2, :accepted => true
-	flothomas = Friend.create :user_id => 9, :friend_id => 2, :accepted => true
+	flopeter = Friend.create :user_id => 2, :friend_id => 10, :accepted => true
+	flothomas = Friend.create :user_id => 2, :friend_id => 9, :accepted => true
 	flolukas = Friend.create :user_id => 2, :friend_id => 4, :accepted => false
 	thomaspeter = Friend.create :user_id => 9, :friend_id => 10, :accepted => true
 	thomaslukas = Friend.create :user_id => 9, :friend_id => 4, :accepted => false
