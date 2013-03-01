@@ -36,8 +36,8 @@
       <%end%>
       <td><%= link_to " Profil anzeigen", user_path(:id => freund), :method => :get , :class => 'btn icon-user', :id => "profilanzeigen"%>
 
-        <%= link_to "Nachricht senden ", new_nachrichten_path(:sentto => freund), :method => :get, :class =>'btn icon-envelope', :id => "nachrichtsenden"%>
-      <%= link_to " Freundschaft beenden ", friend, :method => :delete , :class => 'btn btn-danger icon-remove', :id => "freundschaftbeenden"%>  </td></tr>
+        <%= link_to " Nachricht senden", new_nachrichten_path(:sentto => freund), :method => :get, :class =>'btn icon-envelope', :id => "nachrichtsenden"%>
+      <%= link_to " Freundschaft beenden", friend, :method => :delete , :class => 'btn btn-danger icon-remove', :id => "freundschaftbeenden"%>  </td></tr>
 
    <%end%>
    <%end%>
@@ -86,9 +86,9 @@
       <%else%>
       <td><%= image_tag freund.photo.url(:tiny)  %> </td>
       <%end%>
-    <td> <%= link_to " Profil anzeigen ", user_path(:id => user), :method => :get , :class => 'btn icon-user '%>
-      <%= link_to "Nachricht senden", new_nachrichten_path(:sentto => type), :method => :get, :class =>'btn icon-envelope'%>
-    <%= link_to " annehmen ", type, :method => :put, :class => 'btn btn-success icon-ok', :id => "freundannehmen" %> 
+    <td> <%= link_to " Profil anzeigen", user_path(:id => user), :method => :get , :class => 'btn icon-user '%>
+      <%= link_to " Nachricht senden", new_nachrichten_path(:sentto => type), :method => :get, :class =>'btn icon-envelope'%>
+    <%= link_to " annehmen", type, :method => :put, :class => 'btn btn-success icon-ok', :id => "freundannehmen" %> 
     <%= link_to " ablehnen", type, :method => :delete, :class => 'btn btn-danger'%></td>
       <%end%>
       </tbody>
@@ -115,8 +115,8 @@
       <%else%>
       <td><%= image_tag freund.photo.url(:tiny)  %> </td>
       <%end%>
-       <td> <%= link_to " Profil anzeigen", user_path(:id => freund), :method => :get, :class => 'btn icon-user' %><%= link_to "Nachricht senden", new_nachrichten_path(:sentto => freund), :method => :get, :class =>'btn icon-envelope'%>
-
+       <td> <%= link_to " Profil anzeigen", user_path(:id => freund), :method => :get, :class => 'btn icon-user' %>
+        <%= link_to " Nachricht senden", new_nachrichten_path(:sentto => freund), :method => :get, :class =>'btn icon-envelope'%>
         <%= link_to " Anfrage stornieren", friend, :method => :delete , :class => 'btn btn-danger icon-remove'%></td>
   <%end%>
   <% end %>
