@@ -1,11 +1,15 @@
 require 'spec_helper'
 
 
-describe 'Sign in' do 
+describe 'Sign in' do
 	before(:each) do
-		user = FactoryGirl.create(:user)
-		sign_in(user)
-	end
+	@user = FactoryGirl.create(:user)
+	@user1 = FactoryGirl.create(:user1)
+	@user2 = FactoryGirl.create(:user2)
+	@friend = FactoryGirl.create(:friend)
+	sign_in(@user)
+end
+
 
 it "Auf Freunde klicken um die Freundeseite zu sehen" do
 	find("#freundebutton").click 
