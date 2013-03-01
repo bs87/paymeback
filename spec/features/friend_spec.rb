@@ -41,7 +41,7 @@ it "Freundschaftsanfrage wieder stonieren" do
 	find("#freundebutton").click 
 	find("#freundefinden").click 
 	first("#freundehinzufuegen").click 
-	click_on("Freundschaft beenden")
+	first("#freundschaftbeenden").click 
 	page.should have_content "Freundschaft beendet."
 	end
 
