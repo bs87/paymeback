@@ -47,11 +47,15 @@ hierfür gibt es noch folgenden Benutzer:
 * Emailadresse: admin@admin.de, Passwort: Test1234
 
 ###Debits
-
+Hier können Nutzer ihre Schulden verwalten. 
 
 Funktion
 * Es können nur Schulden für Benutzer eingetragen werden, mit denen der Benutzer befreundet ist.
-*
+* Es kann ein Fälligkeitsdatum gesetzt werden
+* Nur der Erzeuger (Owner) kann Schulden wieder löschen
+* Ein Freund erhält automatisch eine Benachrichtung sobald jemand anderes eine Schuld für ihn eingetragen oder verändert hat
+* Für jeden Freund gibt es eine Einzelauflistung
+* In der Zusammenfassung werden die Beträge einzelner Nutzer gegeneinander verrechnet
 
 ###Freunde
 Hier werden die Freunde des Benutzers angezeigt.
