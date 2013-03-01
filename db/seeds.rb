@@ -24,13 +24,13 @@
 
 	# Freunde und Freundschaftsanfragen hinzufügen
 	floadmin = Friend.create :user_id => 2, :friend_id => 1, :accepted => true
-	flopeter = Friend.create :user_id => 10, :friend_id => 2, :accepted => true
-	flothomas = Friend.create :user_id => 9, :friend_id => 2, :accepted => true
-	thomaspeter = Friend.create :user_id => 9, :friend_id => 10, :accepted => true
-	thomasbjoern = Friend.create :user_id => 9, :friend_id => 3, :accepted => true
-	peterbjoern = Friend.create :user_id => 10, :friend_id => 3, :accepted => true
-	andrethomas = Friend.create :user_id => 7, :friend_id => 9, :accepted => false
-	andrepeter = Friend.create :user_id	=> 7, :friend_id => 10, :accepted => false
+	flopeter = Friend.create :user_id => 9, :friend_id => 2, :accepted => true
+	flothomas = Friend.create :user_id => 8, :friend_id => 2, :accepted => true
+	thomaspeter = Friend.create :user_id => 8, :friend_id => 9, :accepted => true
+	thomasbjoern = Friend.create :user_id => 8, :friend_id => 3, :accepted => true
+	peterbjoern = Friend.create :user_id => 9, :friend_id => 3, :accepted => true
+	andrethomas = Friend.create :user_id => 6, :friend_id => 8, :accepted => false
+	andrepeter = Friend.create :user_id	=> 6, :friend_id => 9, :accepted => false
 
 
 	#Nachrichten tippen
