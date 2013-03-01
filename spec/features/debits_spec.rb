@@ -7,6 +7,8 @@ describe 'Debits' do
 	@user1 = FactoryGirl.create(:user1)
 	@user2 = FactoryGirl.create(:user2)
 	@friend = FactoryGirl.create(:friend)
+	@debit1 = FactoryGirl.create(:debit1)
+	@debit2 = FactoryGirl.create(:debit2)
 	sign_in(@user)
 	end
 
@@ -24,9 +26,9 @@ it "Click link Neuer Eintrag" do
 
 it "Create Debits - Formular" do
 	click_link 'Neue Schulden eintragen'
-	fill_in "freund", with: 'Dummy'	
-	fill_in "art", with: 'Geliehen'
-	fill_in "betrag", with: '20'
+	fill_in "freund", with: 'Dummy'
+	fill_in "email", with: 'dummy1@paymeback.de'
+	fill_in "betrag", with: 20
 	fill_in "info", with: 'Test1234'
 	expect { click_button 'Erstellen' }.to change {Debit.count }.by(2)
 	page.should have_content "Debit was successfully created."
@@ -36,10 +38,11 @@ it "Create Debits - Formular" do
 it "Update Debits - Formular" do
 	click_link 'Bearbeiten'
 	fill_in "freund", with: 'Dummy'
-	fill_in "art", with: 'Verliehen'
+	fill_in "email", with: 'dummy1'
+	
 	fill_in "betrag", with: '30'
 	fill_in "info", with: 'UpdateTestTest1234'
-	expect { click_button 'Erstellen' }.to change {Debit.count }.by(2)
+	click_on 'Erstellen'
 	page.should have_content "Eintrag wurde erfolgreich erstellt"
 	end
 
