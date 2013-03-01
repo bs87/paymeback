@@ -30,6 +30,9 @@ Mit Paymeback können Sie ganz einfach verwalten wem Sie Geld geliehen haben und
  			rake db:reset
  			rake db:test:prepare
 
+* ImageMagick installieren:
+  			
+  			sudo apt-get install imagemagick imagemagick-doc
 
 * paymeback starten:
   			
