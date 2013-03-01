@@ -68,14 +68,17 @@ class DebitsController < ApplicationController
 
 
 
-   friends = current_user.friends.where(accepted: true)
-   friends2 = current_user.inverse_friends.where(accepted: true)
-   friendsall = friends + friends2
+   @friends = current_user.friends.where(accepted: true)
+   @friends2 = current_user.inverse_friends.where(accepted: true)
+  friendsall = @friends + @friends2
    @friend3 = friendsall
-   @Fullname = Hash.new
+  
+ 
+@Fullname = friendsall.map{|friend| {'label' => "#{friend.user.firstname} #{friend.user.lastname}", 'email' => "#{friend.user.email}", 'icon' => "<img src='#{friend.user.photo.url(:tiny)}'/>"}}
+   #@Fullname = @friends.map{|friend| {'label' => "#{friend.user.firstname} #{friend.user.lastname}", 'email' => "#{friend.user.email}", 'icon' => "<img src='#{friend.user.photo.url(:tiny)}'/>"}}
+   #@Fullname2 = @friends2.map{|friend| {'label' => "#{friend.user.firstname} #{friend.user.lastname}", 'email' => "#{friend.user.email}", 'icon' => "<img src='#{friend.user.photo.url(:tiny)}'/>"}} 
 
-   @Fullname = friendsall.map{|friend| {'label' => "#{friend.user.firstname} #{friend.user.lastname}", 'email' => "#{friend.user.email}", 'icon' => "<img src='#{friend.user.photo.url(:tiny)}'/>"}}
-   
+
 
     respond_to do |format|
       format.html # new.html.erb
