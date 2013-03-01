@@ -1,15 +1,16 @@
 require 'spec_helper'
 
 
-describe 'FreundeTest:' do 
+
+describe 'Sign in' do
 	before(:each) do
-		@user = FactoryGirl.create(:user)
-		@user1 = FactoryGirl.create(:user1)
-		@user2 = FactoryGirl.create(:user2)
-		@friend = FactoryGirl.create(:friend)
-		@friendanfrage = FactoryGirl.create(:friendanfrage)
-		sign_in(@user)
-	end
+	@user = FactoryGirl.create(:user)
+	@user1 = FactoryGirl.create(:user1)
+	@user2 = FactoryGirl.create(:user2)
+	@friend = FactoryGirl.create(:friend)
+	sign_in(@user)
+end
+
 
 it "Auf Freunde klicken um die Freundeseite zu sehen" do
 	find("#freundebutton").click 
@@ -37,7 +38,7 @@ it "Freundschaftsanfrage wieder stonieren" do
 	page.should have_content "Freundschaft beendet."
 	end
 
-	it "Freundschaft beenden" do
+it "Freundschaft beenden" do
 	find("#freundebutton").click 
 	find("#freundefinden").click 
 	first("#freundehinzufuegen").click 
@@ -45,7 +46,7 @@ it "Freundschaftsanfrage wieder stonieren" do
 	page.should have_content "Freundschaft beendet."
 	end
 
-	it "Freundschaftsanfrage annehmen" do
+it "Freundschaftsanfrage annehmen" do
 	find("#freundebutton").click 
 	find("#freundefinden").click 
 	first("#freundehinzufuegen").click 
@@ -54,7 +55,7 @@ it "Freundschaftsanfrage wieder stonieren" do
 	end
 
 
-	it "Nachricht an Freund senden" do
+it "Nachricht an Freund senden" do
 	find("#freundebutton").click 
 	first("#nachrichtsenden").click
 	page.should have_content "Neue Nachricht"
