@@ -48,4 +48,9 @@ describe Debit do
 		end
 		r.should be_true
 	end
+	
+	it "debits belongs_to user" do
+		debit = Debit.reflect_on_association (:user)
+		debit.macro.should == :belongs_to
+	end
 end

@@ -1,12 +1,14 @@
 require 'spec_helper'
 
 describe 'nachrichten' do
+	let!(:user){FactoryGirl.create(:user)}
+	let!(:user1){FactoryGirl.create(:user1)}
+	let!(:nachricht){FactoryGirl.create(:nachricht)}
+
 	before(:each) do
-		@user = FactoryGirl.create(:user)
-		@user2 = FactoryGirl.create(:user1)
-		@nachricht = FactoryGirl.create(:nachricht)
+		
 		visit root_path
-		sign_in (@user)
+		sign_in (user)
 		visit nachrichtens_path
 	end
 
