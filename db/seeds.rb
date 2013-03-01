@@ -25,8 +25,8 @@
 
 	# Freunde und Freundschaftsanfragen hinzufügen
 	floadmin = Friend.create :user_id => 2, :friend_id => 1, :accepted => true
-	flopeter = Friend.create :user_id => 2, :friend_id => 10, :accepted => true
-	flothomas = Friend.create :user_id => 2, :friend_id => 9, :accepted => true
+	flopeter = Friend.create :user_id => 10, :friend_id => 2, :accepted => true
+	flothomas = Friend.create :user_id => 9, :friend_id => 2, :accepted => true
 	flolukas = Friend.create :user_id => 2, :friend_id => 4, :accepted => false
 	thomaspeter = Friend.create :user_id => 9, :friend_id => 10, :accepted => true
 	thomaslukas = Friend.create :user_id => 9, :friend_id => 4, :accepted => false
@@ -56,7 +56,7 @@
 	thomasflod2 = Debit.create emailcurrentuser: 'thomas@paymeback.de', emailuser2: 'flo@paymeback.de', firstname: 'Flo Kopp', info: 'GoKart fahren', art: 'Verliehen', betrag: 10, owner: 'thomas@paymeback.de', datum: '2013-02-20', faelligkeit: '2013-04-01', read: true, gezahlt: false
 	flothomasd2 = Debit.create emailcurrentuser: 'flo@paymeback.de', emailuser2: 'thomas@paymeback.de', firstname: 'Thomas Hollstegge', info: 'GoKart fahren', art: 'Geliehen', betrag: -10, datum: '2013-02-20', faelligkeit: '2013-04-01', read: true, gezahlt: false
 	thomasbjoernd1 = Debit.create emailcurrentuser: 'thomas@paymeback.de', emailuser2: 'bjoern@paymeback.de', firstname: 'Bjoern Simon', info: 'Ausflug nach Hamburg', art: 'Geliehen', betrag: -25, owner: 'thomas@paymeback.de', datum: '2013-02-25', faelligkeit: '2013-04-01', read: true, gezahlt: false
-	bjoernthomasd1 = Debit.create emailcurrentuser: 'bjoern@paymeback.de', emailuser2: 'thomas@paymeback.de', firstname: 'Thomas Hollstegge', info: 'AUsflug nach Hamburg', art: 'Verliehen', betrag: -25, datum: '2013-02-25', faelligkeit: '2013-04-01', read: true, gezahlt: false
+	bjoernthomasd1 = Debit.create emailcurrentuser: 'bjoern@paymeback.de', emailuser2: 'thomas@paymeback.de', firstname: 'Thomas Hollstegge', info: 'Ausflug nach Hamburg', art: 'Verliehen', betrag: -25, datum: '2013-02-25', faelligkeit: '2013-04-01', read: true, gezahlt: false
 	thomasbjoernd2 = Debit.create emailcurrentuser: 'thomas@paymeback.de', emailuser2: 'bjoern@paymeback.de', firstname: 'Bjoern Simon', info: 'Shoppen', art: 'Verliehen', betrag: 15, owner: 'thomas@paymeback.de', datum: '2013-02-25', faelligkeit: '2013-04-01', read: true, gezahlt: false
 	bjoernthomasd2 = Debit.create emailcurrentuser: 'bjoern@paymeback.de', emailuser2: 'thomas@paymeback.de', firstname: 'Thomas Hollstegge', info: 'Shoppen', art: 'Geliehen', betrag: -15, datum: '2013-02-25', faelligkeit: '2013-04-01', read: true, gezahlt: false
 	thomasbjoernd3 = Debit.create emailcurrentuser: 'thomas@paymeback.de', emailuser2: 'bjoern@paymeback.de', firstname: 'Bjoern Simon', info: 'Send', art: 'Geliehen', betrag: -25, owner: 'thomas@paymeback.de', datum: '2013-02-28', faelligkeit: '2013-04-01', read: true, gezahlt: false

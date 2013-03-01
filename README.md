@@ -30,6 +30,9 @@ Mit Paymeback können Sie ganz einfach verwalten wem Sie Geld geliehen haben und
  			rake db:reset
  			rake db:test:prepare
 
+* ImageMagick installieren:
+  			
+  			sudo apt-get install imagemagick imagemagick-doc
 
 * paymeback starten:
   			
@@ -74,7 +77,16 @@ Funktion:
 * angemeldete Benutzer können anderen Benutzern Nachrichten schicken.
 * Unter gesendete und empfangene Nachrichten werden alle Nachrichten des Benutzers angezeigt.
 * Nachrichten können z.B. über das Profil eines Benutzers oder über die Details einer Schuld erstellt werden.
-* 
+
+
+###Admin Dashboard
+Hier kann der Admin User verwalten
+
+Funktion:
+* Benutzer sperren
+* Benutzer entsperren
+* Benutzer zur einer Rolle hinzufügen
+
 
 ##Heroku
 ==========

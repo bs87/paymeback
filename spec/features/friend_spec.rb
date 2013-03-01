@@ -5,6 +5,7 @@ require 'spec_helper.rb'
 describe 'Freundschaften:' do
 	before(:each) do
 
+
 		user = FactoryGirl.create(:user)
 		user1 = FactoryGirl.create(:user1)
 		user2 = FactoryGirl.create(:user2)
@@ -12,6 +13,7 @@ describe 'Freundschaften:' do
 		friendanfrage = FactoryGirl.create(:friendanfrage)	
 		sign_in(user)
 	end
+
 
 
 it "Auf Freunde klicken um die Freundeseite zu sehen" do
