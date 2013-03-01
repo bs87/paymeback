@@ -20,10 +20,18 @@
 <dl class="dl-horizontal">
   <%if @nachrichten.sentto ==current_user.id%>
   <dt><strong><dt><strong><%= model_class.human_attribute_name(:Sender) %>:</strong></dt>
-  <dd><%= user1.firstname %> <%= user1.lastname %> <%= image_tag user1.photo.url(:small) %></dd>
+  <dd><%= user1.firstname %> <%= user1.lastname %> <%if user1.photo_file_name.blank? %>
+      <img src="/assets/missing_small.png"   />
+      <%else%>
+      <%= image_tag freund.photo.url(:tiny)  %>
+      <%end%></dd>
   <%else%>
   <dt><strong><%= model_class.human_attribute_name(:Empfänger) %>:</strong></dt>
-  <dd><%= user2.firstname  %> <%= user2.lastname  %> <%= image_tag user2.photo.url(:small) %></dd>
+  <dd><%= user2.firstname  %> <%= user2.lastname  %> <%if user1.photo_file_name.blank? %>
+      <img src="/assets/missing_small.png"   />
+      <%else%>
+      <%= image_tag freund.photo.url(:tiny)  %>
+      <%end%></dd>
   <%end%>
   <dt><strong><%= model_class.human_attribute_name(:Betreff) %>:</strong></dt>
   <dd><%= @nachrichten.topic %></dd>
