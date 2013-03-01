@@ -23,6 +23,8 @@ FactoryGirl.define do
 	end
 end
 
+
+
 FactoryGirl.define do
 factory :user, class: 'User' do
 
@@ -66,8 +68,6 @@ password_confirmation 'hackme!!'
 dateofbirth {DateTime.now}
 end
 end
-
-
 
 
 FactoryGirl.define do

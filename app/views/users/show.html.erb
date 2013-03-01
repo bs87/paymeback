@@ -27,7 +27,7 @@
 <%friend = Friend.where(user_id: current_user.id , friend_id: @user.id).first%>
 <% if friend%>
 		<% if friend.accepted == true%>
-  <%= link_to t('. Freundschaft beenden'), friend, :method => :delete, :class => 'btn btn-danger icon-remove'  %>
+  <%= link_to t('. Freundschaft beenden'), friend, :method => :delete, :class => 'btn btn-danger icon-remove'  , :id => "freundschaftbeenden"%>
   	<%else%>
   <%= link_to " Anfrage stornieren",  friend, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, :class => 'btn btn-danger icon-remove' %>
 	<%end%>
@@ -35,7 +35,7 @@
 <%friend1 = Friend.where(user_id: @user.id , friend_id: current_user.id).first%>
 	<% if friend1%>
 		<% if friend1.accepted == true%>
-<%= link_to t('. Freundschaft beenden'),  friend1, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, :class => 'btn btn-danger icon-remove' %>
+<%= link_to t('. Freundschaft beenden'),  friend1, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))}, :class => 'btn btn-danger icon-remove' , :id => "freundschaftbeenden"%>
 		<%else%>
     <%= link_to " annehmen", friend1, :method => :put, :class => 'btn btn-success icon-ok' %> 
     <%= link_to " ablehnen",  friend1, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},:class => 'btn btn-danger icon-remove' %>

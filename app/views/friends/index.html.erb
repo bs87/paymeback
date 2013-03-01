@@ -29,7 +29,7 @@
 
       <tbody>
       <td><%=h freund.firstname%> <%=freund.lastname%></td>
-      <%if freund.photo_file_name.blank? %>
+      <%if freund.photo_file_size.blank? %>
       <td><img src="/assets/missing_small.png"   /> </td>
       <%else%>
       <td><%= image_tag freund.photo.url(:tiny)  %> </td>
