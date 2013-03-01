@@ -14,7 +14,7 @@ group   :developement do
 gem 'rspec-rails'
 gem 'faker'
 gem 'guard-rspec'
-gem 'sqlite3'
+#gem 'sqlite3'
 gem 'factory_girl_rails', :require => false
 gem 'capybara'
 end
